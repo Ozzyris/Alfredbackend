@@ -1,3 +1,30 @@
-<p>
-  login works!
-</p>
+<section class="login">
+	<div class="inner_container">
+		<div class="login_container">
+			<div class="login_card">
+				<div class="header">
+					<h2 class="title">Sign in</h2>
+				</div>
+				<div class="body">
+					<div class="input_group">
+						<label for="email_input">Email address <span class="required">*</span></label>
+						<input type="text" id="email_input" placeholder="annah.weng@gmail.com">
+						<p class="informational_message"></p>
+					</div>
+					<div class="input_group">
+						<label for="password_input">Password <span class="required">*</span></label>
+						<input type="password" id="password_input" placeholder="1Grd%jdb">
+						<p class="informational_message"></p>
+					</div>
+					<div class="input_group checkbox">
+						<input id="input_stay_loggedin" type="checkbox">
+						<label for="input_stay_loggedin">Stay logged in.</label>
+					</div>
+				</div>
+				<div class="footer">
+					<a class="button" (click)="input_verification()">Login</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

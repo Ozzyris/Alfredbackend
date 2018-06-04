@@ -1,12 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ArticleComponent } from './views/article/article.component';
 
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  {  
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'article', component: ArticleComponent }
+  { path: '**', component: LoginComponent }
+];
 
 @NgModule({
   declarations: [
@@ -16,7 +29,10 @@ import { ArticleComponent } from './views/article/article.component';
     ArticleComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

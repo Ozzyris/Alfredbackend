@@ -1,0 +1,310 @@
+// =============================================================================
+// IMPORT
+// =============================================================================
+@import "../../../assets/styles/ui_mixines";
+
+section.resources{
+	div.hero{
+		height: 300px;
+		background-position: center center;
+		background-size: cover;
+		position: relative;
+		z-index: 0;
+	}
+	div.search{
+		@include container_sizing( 500px );
+		background-color: white;
+		border-radius: 3px;
+		box-shadow: 0px 0px 5px rgba(black, 0.2);
+		margin-top: -20px;
+		height: 40px;
+		z-index: 1;
+		position: relative;
+
+		span.icon{
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			display: block;
+			font-family: 'font_awesome';
+			float: left;
+		}
+		input{
+			float: left;
+			height: 38px;
+			border: none;
+			width: calc(100% - 60px)
+		}
+	}
+	
+	div.main_container{
+		width: 100%;
+		margin-top: 40px;
+		padding-bottom: 80px;
+		position: relative;
+
+		div.breadcrumb{
+			@include container_sizing( 600px );
+			overflow: auto;
+			margin-bottom: 16px;
+			cursor: pointer;
+	
+			&:hover{
+				span.icon{ color: lighten($primary_blue_dark, 15%); }
+				p{ color: lighten($primary_blue_dark, 15%); }
+			}
+			span.icon{
+				font-family: 'font_awesome';
+				font-family: 18px;
+				color: $primary_blue_dark;
+				float: left;
+				transition: all 200ms;
+			}
+			p{
+				font-family: 'istok';
+				font-family: 18px;
+				float: left;
+				margin-left: 12px;
+				color: $primary_blue_dark;
+				transition: all 200ms;
+			}
+		}
+		div.shortcuts{
+			position: relative;
+			width: 100%;
+
+			div.shortcut_group{
+				width: 320px;
+				margin: 0 auto 50px;
+
+				div.header{
+					h3{
+						color: $primary_blue_light;
+						font-family: 'istok';
+						font-size: 14px;
+						font-weight: 400;
+						text-align: left;
+						text-transform: uppercase;
+					}
+				}
+				div.body{
+					display: flex;
+					flex-wrap: wrap;
+
+					div.shortcut{
+						width: 100px;
+						height: 100px;
+						background-color: white;
+						box-shadow: 0px 0px 5px rgba(black, 0.2);
+						border-radius: 3px;
+						margin: 10px 10px 0 0;
+						cursor: pointer;
+						transition: all 200ms;
+						
+						&:nth-child(3n){margin-right: 0;}
+						&:hover{
+							box-shadow: 0px 0px 10px rgba(black, 0.3);
+						}
+						span.icon{
+							font-family: 'font_awesome';
+							font-size: 20px;
+							text-align: center;
+							width: 100%;
+							color: $primary_blue_dark;
+							display: block;
+							margin-top: 30%;
+						}
+						h4{
+							margin-top: 10%;
+							color: $primary_blue_dark;
+							text-align: center;
+							display: block;
+							font-size: 13px;
+							font-weight: 400;
+						}
+					}
+				}
+			}
+		}
+
+		div.articles{
+			width: 100%;
+
+			div.article_group{
+				width: 320px;
+				margin: 0 auto 50px;
+
+				div.header{
+					h3{
+						color: $primary_blue_light;
+						font-family: 'istok';
+						font-size: 14px;
+						font-weight: 400;
+						text-align: left;
+						text-transform: uppercase;
+					}
+				}
+				div.body{
+
+					article{
+						background-color: white;
+						border-radius: 3px;
+						box-shadow: 0px 0px 5px rgba(black, 0.2);
+						margin: 10px 0 15px;
+						width: 100%;
+						cursor: pointer;
+
+						div.illustration{
+							width: 100%;
+							height: 150px;
+							background-size: cover;
+							background-position: center, center;
+							border-top-right-radius: 3px;
+							border-top-left-radius: 3px;
+						}
+						div.content{
+							padding: 10px 20px 10px 20px;
+
+							h3{
+								font-size: 14px;
+								color: $primary_blue_dark;
+								margin-bottom: 8px;
+							}
+							p.small{
+								font-size: 8px;
+								color: rgba($primary_blue_med, .5);
+								text-transform: uppercase;
+								font-family: 'istok';
+								margin-bottom: 9px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+    TABLET VERSION
+*/
+@media screen and (min-width: 768px ){
+	section.resources{
+		div.hero{
+			div.search{
+				span.icon{}
+				input{}
+			}	
+		}
+		div.main_container{
+			display: block;
+			@include container_sizing( 1000px );
+			padding-top: 40px;
+			// overflow: auto;
+
+			div.shortcuts{
+				// width: calc((100%/12)*3);
+				width: 260px;
+				float: left;
+
+				div.shortcut_group{
+					margin-bottom: 50px;
+
+					div.header{
+						h3{
+							color: $primary_blue_light;
+							font-family: 'istok';
+							font-size: 14px;
+							font-weight: 400;
+							text-align: left;
+							text-transform: uppercase;
+						}
+					}
+					div.body{
+						display: flex;
+						flex-wrap: wrap;
+
+						div.shortcut{
+							width: 80px;
+							height: 80px;
+							background-color: white;
+							box-shadow: 0px 0px 5px rgba(black, 0.2);
+							border-radius: 3px;
+							margin: 10px 10px 0 0;
+							cursor: pointer;
+							transition: all 200ms;
+							
+							&:nth-child(3n){margin-right: 0;}
+							&:hover{
+								box-shadow: 0px 0px 10px rgba(black, 0.3);
+							}
+							span.icon{
+								font-family: 'font_awesome';
+								font-size: 20px;
+								text-align: center;
+								width: 100%;
+								color: $primary_blue_dark;
+								display: block;
+								margin-top: 20%;
+							}
+							h4{
+								margin-top: 10%;
+								color: $primary_blue_dark;
+								text-align: center;
+								display: block;
+								font-size: 13px;
+								font-weight: 400;
+							}
+						}
+					}
+				}
+			}
+
+			div.articles{
+				width: calc(100% - 350px);
+				float: right;
+
+				div.article_group{
+					width: auto;
+
+					div.header{
+						h3{}
+					}
+					div.body{
+						display:flex;
+						align-items: flex-start;
+						justify-content: space-between;
+						flex-flow: row wrap;
+
+						article{
+							width: calc(50% - 10px);
+
+							div.illustration{}
+							div.content{
+								h3{}
+								p.small{}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+    SMALL SCREEN COMPUTER VERSION
+*/
+@media screen and (min-width: 992px ){}
+
+/*
+    LARGE SCREEN COMPUTER VERSION
+*/
+@media screen and (min-width: 1200px ){}
+
+
+/*
+    SUPER LARGE SCREEN COMPUTER VERSION
+*/
+@media screen and (min-width: 1600px ){}

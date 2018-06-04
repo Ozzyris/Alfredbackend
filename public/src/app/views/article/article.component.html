@@ -1,0 +1,51 @@
+<section class="modal" [ngClass]="{'active': is_modal_actice}" >
+	<div class="dark_filter"></div>
+	<div class="card">
+		<div class="header">
+			<h2>Something missing or incoherent</h2>
+			<span class="icon" (click)="is_modal_actice = false" ></span>
+		</div>
+		<div class="body">
+			<textarea rows="10" placeholder="What can we do better?"></textarea>
+		</div>
+		<div class="footer">
+			<a class="button">Send your feedback</a>
+		</div>
+	</div>
+</section>
+
+<section class="article">
+	<div class="breadcrumb" (click)="previous_page()">
+		<span class="icon"></span>
+		<p>Back to resources </p>
+	</div>
+
+	<div class="card">
+		<div class="hero" style="background-image: url(https://images.unsplash.com/photo-1495553912695-78160a6a3c74?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6d3de200297aa8e3e48660427ce3d759&auto=format&fit=crop&w=1412&q=80);"></div>
+		<div class="header">
+			<h1>Public holiday</h1>
+			<p>As for most of the countries Australian public Holiday are based around History, Religion and Wars.</p>
+		</div>
+		<div class="article">
+			<h3>New Year Eve</h3>
+			<p class="small">01 of January</p>
+			<p>New year Eve is the celebration of the starting of the new year. Around Australia celebration may varie, but in Sydney the firework is the traditional way to enjoy the celebration. 2 main fireworks are organized by the Sydney council, the first one at 9pm and the second one at midnight. The fireworks are launch from the harbour from 2 floating barque and from the harbour bridge. The harbour bridge is closed during the time for the firework, making the trafic a real nightmare.This celebration is really famous and people camp around circular quai from early the morning to have a good view of the fireworks. Lots of parks around the bay are also privatise for the night forcing you to pay an enterance fee, some other would are free but would enforce a non alchool policy.If you never seen this firework we recommend to have a look as it is a impressive 20 minutes of explosion. But we also recommend to found a park around the bay, who would offer you a nice view and allow a quick transport to you next stop of the night.</p>
+		</div>
+		<div class="article">
+			<h3>Australia day</h3>
+			<p class="small">26 of January</p>
+			<p>Australia day is the offical national day of Australia. The country celebrate then the landing of James Cook in Australia and the creation of the country itself. Once again Firework are in honours in Circular quay, usually with live concert, and some events welcoming new citizens in the country.And the other hand this celebration is also named as Invasion day, as it put aside all the Aboriginal culture who was living in the island well before Jame Cook arrival. In this honor the university of Sydney organise an aboriginal celebradtion during the all day. The celebration include traditional music, food market, and host talk about the subject.</p>
+		</div>
+		<div class="footer">
+			<h3>Details of this article</h3>
+			<div class="tags">
+				<span class="tag">Adventure</span>
+				<span class="tag">Art & event</span>
+				<span class="tag">Culture</span>
+				<span class="tag">Beach Holiday</span>
+			</div>
+			<p>Last updated, Yesterday at 09:23pm</p>
+			<a class="error" (click)="is_modal_actice = true" >Report something missing or incoherent</a>
+		</div>
+	</div>
+</section>

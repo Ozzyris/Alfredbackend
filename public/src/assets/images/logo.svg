@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="148px" height="34px" viewBox="0 0 148 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Logo / default</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Discovery" transform="translate(-1162.000000, -20.000000)">
+            <g id="Navigation-/-secondary">
+                <g id="Logo-/-default" transform="translate(1149.000000, 8.000000)">
+                    <text id="Expat-Manual-Copy-2" font-family="OldStandardTT-Bold, Old Standard TT" font-size="24" font-weight="bold" fill="#4D648C">
+                        <tspan x="12" y="30">Expat Manual</tspan>
+                    </text>
+                    <text id="Sydney" font-family="IstokWeb-Regular, Istok Web" font-size="12" font-weight="normal" fill="#FFB400">
+                        <tspan x="122.626953" y="42.75">Sydney</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,160 @@
+<section class="resources">
+	<div class="hero" style="background-image: url('https://images.unsplash.com/photo-1513343987712-5da15ea2a9bb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=44ec6f8e29bc280971e4d98969aa21c5&auto=format&fit=crop&w=2534&q=80');">
+	</div>
+		<div class="search">
+		<span class="icon"></span>
+		<input type="text" placeholder="SEARCH">
+	</div>
+	
+	<div class="main_container">
+		<div class="shortcuts" *ngIf="is_shorcut_display">
+			<div class="shortcut_group">
+				<div class="header">
+					<h3>Lifestyle</h3>
+				</div>
+				<div class="body">
+					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
+						<span class="icon"></span>
+						<h4>Cafe</h4>
+					</div>
+					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
+						<span class="icon"></span>
+						<h4>Bars</h4>
+					</div>
+					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
+						<span class="icon"></span>
+						<h4>Restaurants</h4>
+					</div>
+					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
+						<span class="icon"></span>
+						<h4>Hostels</h4>
+					</div>
+					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
+						<span class="icon"></span>
+						<h4>Markets</h4>
+					</div>
+				</div>
+			</div>
+			<div class="shortcut_group">
+				<div class="header">
+					<h3>Culture</h3>
+				</div>
+				<div class="body">
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>Traditions</h4>
+					</div>
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>Events</h4>
+					</div>
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>See-sight</h4>
+					</div>
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>Neigborhoods</h4>
+					</div>
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>Sport</h4>
+					</div>
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>Wildlife</h4>
+					</div>
+				</div>
+			</div>
+			<div class="shortcut_group">
+				<div class="header">
+					<h3>Administrative</h3>
+				</div>
+				<div class="body">
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>Burocracy</h4>
+					</div>
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>Bank</h4>
+					</div>
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>Transports</h4>
+					</div>
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>Medical</h4>
+					</div>
+					<div class="shortcut">
+						<span class="icon"></span>
+						<h4>Policies</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="articles" *ngIf="is_article_display">
+			<div class="breadcrumb" *ngIf="is_breadcrumb_display" (click)="previous_page()">
+				<span class="icon"></span>
+				<p>Back to resources </p>
+			</div>
+			<div class="article_group">
+				<div class="header">
+					<h3>Cafe</h3>
+				</div>
+				<div class="body">
+					<article routerLink="/article">
+						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
+						<div class="content">
+							<h3>Public Holiday</h3>
+							<p class="small">Published Monday 12 october 2018</p>
+						</div>
+					</article>
+					<article routerLink="/article">
+						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
+						<div class="content">
+							<h3>Public Holiday</h3>
+							<p class="small">Published Monday 12 october 2018</p>
+						</div>
+					</article>
+					<article routerLink="/article">
+						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
+						<div class="content">
+							<h3>Public Holiday</h3>
+							<p class="small">Published Monday 12 october 2018</p>
+						</div>
+					</article>
+					<article routerLink="/article">
+						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
+						<div class="content">
+							<h3>Public Holiday</h3>
+							<p class="small">Published Monday 12 october 2018</p>
+						</div>
+					</article>
+					<article routerLink="/article">
+						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
+						<div class="content">
+							<h3>Public Holiday</h3>
+							<p class="small">Published Monday 12 october 2018</p>
+						</div>
+					</article>
+					<article routerLink="/article">
+						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
+						<div class="content">
+							<h3>Public Holiday</h3>
+							<p class="small">Published Monday 12 october 2018</p>
+						</div>
+					</article>
+					<article routerLink="/article">
+						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
+						<div class="content">
+							<h3>Public Holiday</h3>
+							<p class="small">Published Monday 12 october 2018</p>
+						</div>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

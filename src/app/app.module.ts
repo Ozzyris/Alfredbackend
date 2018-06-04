@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'article', component: ArticleComponent }
+  { path: 'article', component: ArticleComponent },
   { path: '**', component: LoginComponent }
 ];
 

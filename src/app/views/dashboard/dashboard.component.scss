@@ -31,25 +31,15 @@ section.dashboard{
 				position: relative;
 				border-radius: 3px;
 				list-style-type: none;
-				padding: 0 10px;
+				padding: 0 10px 0 10px;
 
-				&:before{
-					content: '';
-					width: 6px;
-					height: 6px;
-					border-radius: 50%;
-					background-color: $dark_primary;
-					position: absolute;
-					top: 12px;
-					left: 10px;
-				}
 				&:hover{
 					background-color:rgba($dark_primary, .1);
 				}
 				span.icon{
 					display: inline;
 					line-height: 30px;
-					margin-left: 20px;
+					margin-left: 0;
 					font-family: 'font_awesome';
 					font-size: 12px;
 					color: $dark_primary;
@@ -90,27 +80,29 @@ section.dashboard{
 			}
 			ul{
 				li{
-					font-family: 'courier new';
-					font-weight: 400;
 					margin: 10px 0;
-					cursor: pointer;
 					position: relative;
-					line-height: 28px;
-					padding: 0 0 0 30px;
-					color: $dark_primary;
+					padding: 0 0 0 0;
 
-					&:hover{
-						text-decoration: underline;
+					a{
+						color: $dark_primary;
+						line-height: 28px;
+						cursor: pointer;
+						font-family: 'courier new';
+						font-weight: 400;
+						display: inline;
+
+						&:hover{
+							text-decoration: underline;
+						}
 					}
-					&:before{
-						content: '';
-						width: 6px;
-						height: 6px;
-						border-radius: 50%;
-						background-color: $dark_primary;
-						position: absolute;
-						top: 12px;
-						left: 10px;
+					span.icon{
+						font-family: 'font_awesome';
+						font-size: 12px;
+						margin-right: 20px;
+						cursor: pointer;
+						color: $dark_primary;
+						line-height: 28px;
 					}
 				}
 			}

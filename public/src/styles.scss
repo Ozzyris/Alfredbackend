@@ -7,7 +7,7 @@
 // =============================================================================
 // FONTS
 // =============================================================================
-@include font-face(font_awesome, './assets/fonts/font_awesome/font_awesome', 200, normal, ttf woff woff2);
+@include font-face(font_awesome, './assets/fonts/font_awesome/fa-light-300', 300, normal, eot woff ttf svg); 
 @include font-face(istok, './assets/fonts/istok/istok_regular', 400, normal, ttf woff woff2);
 @include font-face(old_standard, './assets/fonts/old_standard/old_standard_regular', 400, normal, ttf woff woff2);
 @include font-face(old_standard, './assets/fonts/old_standard/old_standard_bold', 800, normal, ttf woff woff2);

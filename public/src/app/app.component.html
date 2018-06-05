@@ -1,23 +1,23 @@
 <nav class="top_container">
-	<div class="inner_container">
-		<img class="logotype" src="../assets/images/logo.svg" alt="expat manual">
-	</div>
+  <div class="inner_container">
+    <img class="logotype" src="../assets/images/logo.svg" alt="expat manual">
+  </div>
 </nav>
 
 <nav class="bottom_container">
-	<div class="inner_container">
-		<ul>
-			<li routerLinkActive="active" routerLink="/discovery">
-				<span class="icon"></span>
-				<p>Discovery</p>
-			</li>
-			<li routerLinkActive="active" routerLink="/resources">
-				<span class="icon"></span>
-				<p>Resources</p>
-			</li>
-		</ul>
-		<img routerLink="/discovery" class="logotype" src="../assets/images/logo.svg" alt="expat manual">
-	</div>
+  <div class="inner_container">
+    <ul>
+      <li routerLinkActive="active" routerLink="/discovery">
+        <span class="icon"></span>
+        <p>Discovery</p>
+      </li>
+      <li routerLinkActive="active" routerLink="/resources">
+        <span class="icon"></span>
+        <p>Resources</p>
+      </li>
+    </ul>
+    <img routerLink="/discovery" class="logotype" src="../assets/images/logo.svg" alt="expat manual">
+  </div>
 </nav>
 
 <router-outlet (activate)="scroll_top()"></router-outlet>

@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent{
-
+	constructor(){}
 	scroll_top() {
 	    window.scroll(0,0);
 	}

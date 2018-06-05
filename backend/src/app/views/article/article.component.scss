@@ -87,51 +87,42 @@ section.article{
 				font-size: 72px;
 				color: $dark_primary;
 			}
-			div.content_block{
-				padding: 15px 0;
-
-				p{
-					font-size: 16px;
+			ul.tab{
+				padding: 0 0 20px;
+				li{
 					font-family: 'courier new';
-					color: $dark_primary;
+					font-weight: 400;
+					font-size: 16px;
+					display: inline;
+					cursor: pointer;
+
+					&:first-child{
+						margin-right: 15px;
+					}
+					&:hover, &.active{
+						text-decoration: underline;
+					}
 				}
 			}
-			div.add_a_block{
-				overflow: auto;
-				cursor: pointer;
-				opacity: 0;
-				transition: all 200ms;
-				margin-left: -30px;
-
-				&:hover, &.active{
-					opacity: 1;
-				}
-				span.icon{
-					font-family: 'font_awesome';
-					font-size: 20px;
-					display: block;
-					float: left;
-					color: $dark_primary;
-					line-height: 30px;
-					margin-right: 10px;
-				}
-				p{
-					font-family: 'courier new';
-					display: block;
-					float: left;
-					color: $dark_primary;
-					line-height: 30px;
-				}
+			textarea.markdown{
+				width: calc(100% - 40px);
+				height: 500px;
+				background-color: #F7F7F7;
+				resize: none;
+				border: none;
+				border-radius: 3px;
+				padding: 20px;
+				font-family: 'courier new';
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 20px;
 			}
-			div.writting_block{
-				textarea{
-					width: 100%;
-					resize: none;
-					font-size: 16px;
-					padding: 15px 0;
-					border: none;
-					font-family: 'courier new';
-				}
+			div.preview{
+				width: calc(100% - 40px);
+				height: auto;
+				min-height: 500px;
+				padding: 20px;
+				background-color: red;
 			}
 		}	
 	}

@@ -13,15 +13,13 @@
 		<div class="inner_container">
 			<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1518265153847-8b59d4540400?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c52af831d0b1098d53ab3ac68cb784ac&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb)"></div>
 			<input type="text" class="header_1" value="{{article.title}}">
-			<div class="content_block" *ngFor="let block of article.content">
-				<p>{{block}}</p>
-			</div>
-			<div class="add_a_block active" *ngIf="!is_new_block_created" (click)="open_textarea()">
-				<span class="icon"></span>
-				<p>Add a text block</p>
-			</div>
-			<div class="writting_block" *ngIf="is_new_block_created">
-				<textarea row="1" autofocus (keyup.enter)="next_bock()" [(ngModel)]="textarea_content"></textarea>
+			<ul class="tab">
+				<li (click)="is_preview_display = false" [ngClass]="{'active': !is_preview_display}" >Markdown</li>
+				<li (click)="is_preview_display = true" [ngClass]="{'active': is_preview_display}" >Preview</li>
+			</ul>
+			<textarea *ngIf="!is_preview_display" class="markdown" (blur)="save_content()" [(ngModel)]="article.content_markdown" placeholder="Feel free to use markdown"></textarea>
+			<div *ngIf="is_preview_display" class="preview" [innerHtml]="article.content_html">
+
 			</div>
 		</div>
 	</div>

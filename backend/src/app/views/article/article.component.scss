@@ -95,9 +95,13 @@ section.article{
 					font-size: 16px;
 					display: inline;
 					cursor: pointer;
+					margin-left: 15px;
 
 					&:first-child{
-						margin-right: 15px;
+						margin-left: 0;
+					}
+					&:last-child{
+						color: rgba($dark_primary, .3);
 					}
 					&:hover, &.active{
 						text-decoration: underline;
@@ -122,7 +126,14 @@ section.article{
 				height: auto;
 				min-height: 500px;
 				padding: 20px;
-				background-color: red;
+				
+				p{
+					color: $dark_primary;
+					font-family: 'helvetica';
+					font-size: 18px;
+					font-weight: 200;
+					line-height: 24px;
+				}
 			}
 		}	
 	}

@@ -16,11 +16,10 @@
 			<ul class="tab">
 				<li (click)="is_preview_display = false" [ngClass]="{'active': !is_preview_display}" >Markdown</li>
 				<li (click)="is_preview_display = true" [ngClass]="{'active': is_preview_display}" >Preview</li>
+				<li (click)="launch_exemple()">See a markdown example</li>
 			</ul>
 			<textarea *ngIf="!is_preview_display" class="markdown" (blur)="save_content()" [(ngModel)]="article.content_markdown" placeholder="Feel free to use markdown"></textarea>
-			<div *ngIf="is_preview_display" class="preview" [innerHtml]="article.content_html">
-
-			</div>
+			<div *ngIf="is_preview_display" class="preview" [innerHtml]="article.content_html"></div>
 		</div>
 	</div>
 </section>

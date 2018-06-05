@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ShowdownConverter } from 'ngx-showdown';
+import { MARKDOWN } from '../../../assets/json/makdown_exemple';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+  styleUrls: ['./article.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class ArticleComponent implements OnInit{
+	markdown_exemple: string = MARKDOWN.exemple[0];
 	article : any = {
 		author: 'Alexandre Nicol',
 		creation: '',
@@ -24,6 +27,11 @@ export class ArticleComponent implements OnInit{
 
   save_content(){
   	this.article.content_html = this.showdownConverter.makeHtml( this.article.content_markdown )
+  }
+
+  launch_exemple(){
+  	this.article.content_markdown = this.markdown_exemple;
+  	this.save_content();
   }
 
 }

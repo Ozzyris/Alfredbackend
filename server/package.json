@@ -1,0 +1,24 @@
+{
+  "name": "Logger",
+  "version": "1.0.0",
+  "description": "A good starter with login and other interesting functionnality",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Alexandre Nicol",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.15.4",
+    "moment": "^2.22.1",
+    "mongoose": "^5.0.14",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.6.4",
+    "uniqid": "^4.1.1",
+    "uuid": "^3.2.1"
+  }
+}

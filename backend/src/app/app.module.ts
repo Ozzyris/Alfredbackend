@@ -10,6 +10,9 @@ import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ArticleComponent } from './views/article/article.component';
 
+import { SanitizerPipe } from './pipes/sanitizer/sanitizer.pipe';
+import { MomentModule } from 'angular2-moment';
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   {  
@@ -27,14 +30,16 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    ArticleComponent
+    ArticleComponent,
+    SanitizerPipe,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
     HttpModule,
-    ShowdownModule
+    ShowdownModule,
+    MomentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,108 @@
 // =============================================================================
 @import "../../../styles";
 
+section.modal{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 200;
+
+	div.dark_filter{
+		background-color: rgba(black, .4);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+	div.card{
+		@include container_sizing( 500px );
+		position: relative;
+		top: intial; bottom: intial; left: intial; right: intial;
+		margin-top: 10%;
+		padding-bottom: 30px;
+
+		background-color: #F9FAFC;
+		box-shadow: 0px 0px 10px rgba(black, .3);
+		border-radius: 3px;
+
+		div.header{
+			h2{
+				font-family: 'courier new';
+				font-weight: 400;
+				font-size: 16px;
+				color: $dark_primary;
+				width: calc(100% - 52px);
+				line-height: 75px;
+				margin-left: 20px;
+				text-align: left;
+			}
+			span.icon{
+				color: $dark_primary;
+				font-family: 'font_awesome';
+				position: absolute;
+				right: 20px;
+				font-size: 24px;
+				top: 24px;
+				cursor: pointer;
+				transition: all 200ms;
+
+				&:hover{
+					color: lighten($dark_primary, 25%);
+				}
+			}
+		}
+		div.body{
+			width: calc(100% - 40px);
+			margin: 0 auto;
+
+			label{
+				font-family: 'courier new';
+				color: $dark_primary;
+				font-weight: 800;
+				font-size: 12px;
+			}
+			input{
+				margin-top: 12px;
+				font-family: 'courier new';
+				width: calc(100% - 23px);
+				height: 30px;
+				line-height: 30px;
+				border: 1px solid $light_grey;
+				border-radius: 3px;
+				font-size: 16px;
+				padding: 6px 12px;
+			}
+		}
+		div.footer{
+			overflow: auto;
+			margin-top: 30px;
+
+			a.button{
+				font-family: 'courier new';
+				display: block;
+				background-color: $red;
+				padding: 0;
+				height: 40px;
+				color: white;
+				line-height: 40px;
+				border-radius: 3px;
+				width: calc(100% - 40px);
+				text-align: center;
+				margin: 12px auto 0;
+				cursor: pointer;
+				transition: all 200ms;
+
+				&:hover{
+					background-color: lighten($red, 15%);
+				}
+			}
+		}
+	}
+}
+
 section.article{
 	div.left_container{
 		width: calc(25% - 60px);
@@ -33,6 +135,14 @@ section.article{
 				list-style-type: none;
 				padding: 10px 10px;
 
+				&.delete{
+					color: $red;
+					margin-top: 40px;
+
+					&:hover{
+						color: darken($red, 25%);
+					}
+				}
 				&:hover{
 					background-color:rgba($dark_primary, .1);
 				}
@@ -127,13 +237,78 @@ section.article{
 				min-height: 500px;
 				padding: 20px;
 				
-				p{
-					color: $dark_primary;
-					font-family: 'helvetica';
-					font-size: 18px;
-					font-weight: 200;
-					line-height: 24px;
+				h1{
+					color: #3C4F71;
+					font-family: 'istok';
+					font-size: 28px;
+					font-weight: 400;
+					text-transform: uppercase;
+					line-height: 28px;
+					width: 100%;
+					padding: 10px 0;
 				}
+				h3{
+					font-family: 'istok';
+					font-size: 14px;
+					font-weight: 400;
+					color: #3C4F71;
+					text-transform: uppercase;
+					text-align: left;
+					width: 100%;
+					padding: 10px 0;
+				}
+				h6{
+					font-size: 14px;
+					color: #3C4F71;
+					font-family: 'old_standard';
+					margin-bottom: 8px;
+					width: 100%;
+					padding: 10px 0;
+				}
+				p{
+					color: #3C4F71;
+					font-family: 'old_standard';
+					font-size: 16px;
+					font-weight: 400;
+					line-height: 22px;
+
+					em{}
+					img{}
+					code{}
+				}
+				strong{}
+				ul, ol{
+					padding: 0 0 0 15px;
+
+					li{
+						color: #3C4F71;
+						font-family: 'old_standard';
+						font-size: 16px;
+						font-weight: 400;
+						list-style-type: circle;
+						line-height: 22px;
+					}
+				}
+				a{
+					display: inline;
+					color: #FFBC00;
+					transition: all 200ms;
+
+					&:hover{
+						color: lighten(#FFBC00, 15%);
+						text-decoration: underline;
+					}
+				}
+				blockquote{
+					background: linear-gradient(to right, rgba(255, 188, 0, 0.2) 0%, rgba(255, 222, 128, 0.2) 100%);
+					-webkit-box-decoration-break: clone;
+					box-decoration-break: clone;
+					padding: 10px 12px;
+					margin: 0;
+					text-align: center;
+					font-weight: 800;
+				}
+
 			}
 		}	
 	}

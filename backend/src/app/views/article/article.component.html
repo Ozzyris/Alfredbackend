@@ -7,10 +7,10 @@
 		</div>
 		<div class="body">
 			<label>Please Type CONFIRM DELETE</label>
-			<input type="text" [(ngModel)]="delete_input">
+			<input type="text" (ngModelChange)="check_delete_message_written( $event)" [(ngModel)]="delete_input">
 		</div>
 		<div class="footer">
-			<a class="button">I am sure, delete the article</a>
+			<a class="button" (click)="delete_article()" [ngClass]="{'disabled': !is_delete_message_written}">I am sure, delete the article</a>
 		</div>
 	</div>
 </section>

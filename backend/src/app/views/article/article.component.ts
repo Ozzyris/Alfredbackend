@@ -20,7 +20,8 @@ export class ArticleComponent implements OnInit{
 		content_markdown: '',
 		content_html: '',
 	};
-	is_preview_display: boolean = false;
+  is_preview_display: boolean = false;
+	is_delete_message_written: boolean = false;
   is_delete_modal_active: boolean = false;
   delete_input: string;
 
@@ -39,4 +40,17 @@ export class ArticleComponent implements OnInit{
   	this.save_content();
   }
 
+  check_delete_message_written( value ){
+    if( value == 'CONFIRM DELETE' ){
+      this.is_delete_message_written = true;
+    }else{
+      this.is_delete_message_written = false;
+    }
+  }
+
+  delete_article(){
+    if( this.delete_input == 'CONFIRM DELETE' ){
+      console.log('alex');
+    }
+  }
 }

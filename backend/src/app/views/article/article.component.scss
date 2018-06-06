@@ -96,7 +96,13 @@ section.modal{
 				margin: 12px auto 0;
 				cursor: pointer;
 				transition: all 200ms;
+				
+				&.disabled{
+					opacity: 0.5;
+					cursor: not-allowed;
 
+					&:hover{ background-color: $red; }
+				}
 				&:hover{
 					background-color: lighten($red, 15%);
 				}

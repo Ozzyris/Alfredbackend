@@ -48,7 +48,7 @@ const bcrypt = require('../helpers/bcrypt'),
 				if(are_password_similar){
 					return admin.get_user_id_from_email( user.email );
 				}else{
-					res.status(401).json({message: 'Your email or passowrd was invalid', code: 'wrong_password'});
+					throw {message: 'Your email or passowrd was invalid', code: 'wrong_password'};
 				}
 			})
 			.then(user_id => {

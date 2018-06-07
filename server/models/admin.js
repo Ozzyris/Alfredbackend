@@ -54,7 +54,7 @@ admin.statics.get_password_from_email = function( email ){
 }
 admin.statics.save_session_detail_from_id = function (session, user_id){
     return new Promise((resolve, reject) => {
-        users.update({ _id: user_id }, {
+        admin.update({ _id: user_id }, {
             auth_record: {
                 active_auth: {
                     creation_date: moment(),

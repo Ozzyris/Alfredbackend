@@ -1,10 +1,3 @@
-// ENVIRONMENT VARIABLES
-// if (process.env.NODE_ENV === "production") {
-//     process.env = require('./config/prod.json');
-// } else {
-//     process.env = require('./config/dev.json'); 
-// }
-
 // PACKAGES
 const express = require('express'),
     app = express(),
@@ -14,10 +7,9 @@ const express = require('express'),
     morgan = require('morgan');
 
 // ROUTES
-const authRouter = require('./controllers/auth').authRouter,
-      userRouter = require('./controllers/user').userRouter,
-      adminRouter = require('./controllers/admin').adminRouter,
-      contentRouter = require('./controllers/content').contentRouter;
+const admin_auth = require('./controllers/admin_auth').admin_auth,
+      admin = require('./controllers/admin').admin,
+      public = require('./controllers/public').public;
 
 // HELPERS
 
@@ -42,7 +34,6 @@ app.use((req, res, next)=>{
 app.use(morgan('dev'));
 
 // ROUTES
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
-app.use('/admin', adminRouter);
-app.use('/content', contentRouter);
+app.use('/admin-auth', admin_auth);
+app.use('/admin', admin);
+app.use('/public', public);

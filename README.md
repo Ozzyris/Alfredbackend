@@ -2,11 +2,20 @@
 
 ## Front-end status
 - [x] develoment
-- [ ] integration with the backend
+- [ ] integration with the server
 
 ## backend status
-- [ ] Enter = new block
-- [ ] Onblur = close block
-- [ ] Onclick = edit block
-- [ ] Backspace = delete content then block
-- [ ] Onclick on the + = Block options.
+- [x] develoment
+- [ ] integration with the server
+
+## server status
+- [x] Login
+- [ ] articles
+- [ ] edit articles
+
+
+## next step
+- [ ] check if stay logged in is working
+- [ ] create some dummy article
+- [ ] add a add article button
+- [ ] check the login process

@@ -9,12 +9,12 @@
 					<div class="input_group">
 						<label for="email_input">Email address <span class="required">*</span></label>
 						<input type="text" id="email_input" [(ngModel)]="user_information.email" placeholder="annah.weng@gmail.com">
-						<p class="informational_message" [innerHTML]="info_email"></p>
+						<p class="informational_message" [innerHTML]="info_email | sanitizer"></p>
 					</div>
 					<div class="input_group">
 						<label for="password_input">Password <span class="required">*</span></label>
 						<input type="password" id="password_input" [(ngModel)]="user_information.password" placeholder="1Grd%jdb">
-						<p class="informational_message" [innerHTML]="info_password"></p>
+						<p class="informational_message" [innerHTML]="info_password | sanitizer"></p>
 					</div>
 					<div class="input_group checkbox">
 						<input id="input_stay_loggedin" type="checkbox" [checked]="user_information.stay_loggedin" (change)="user_information.stay_loggedin = !user_information.stay_loggedin">
@@ -22,7 +22,7 @@
 					</div>
 				</div>
 				<div class="footer">
-					<a [className]="button_class" (click)="input_verification()" [innerHTML]="button_text">Login</a>
+					<a [className]="button_class" (click)="input_verification()" [innerHTML]="button_text | sanitizer">Login</a>
 				</div>
 			</div>
 		</div>

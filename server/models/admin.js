@@ -26,6 +26,18 @@ var admin = new mongoose.Schema({
 
 
 //COMMON
+admin.statics.check_email = function (email){
+    return new Promise((resolve, reject) => {
+        this.findOne({ email : email }).exec()
+            .then( user => {
+                if( !user ){
+                    resolve( true );
+                }else{
+                    reject({ message: 'Your email already exist', code: 'email_duplicate'});
+                }
+            })
+    })
+};
 admin.statics.get_user_id_from_email = function (email){
     return new Promise((resolve, reject) => {
         this.findOne({ email : email }).exec()

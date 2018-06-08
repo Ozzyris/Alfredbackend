@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+
+//interface
+import { Auth_response } from '../../interfaces/auth';
 
 //services
 import { auth_service } from '../../services/auth/auth.service';
@@ -61,23 +64,21 @@ export class LoginComponent implements OnInit {
 
 	signin(){
 		this.auth_service.signin_with_credentials( this.user_information )
-			.then( user_detail => {
-				console.log(user_detail);
-				if( user_detail ){
-					localStorage.setItem("session", user_detail.session);
-					this.button_class = 'button loading success';
-					this.button_text = '<span class="icon"></span>';
-					let timer = setTimeout(() => {  
-						this.router.navigate(['dashboard']);
-						clearTimeout(timer);
-					}, 1000);
-				}
-			})
-			.catch(error => {
-				this.info_password = '<span class="icon""></span> ' + error.message;
-				this.button_class = 'button';
-				this.button_text = 'Login';
-			});
+			.subscribe( user_details => {
+					if( user_details ){
+						localStorage.setItem("session", user_details.session);
+						this.button_class = 'button loading success';
+						this.button_text = '<span class="icon"></span>';
+						let timer = setTimeout(() => {  
+							this.router.navigate(['dashboard']);
+							clearTimeout(timer);
+						}, 1000);
+					}
+				}, err => {
+					this.info_password = '<span class="icon""></span> ' + err.error.message;
+					this.button_class = 'button';
+					this.button_text = 'Login';
+				});
 	}
 
 }

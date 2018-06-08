@@ -12,14 +12,23 @@ const bcrypt = require('../helpers/bcrypt'),
 	// SIGN UP
 	router.put('/signup-with-credentials', function (req, res) {
 		let user = {
-			email: 'nemokervi@yahoo.fr',
-			password: 'griice',
+			email: '',
+			password: '',
 		};
 
-		bcrypt.hash_password( user.password )
+		admin.check_email( user.email )
+			.then( is_email_unique => {
+				if( is_email_unique ){
+					return bcrypt.hash_password( user.password );
+				}else{
+					throw { message: 'Your email already exist', code: 'email_duplicate'};
+				}
+			})
 			.then( hash_password => {
 				user.password = hash_password;
-				return new admin(user).save()
+				return new admin(user).save();
+			})
+			.then( is_user_creater => {
 				res.status(200).json('User created');
 			})
 			.catch( error => {

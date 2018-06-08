@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs'; 
+import { Observable } from 'rxjs';
+
+//interface
+import { Auth_response } from '../../interfaces/auth';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,19 +23,7 @@ export class auth_service {
 	// SIGN IN
 	signin_with_credentials( user_credential ){
 		let url = this.base_url + 'signin-with-credentials';
-		
-		return new Promise((resolve, reject)=>{
-			this.http.post(url, user_credential, httpOptions)
-				.subscribe(
-					data => {
-						console.log('alex');
-						resolve(data);
-					},
-					err => {
-						console.log('roger');
-					  reject( err.error )
-					});
-		})
+		return this.http.post<Auth_response>(url, user_credential, httpOptions)
 	}
 }
 

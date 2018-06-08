@@ -109,6 +109,33 @@ section.dashboard{
 						color: $dark_primary;
 						line-height: 28px;
 					}
+
+					&.add_article{
+						opacity: .5;
+						transition: all 200ms;
+
+						span.icon{
+							font-family: 'font_awesome';
+							font-size: 12px;
+							margin-right: 20px;
+							cursor: pointer;
+							color: $dark_primary;
+							line-height: 28px;
+						}
+						input{
+							width: calc(100% - 80px);
+							padding: 6px 10px;
+							font-family: 'courier new';
+							font-weight: 400;
+							font-size: 16px;
+							color: $dark_primary;
+							line-height: 28px;
+							border: none;
+						}
+						&:hover, &:focus-within{
+							opacity: 1;
+						}
+					}
 				}
 			}
 		}

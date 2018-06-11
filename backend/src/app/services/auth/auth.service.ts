@@ -16,14 +16,13 @@ const httpOptions = {
 
 export class auth_service {
 	private base_url = environment.api_url + 'admin-auth/';
-	private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor( private http: HttpClient ){}
 
 	// SIGN IN
 	signin_with_credentials( user_credential ){
 		let url = this.base_url + 'signin-with-credentials';
-		return this.http.post<Auth_response>(url, user_credential, httpOptions)
+		return this.http.post<Auth_response>(url, user_credential, httpOptions);
 	}
 }
 

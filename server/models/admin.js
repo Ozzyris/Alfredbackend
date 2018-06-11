@@ -26,7 +26,7 @@ var admin = new mongoose.Schema({
 
 
 //COMMON
-admin.statics.check_email = function (email){
+admin.statics.check_email = function(email){
     return new Promise((resolve, reject) => {
         this.findOne({ email : email }).exec()
             .then( user => {
@@ -38,7 +38,7 @@ admin.statics.check_email = function (email){
             })
     })
 };
-admin.statics.get_user_id_from_email = function (email){
+admin.statics.get_user_id_from_email = function(email){
     return new Promise((resolve, reject) => {
         this.findOne({ email : email }).exec()
             .then( user => {
@@ -50,6 +50,40 @@ admin.statics.get_user_id_from_email = function (email){
             })
     })
 };
+
+//MIDDLEWARE
+admin.statics.get_auth_detail_from_xtoken = function( xtoken ){
+    return new Promise((resolve, reject) => {
+        this.findOne({ 'auth_record.active_auth.token': xtoken }).exec()
+            .then( user => {
+                if( user ){
+                    let cleaned_token = {
+                        level: user.level,
+                        creation_date: user.auth_record.active_auth.creation_date,
+                        last_modification_date: user.auth_record.active_auth.last_modification_date,
+                        expiration_date: user.auth_record.active_auth.expiration_date,
+                        token: user.auth_record.active_auth.token,
+                        keep_session: user.auth_record.active_auth.keep_session,
+                        device_details: user.auth_record.active_auth.device_details
+                    }
+                    resolve( cleaned_token );
+                }else{
+                    reject({ message: 'Your session does not exist', code: 'xtoken_not_exist'});
+                }
+            })
+    });
+}
+admin.statics.update_token_timestamp_from_xtoken = function( xtoken, session ){
+    return new Promise((resolve, reject) => {
+        admin.update({ 'auth_record.active_auth.token': xtoken }, {
+            'auth_record.active_auth.last_modification_date': moment(),
+            'auth_record.active_auth.expiration_date': session.expiration_date,
+        }).exec()
+        .then(session =>{
+            resolve(true);
+        })
+    });
+}
 
 //SIGNIN
 admin.statics.get_password_from_email = function( email ){

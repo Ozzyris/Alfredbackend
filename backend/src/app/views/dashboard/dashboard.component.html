@@ -74,17 +74,14 @@
 		<div class="inner_container">
 			<h1><span class="icon"></span> Cafe</h1>
 			<ul>
-				<li>
-					<span class="icon"></span>
-					<a routerLink="/article">Grandmas</a>
-				</li>
-				<li>
-					<span class="icon"></span>
-					<a  routerLink="/article">The Grounds of Alexandria</a>
+				<li *ngFor="let article of all_articles | async">
+					<span class="icon" *ngIf="article.status == true" (click)="switch_status(article._id)"></span>
+					<span class="icon" *ngIf="article.status == false" (click)="switch_status(article._id)"></span>
+					<a routerLink="/article">{{article.content.title}}</a>
 				</li>
 				<li class="add_article">
 					<span class="icon"></span>
-					<input type="text" placeholder="Create a new article">
+					<input [(ngModel)]="new_article_title" (keyup.enter)="create_article()" type="text" placeholder="Create a new article">
 				</li>
 			</ul>
 		</div>

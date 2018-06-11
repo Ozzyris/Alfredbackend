@@ -26,7 +26,7 @@ function check_auth(req, res, next) {
 			}else{
 				session.expiration_date = moment().add(1,'day');
 			}
-			return users.update_token_timestamp_from_xtoken( xtoken, session );
+			return admin.update_token_timestamp_from_xtoken( xtoken, session );
 		})
 		.then(is_token_updated => {
 			return next();

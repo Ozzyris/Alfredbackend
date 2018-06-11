@@ -3,7 +3,9 @@ export interface Article {
 	creation_date: number,
 	edit_date: number,
 	status: boolean,
-	content: Content
+	content: Content,
+	category: string,
+	tags: Array<string>
 }
 
 export interface Content {
@@ -12,3 +14,5 @@ export interface Content {
 	content_markdown: string,
 	content_html: string,
 }
+
+

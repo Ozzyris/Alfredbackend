@@ -55,6 +55,39 @@ article.statics.update_status = function( id, status ){
     })
 };
 
+article.statics.post_article_content = function( id, markdown, html ){
+    return new Promise((resolve, reject) => {
+        article.update({ '_id' : id }, {
+            'edit_date': moment(),
+            'content.content_markdown': markdown,
+            'content.content_html': html
+        }).exec()
+        .then(status =>{
+            resolve(true);
+        })
+    })
+};
+
+article.statics.post_article_title = function( id, title ){
+    return new Promise((resolve, reject) => {
+        article.update({ '_id' : id }, {
+            'edit_date': moment(),
+            'content.title': title
+        }).exec()
+        .then(status =>{
+            resolve(true);
+        })
+    })
+};
+
+article.statics.delete_article = function( id, markdown, html ){
+    return new Promise((resolve, reject) => {
+        article.findByIdAndRemove({ '_id' : id }).exec()
+            .then(session =>{
+                resolve(true);
+            })
+    })
+};
 
 var article = mongoose.DB.model('article', article);
 

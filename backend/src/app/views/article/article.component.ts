@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ShowdownConverter } from 'ngx-showdown';
 import { MARKDOWN } from '../../../assets/json/makdown_exemple';
 
@@ -18,11 +18,11 @@ export class ArticleComponent implements OnInit{
 	markdown_exemple: string = MARKDOWN.exemple;
 	article: any = {
     id: '',
-    author: 'Alexandre Nicol',
+    author: '',
     creation_date: '',
-    last_edit: '',
+    edit_date: '',
     content: {
-      title: 'Grandmas',
+      title: '',
       header: 'https://images.unsplash.com/photo-1518265153847-8b59d4540400?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c52af831d0b1098d53ab3ac68cb784ac&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb',
       content_markdown: '',
       content_html: '',
@@ -32,38 +32,56 @@ export class ArticleComponent implements OnInit{
   is_preview_display: boolean = false;
 	is_delete_message_written: boolean = false;
   is_delete_modal_active: boolean = false;
+  displayed_time: string;
   delete_input: string;
 
-  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service ){}
+  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private router:Router ){}
   ngOnInit(){
     this.route.params.subscribe( params => {
-      this.article.id = params['id'];
-      this.get_article_detail_from_id( this.article.id );
+      this.get_article_detail_from_id( params.id );
     })
 
-    this.article.last_edit = new Date();
   }
 
   get_article_detail_from_id( id ){
-    console.log(id);
     this.article_service.get_article_detail_from_id( {id: id} )
-      .subscribe( article_details => {
-        console.log( article_details );
-        this.article.id =  article_details._id;
-        this.article.author =  article_details.author;
-        this.article.creation_date =  article_details.creation_date;
-        this.article.content.title =  article_details.content.title;
-      });
+      .subscribe( article_detail => {
+        this.article.id = article_detail._id;
+        this.article.author = article_detail.author;
+        this.article.creation_date = article_detail.creation_date;
+        this.article.edit_date = article_detail.edit_date;
+        this.article.content.title = article_detail.content.title;
+        if(article_detail.content.header != undefined){
+          this.article.content.header = article_detail.content.header;
+        }
+        this.article.content.content_markdown = article_detail.content.content_markdown;
+        this.article.content.content_html = article_detail.content.content_html;
+      })
   }
 
-  save_content(){
+  post_article_title(){
+    if( this.article.content.title != '' ){
+      this.article_service.post_article_title( {id: this.article.id, title: this.article.content.title} )
+        .subscribe(is_title_updated => {
+          console.log( is_title_updated );
+          this.get_article_detail_from_id( this.article.id )
+        })
+    }
+  }
+
+  post_article_content(){
   	this.article.content.content_html = this.showdownConverter.makeHtml( this.article.content.content_markdown );
-    this.article.last_edit = new Date();
+
+    this.article_service.post_article_content( {id: this.article.id, markdown: this.article.content.content_markdown, html:this.article.content.content_html} )
+      .subscribe(is_content_updated => {
+        console.log( is_content_updated );
+        this.get_article_detail_from_id( this.article.id )
+      })
   }
 
   launch_exemple(){
   	this.article.content.content_markdown = this.markdown_exemple;
-  	this.save_content();
+  	this.post_article_content();
   }
 
   check_delete_message_written( value ){
@@ -76,7 +94,11 @@ export class ArticleComponent implements OnInit{
 
   delete_article(){
     if( this.delete_input == 'CONFIRM DELETE' ){
-      console.log('alex');
+      this.article_service.delete_article( {id: this.article.id} )
+        .subscribe(is_article_deleted => {
+          console.log( is_article_deleted );
+          this.router.navigate(['dashboard']);
+        })
     }
   }
 }

@@ -22,21 +22,22 @@
 				<span class="icon"></span>
 				<p>Back to all article</p>
 			</li>
-			<li>Updated {{article.creation_date | amTimeAgo}}</li>
-			<li>Edited by {{article.author}}</li>
+			<li *ngIf="!article.edit_date">Created {{article.creation_date | amTimeAgo}}</li>
+			<li *ngIf="article.edit_date">Updated {{article.last_edit | amTimeAgo}}</li>
+			<li>Author {{article.author}}</li>
 			<li (click)="is_delete_modal_active = true" class="delete">Delete this article</li>
 		</ul>
 	</div>
 	<div class="center_container">
 		<div class="inner_container">
 			<div class="illustration" [style.background]="'url(' + article.content.header + ')'"></div>
-			<input type="text" class="header_1" [(ngModel)]="article.content.title">
+			<input type="text" class="header_1" (blur)="post_article_title()" [(ngModel)]="article.content.title">
 			<ul class="tab">
 				<li (click)="is_preview_display = false" [ngClass]="{'active': !is_preview_display}" >Markdown</li>
 				<li (click)="is_preview_display = true" [ngClass]="{'active': is_preview_display}" >Preview</li>
 				<li (click)="launch_exemple()">See a markdown example</li>
 			</ul>
-			<textarea *ngIf="!is_preview_display" class="markdown" (blur)="save_content()" [(ngModel)]="article.content.content_markdown" placeholder="Feel free to use markdown"></textarea>
+			<textarea *ngIf="!is_preview_display" class="markdown" (blur)="post_article_content()" [(ngModel)]="article.content.content_markdown" placeholder="Feel free to use markdown"></textarea>
 			<div *ngIf="is_preview_display" class="preview" [innerHtml]="article.content.content_html | sanitizer"></div>
 		</div>
 	</div>

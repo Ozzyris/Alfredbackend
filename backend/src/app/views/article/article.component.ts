@@ -46,7 +46,14 @@ export class ArticleComponent implements OnInit{
 
   get_article_detail_from_id( id ){
     console.log(id);
-    // this.article = this.article_service.get_article_detail_from_id( {id: id} );
+    this.article_service.get_article_detail_from_id( {id: id} )
+      .subscribe( article_details => {
+        console.log( article_details );
+        this.article.id =  article_details._id;
+        this.article.author =  article_details.author;
+        this.article.creation_date =  article_details.creation_date;
+        this.article.content.title =  article_details.content.title;
+      });
   }
 
   save_content(){

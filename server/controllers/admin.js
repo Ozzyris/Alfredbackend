@@ -12,7 +12,7 @@ router.use( check_auth );
 	router.post('/create-article', function (req, res) {
 		let article_detail = {
 			author: 'Alexandre Nicol',
-			category: 'Lifestyle',
+			category: req.body.category,
 			content: {
 				title: req.body.title
 			}

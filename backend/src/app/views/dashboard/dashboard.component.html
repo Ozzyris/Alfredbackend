@@ -1,80 +1,18 @@
 <section class="dashboard">
 	<div class="left_container">
-		<ul>
-			<h4>Lifestyle <sup>(234)</sup></h4>
-			<li>
-				<span class="icon"></span>
-				<p>Cafe</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Bars</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Restaurants</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Hostels</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Markets</p>
-			</li>
-			<h4>Culture <sup>(24)</sup></h4>
-			<li>
-				<span class="icon"></span>
-				<p>Traditions</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Events</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>See-sight</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Neigborhoods</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Sport</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Wildlife</p>
-			</li>
-			<h4>Administrative <sup>(24)</sup></h4>
-			<li>
-				<span class="icon"></span>
-				<p>Burocracy</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Bank</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Transports</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Medical</p>
-			</li>
-			<li>
-				<span class="icon"></span>
-				<p>Policies</p>
+		<ul *ngFor="let main_categorie of categories; index as primary_index" >
+			<h4>{{main_categorie.title}} <sup>({{main_categorie.article_count}})</sup></h4>
+			<li *ngFor="let sub_category of main_categorie.sub_categories; index as secondary_index" (click)="select_category(primary_index, secondary_index)" >
+				<span class="icon">{{sub_category.icon}}</span>
+				<p>{{sub_category.title}}</p>
 			</li>
 		</ul>
 	</div>
 	<div class="center_container">
 		<div class="inner_container">
-			<h1><span class="icon"></span> Cafe</h1>
+			<h1><span class="icon">{{selected_category.icon}}</span> {{selected_category.title}}</h1>
 			<ul>
-				<li *ngFor="let article of all_articles | async">
+				<li *ngFor="let article of all_articles | async | articles_pipe:selected_category.title">
 					<span class="icon" *ngIf="article.status == true" (click)="switch_status(article._id)"></span>
 					<span class="icon" *ngIf="article.status == false" (click)="switch_status(article._id)"></span>
 					<a routerLink="/article">{{article.content.title}}</a>

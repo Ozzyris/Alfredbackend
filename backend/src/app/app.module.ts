@@ -3,15 +3,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ShowdownModule } from 'ngx-showdown';
 
+//NPM PACKAGE
+import { ShowdownModule } from 'ngx-showdown';
+import { MomentModule } from 'angular2-moment';
+
+//VIEWS
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ArticleComponent } from './views/article/article.component';
 
+//PIPES
 import { SanitizerPipe } from './pipes/sanitizer/sanitizer.pipe';
-import { MomentModule } from 'angular2-moment';
+import { ArticlesPipe } from './pipes/filters/articles.pipe';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,6 +37,7 @@ const appRoutes: Routes = [
     DashboardComponent,
     ArticleComponent,
     SanitizerPipe,
+    ArticlesPipe,
   ],
   imports: [
     BrowserModule,

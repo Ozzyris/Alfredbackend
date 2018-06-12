@@ -57,11 +57,45 @@ router.use( check_auth );
 	});
 
 	router.post('/get-article-detail-from-id', function (req, res) {
-		console.log( req.body )
 		article.get_article_from_id( req.body.id )
 			.then( article_details => {
 				console.log( article_details );
 				res.status(200).json( article_details );
+			})
+			.catch( error => {
+				console.log( error );
+				res.status(401).json( error );
+			})
+	});
+
+	router.post('/post-article-title', function (req, res) {
+		article.post_article_title( req.body.id, req.body.title )
+			.then( is_title_posted => {
+				res.status(200).json( {message: 'title updated'} );
+			})
+			.catch( error => {
+				console.log( error );
+				res.status(401).json( error );
+			})
+	});
+
+	router.post('/post-article-content', function (req, res) {
+		article.post_article_content( req.body.id, req.body.markdown, req.body.html )
+			.then( is_content_posted => {
+				res.status(200).json( {message: 'content updated'} );
+			})
+			.catch( error => {
+				console.log( error );
+				res.status(401).json( error );
+			})
+	});
+
+	router.post('/delete-article', function (req, res) {
+		console.log(req.body)
+		article.delete_article( req.body.id )
+			.then( is_content_delete => {
+				console.log(is_content_delete);
+				res.status(200).json( {message: 'content deleted'} );
 			})
 			.catch( error => {
 				console.log( error );

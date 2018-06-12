@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 	button_text: string = 'Login';
 	button_class: string = 'button';
 
-  constructor( private router:Router, private auth_service: auth_service, private validator_service: validator_service ){}
+  constructor( private router: Router, private auth_service: auth_service, private validator_service: validator_service ){}
   ngOnInit(){}
 
  	input_verification(){

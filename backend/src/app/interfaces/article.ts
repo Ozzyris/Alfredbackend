@@ -14,5 +14,3 @@ export interface Content {
 	content_markdown: string,
 	content_html: string,
 }
-
-

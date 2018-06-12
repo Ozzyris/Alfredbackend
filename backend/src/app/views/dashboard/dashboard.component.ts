@@ -26,9 +26,9 @@ export class DashboardComponent implements OnInit {
     this.all_articles = this.article_service.get_articles();
   }
 
-  create_article(){
+  put_article(){
   	if( this.new_article_title != '' ){
-  		this.article_service.create_article( {title: this.new_article_title, category: this.selected_category.title } )
+  		this.article_service.put_article( {title: this.new_article_title, category: this.selected_category.title } )
   			.subscribe( is_article_created => {
   			  this.new_article_title = '';
           this.get_all_article();

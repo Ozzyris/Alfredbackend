@@ -31,7 +31,7 @@ export class article_service {
     })
   }
 
-  create_article( payload ){
+  put_article( payload ){
   	let url = this.base_url + 'create-article';
 		return this.http.post(url, payload, this.httpOptions);
   }
@@ -48,6 +48,21 @@ export class article_service {
 
   get_article_detail_from_id( payload ){
     let url = this.base_url + 'get-article-detail-from-id';
+    return this.http.post<Article>(url, payload, this.httpOptions);
+  }
+
+  post_article_content( payload ){
+    let url = this.base_url + 'post-article-content';
+    return this.http.post(url, payload, this.httpOptions);
+  }
+
+  post_article_title( payload ){
+    let url = this.base_url + 'post-article-title';
+    return this.http.post(url, payload, this.httpOptions);
+  }
+
+  delete_article( payload ){
+    let url = this.base_url + 'delete-article';
     return this.http.post(url, payload, this.httpOptions);
   }
 }

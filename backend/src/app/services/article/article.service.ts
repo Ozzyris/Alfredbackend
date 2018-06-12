@@ -38,11 +38,16 @@ export class article_service {
 
   get_articles(){
     let url = this.base_url + 'get-articles';
-     return this.http.get<Article>(url, this.httpOptions);
+    return this.http.get<Article>(url, this.httpOptions);
   }
 
   switch_status( payload ){
     let url = this.base_url + 'switch-status';
+    return this.http.post(url, payload, this.httpOptions);
+  }
+
+  get_article_detail_from_id( payload ){
+    let url = this.base_url + 'get-article-detail-from-id';
     return this.http.post(url, payload, this.httpOptions);
   }
 }

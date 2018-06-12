@@ -56,6 +56,19 @@ router.use( check_auth );
 			});
 	});
 
+	router.post('/get-article-detail-from-id', function (req, res) {
+		console.log( req.body )
+		article.get_article_from_id( req.body.id )
+			.then( article_details => {
+				console.log( article_details );
+				res.status(200).json( article_details );
+			})
+			.catch( error => {
+				console.log( error );
+				res.status(401).json( error );
+			})
+	});
+
 module.exports = {
 	"admin" : router
 };

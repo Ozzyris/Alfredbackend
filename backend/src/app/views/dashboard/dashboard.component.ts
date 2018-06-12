@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { CATEGORIES } from '../../../assets/json/categories';
-
-
-//interface
-// import { Article } from '../../interfaces/article';
 
 //services
 import { article_service } from '../../services/article/article.service';

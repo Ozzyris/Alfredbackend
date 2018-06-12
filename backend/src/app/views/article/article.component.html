@@ -7,7 +7,7 @@
 		</div>
 		<div class="body">
 			<label>Please Type CONFIRM DELETE</label>
-			<input type="text" (ngModelChange)="check_delete_message_written( $event)" [(ngModel)]="delete_input">
+			<input type="text" (ngModelChange)="check_delete_message_written( $event )" [(ngModel)]="delete_input">
 		</div>
 		<div class="footer">
 			<a class="button" (click)="delete_article()" [ngClass]="{'disabled': !is_delete_message_written}">I am sure, delete the article</a>
@@ -22,22 +22,22 @@
 				<span class="icon"></span>
 				<p>Back to all article</p>
 			</li>
-			<li>Updated {{article.last_edit | amTimeAgo}}</li>
+			<li>Updated {{article.creation_date | amTimeAgo}}</li>
 			<li>Edited by {{article.author}}</li>
 			<li (click)="is_delete_modal_active = true" class="delete">Delete this article</li>
 		</ul>
 	</div>
 	<div class="center_container">
 		<div class="inner_container">
-			<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1518265153847-8b59d4540400?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c52af831d0b1098d53ab3ac68cb784ac&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb)"></div>
-			<input type="text" class="header_1" [(ngModel)]="article.title">
+			<div class="illustration" [style.background]="'url(' + article.content.header + ')'"></div>
+			<input type="text" class="header_1" [(ngModel)]="article.content.title">
 			<ul class="tab">
 				<li (click)="is_preview_display = false" [ngClass]="{'active': !is_preview_display}" >Markdown</li>
 				<li (click)="is_preview_display = true" [ngClass]="{'active': is_preview_display}" >Preview</li>
 				<li (click)="launch_exemple()">See a markdown example</li>
 			</ul>
-			<textarea *ngIf="!is_preview_display" class="markdown" (blur)="save_content()" [(ngModel)]="article.content_markdown" placeholder="Feel free to use markdown"></textarea>
-			<div *ngIf="is_preview_display" class="preview" [innerHtml]="article.content_html | sanitizer"></div>
+			<textarea *ngIf="!is_preview_display" class="markdown" (blur)="save_content()" [(ngModel)]="article.content.content_markdown" placeholder="Feel free to use markdown"></textarea>
+			<div *ngIf="is_preview_display" class="preview" [innerHtml]="article.content.content_html | sanitizer"></div>
 		</div>
 	</div>
 </section>

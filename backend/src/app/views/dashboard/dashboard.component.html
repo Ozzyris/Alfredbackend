@@ -15,7 +15,7 @@
 				<li *ngFor="let article of all_articles | async | articles_pipe:selected_category.title">
 					<span class="icon" *ngIf="article.status == true" (click)="switch_status(article._id)"></span>
 					<span class="icon" *ngIf="article.status == false" (click)="switch_status(article._id)"></span>
-					<a routerLink="/article">{{article.content.title}}</a>
+					<a routerLink="/article/{{article._id}}">{{article.content.title}}</a>
 				</li>
 				<li class="add_article">
 					<span class="icon"></span>

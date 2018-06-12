@@ -10,12 +10,10 @@
 
 ## server status
 - [x] Login
-- [ ] articles
-- [ ] edit articles
+- [x] articles
+- [x] edit articles
 
 
 ## next step
-- [ ] check if stay logged in is working
-- [ ] create some dummy article
-- [ ] add a add article button
-- [ ] check the login process
+- [ ] Add tags to articles
+- [ ] add picture to articles

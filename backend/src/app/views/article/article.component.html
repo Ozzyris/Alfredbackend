@@ -30,9 +30,9 @@
 	</div>
 	<div class="center_container">
 		<div class="inner_container">
-			<div class="illustration" [style.background]="'url(' + article.content.header + ')'">
+			<div class="illustration" (click)="upload_background_image()" [style.background]="'url(' + article.content.header + ')'">
 				<span class="background_hover">
-					<span class="icon"></span>
+					<span class="icon"></span><input id="photo" type="file" />
 				</span>
 			</div>
 			<input type="text" class="header_1" (blur)="post_article_title()" [(ngModel)]="article.content.title">

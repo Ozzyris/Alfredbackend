@@ -1,4 +1,5 @@
 export interface Article {
+	_id: string,
 	author: string,
 	creation_date: number,
 	edit_date: number,

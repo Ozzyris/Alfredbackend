@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ShowdownConverter } from 'ngx-showdown';
 import { MARKDOWN } from '../../../assets/json/makdown_exemple';
@@ -35,7 +35,7 @@ export class ArticleComponent implements OnInit{
   displayed_time: string;
   delete_input: string;
 
-  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private router:Router ){}
+  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private router:Router, private elementRef: ElementRef ){}
   ngOnInit(){
     this.route.params.subscribe( params => {
       this.get_article_detail_from_id( params.id );
@@ -57,6 +57,52 @@ export class ArticleComponent implements OnInit{
         this.article.content.content_markdown = article_detail.content.content_markdown;
         this.article.content.content_html = article_detail.content.content_html;
       })
+  }
+
+  upload_background_image(){
+    let inputEl: HTMLInputElement = this.elementRef.nativeElement.querySelector('#photo');
+    let fileCount: number = inputEl.files.length;
+    let formData = new FormData();
+
+    if (fileCount == 1) {
+      formData.append('photo', inputEl.files.item(0));
+
+    //   this.http.post(URL, formData)
+    //     .map((res:Response) => res.json())
+    //     .subscribe((success) => {
+    //       console.log(success)
+    //     },
+    //     (error) => alert(error))
+    }
+
+    // case 'header_picture':
+    //   open_gate = false;
+    //   var file_upload = $('input#input_header')[0].files[0];
+    //   formData.append('file', file_upload);
+    //   url = BASEURL + "alfredatwork/artwork-details/header-picture/" + id;
+
+    //   if( file_upload == undefined ){ 
+    //     Internal_notification_center({ type: 'create', message: 'You cannot send a form with an empty field.', status: 'error', duration: 5000});
+    //     open_picture_gate = false;
+    //   }else{
+    //     if( file_upload.size > 1048576 ){
+    //       Internal_notification_center({ type: 'create', message: 'The file is too big.', status: 'error', duration: 5000});
+    //       open_picture_gate = false;
+    //       return false;
+    //     }
+    //     if( file_upload.type != 'image/jpeg' && file_upload.type != 'image/png' ){
+    //       Internal_notification_center({ type: 'create', message: 'The file must be a image file (JPEG or PNG).', status: 'error', duration: 5000});
+    //       open_picture_gate = false;
+    //       return false;
+    //     }
+    //     if (typeof formData == 'undefined'){
+    //       Internal_notification_center({ type: 'create', message: 'Your Browser Don\'t support FormData API! Use IE 10 or Above!', status: 'error', duration: 5000});
+    //       open_picture_gate = false;
+    //       return false;
+    //     }
+    //   }
+    //   break;
+
   }
 
   post_article_title(){

@@ -38,7 +38,7 @@
 					</span>
 				</div>
 			</label>
-			<input id="header_picture" (change)="upload_background_image( $event )" style="display: none;" type="file" />
+			<input id="header_picture" (change)="upload_header_image( $event )" style="display: none;" type="file" />
 			<input type="text" class="header_1" (blur)="post_article_title()" [(ngModel)]="article.content.title">
 			<ul class="tab">
 				<li (click)="is_preview_display = false" [ngClass]="{'active': !is_preview_display}" >Markdown</li>

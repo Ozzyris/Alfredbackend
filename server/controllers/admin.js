@@ -1,5 +1,6 @@
 const express = require('express'),
 	  router = express.Router(),
+	  multer = require('multer'),
 	  article = require('../models/article').article;
 
 // HELPERS
@@ -101,6 +102,21 @@ router.use( check_auth );
 				console.log( error );
 				res.status(401).json( error );
 			})
+	});
+
+	router.post('/upload-header', function (req, res) {
+		var DIR = './uploads/';
+		var upload = multer({dest: DIR}).single('photo');
+
+		console.log(req.body);
+		upload(req, res, function (err) {
+			if (err) {
+				console.log(err);
+				return res.status(422).send("an Error occured")
+			}
+			path = req.file.path;
+			return res.send("Upload Completed for "+path);
+		})
 	});
 
 module.exports = {

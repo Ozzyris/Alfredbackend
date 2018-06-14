@@ -65,4 +65,9 @@ export class article_service {
     let url = this.base_url + 'delete-article';
     return this.http.post(url, payload, this.httpOptions);
   }
+
+  upload_header_image( formData ){
+    let url = this.base_url + 'upload-header';
+    return this.http.post(url, formData, this.httpOptions);
+  }
 }

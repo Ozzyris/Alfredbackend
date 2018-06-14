@@ -65,7 +65,7 @@ export class ArticleComponent implements OnInit{
       })
   }
 
-  upload_background_image( event: any ){
+  upload_header_image( event: any ){
 
     if( event.target.files && event.target.files[0] && event.target.files.length == 1 ){
       let open_door = true;
@@ -90,72 +90,17 @@ export class ArticleComponent implements OnInit{
 
       if(open_door){
 
+        this.article_service.upload_header_image( formData )
+          .subscribe(is_picture_updated => {
+            console.log(is_picture_updated);
+          })
+
       }else{
         this.illustration.is_file_uploaded = false;
         this.illustration.is_icon_rotating = 'icon';
         this.illustration.icon = '';
       }
     }
-    
-
-
-    // setTimeout(()=>{
-    //   this.illustration.gauge_width = '33%';
-    // }, 1000);
-    // setTimeout(()=>{
-    //   this.illustration.gauge_width = '66%';
-    // }, 2000);
-
-    // setTimeout(()=>{
-    //   this.illustration.is_file_uploaded = false;
-    //   this.illustration.is_icon_rotating = 'icon';
-    //   this.illustration.icon = '';
-    //   this.illustration.gauge_width = '100%';
-    // }, 3000);
-
-
-
-    // 
-
-    // if (fileCount == 1) {
-    //   formData.append('photo', inputEl.files.item(0));
-
-    //   this.http.post(URL, formData)
-    //     .map((res:Response) => res.json())
-    //     .subscribe((success) => {
-    //       console.log(success)
-    //     },
-    //     (error) => alert(error))
-    // }
-
-    // case 'header_picture':
-    //   open_gate = false;
-    //   var file_upload = $('input#input_header')[0].files[0];
-    //   formData.append('file', file_upload);
-    //   url = BASEURL + "alfredatwork/artwork-details/header-picture/" + id;
-
-    //   if( file_upload == undefined ){ 
-    //     Internal_notification_center({ type: 'create', message: 'You cannot send a form with an empty field.', status: 'error', duration: 5000});
-    //     open_picture_gate = false;
-    //   }else{
-    //     if( file_upload.size > 1048576 ){
-    //       Internal_notification_center({ type: 'create', message: 'The file is too big.', status: 'error', duration: 5000});
-    //       open_picture_gate = false;
-    //       return false;
-    //     }
-    //     if( file_upload.type != 'image/jpeg' && file_upload.type != 'image/png' ){
-    //       Internal_notification_center({ type: 'create', message: 'The file must be a image file (JPEG or PNG).', status: 'error', duration: 5000});
-    //       open_picture_gate = false;
-    //       return false;
-    //     }
-    //     if (typeof formData == 'undefined'){
-    //       Internal_notification_center({ type: 'create', message: 'Your Browser Don\'t support FormData API! Use IE 10 or Above!', status: 'error', duration: 5000});
-    //       open_picture_gate = false;
-    //       return false;
-    //     }
-    //   }
-    //   break;
-
   }
 
   post_article_title(){

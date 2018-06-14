@@ -6,6 +6,7 @@ var token_manager = require('../helpers/token_manager');
 
 
 function check_auth(req, res, next) {
+	console.log(req.headers['x-auth-token']);
 	let xtoken = req.headers['x-auth-token'],
 		session;
 

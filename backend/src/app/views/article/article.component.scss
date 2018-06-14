@@ -195,7 +195,7 @@ section.article{
 				border-radius: 3px;
 				position: relative;
 
-				&:hover{
+				&:hover, &.active{
 					span.background_hover{
 						opacity: 1;
 					}	
@@ -221,6 +221,25 @@ section.article{
 						font-family: 'font_awesome';
 						font-size: 48px;
 						color: white;
+
+						&.rotate{
+							animation:spin 2s linear infinite;
+							@keyframes spin { 100% { transform: rotate(360deg); } }
+						}
+					}
+					span.gauge{
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						width: 50%;
+						height: 4px;
+						background-color: $blue;
+						opacity: 0;
+						transition: all 200ms;
+
+						&.active{
+							opacity: 1;
+						}
 					}
 				}
 			}

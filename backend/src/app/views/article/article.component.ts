@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ShowdownConverter } from 'ngx-showdown';
 import { MARKDOWN } from '../../../assets/json/makdown_exemple';
@@ -34,8 +34,14 @@ export class ArticleComponent implements OnInit{
   is_delete_modal_active: boolean = false;
   displayed_time: string;
   delete_input: string;
+  illustration: any = {
+    is_file_uploaded: false,
+    is_icon_rotating: 'icon', 
+    icon: '',
+    gauge_width: 0
+  }
 
-  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private router:Router, private elementRef: ElementRef ){}
+  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private router:Router ){}
   ngOnInit(){
     this.route.params.subscribe( params => {
       this.get_article_detail_from_id( params.id );
@@ -59,13 +65,60 @@ export class ArticleComponent implements OnInit{
       })
   }
 
-  upload_background_image(){
-    let inputEl: HTMLInputElement = this.elementRef.nativeElement.querySelector('#photo');
-    let fileCount: number = inputEl.files.length;
-    let formData = new FormData();
+  upload_background_image( event: any ){
 
-    if (fileCount == 1) {
-      formData.append('photo', inputEl.files.item(0));
+    if( event.target.files && event.target.files[0] && event.target.files.length == 1 ){
+      let open_door = true;
+      let formData = new FormData();
+      formData.append('photo', event.target.files.item(0));
+
+      this.illustration.is_file_uploaded = true;
+      this.illustration.is_icon_rotating = 'icon rotate';
+      this.illustration.icon = '';
+      this.illustration.gauge_width = '1px';
+
+      if( event.target.files[0].size > 1048576 ){
+        open_door = false;
+         alert('The header picture is too big heavy. it must be less than 1mb');
+      }else if( event.target.files[0].type != 'image/jpeg' ){
+        open_door = false;
+        alert('The header picture must be in jpg');
+      }else if (typeof formData == 'undefined'){
+        open_door = false;
+        alert('Your browser does not support the FormData API! Use IE 10 or Above!');
+      }
+
+      if(open_door){
+
+      }else{
+        this.illustration.is_file_uploaded = false;
+        this.illustration.is_icon_rotating = 'icon';
+        this.illustration.icon = '';
+      }
+    }
+    
+
+
+    // setTimeout(()=>{
+    //   this.illustration.gauge_width = '33%';
+    // }, 1000);
+    // setTimeout(()=>{
+    //   this.illustration.gauge_width = '66%';
+    // }, 2000);
+
+    // setTimeout(()=>{
+    //   this.illustration.is_file_uploaded = false;
+    //   this.illustration.is_icon_rotating = 'icon';
+    //   this.illustration.icon = '';
+    //   this.illustration.gauge_width = '100%';
+    // }, 3000);
+
+
+
+    // 
+
+    // if (fileCount == 1) {
+    //   formData.append('photo', inputEl.files.item(0));
 
     //   this.http.post(URL, formData)
     //     .map((res:Response) => res.json())
@@ -73,7 +126,7 @@ export class ArticleComponent implements OnInit{
     //       console.log(success)
     //     },
     //     (error) => alert(error))
-    }
+    // }
 
     // case 'header_picture':
     //   open_gate = false;

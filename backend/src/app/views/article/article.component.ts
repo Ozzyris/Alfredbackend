@@ -52,16 +52,21 @@ export class ArticleComponent implements OnInit{
   get_article_detail_from_id( id ){
     this.article_service.get_article_detail_from_id( {id: id} )
       .subscribe( article_detail => {
-        this.article.id = article_detail._id;
-        this.article.author = article_detail.author;
-        this.article.creation_date = article_detail.creation_date;
-        this.article.edit_date = article_detail.edit_date;
-        this.article.content.title = article_detail.content.title;
-        if(article_detail.content.header != undefined){
-          this.article.content.header = article_detail.content.header;
-        }
-        this.article.content.content_markdown = article_detail.content.content_markdown;
-        this.article.content.content_html = article_detail.content.content_html;
+        let alex = article_detail;
+        console.log(alex._id);
+        // if (article_detail ){
+        //   this.article.id = article_detail._id;
+
+        // }
+                // this.article.author = article_detail.author;
+        // this.article.creation_date = article_detail.creation_date;
+        // this.article.edit_date = article_detail.edit_date;
+        // this.article.content.title = article_detail.content.title;
+        // if(article_detail.content.header != undefined){
+        //   this.article.content.header = article_detail.content.header;
+        // }
+        // this.article.content.content_markdown = article_detail.content.content_markdown;
+        // this.article.content.content_html = article_detail.content.content_html;
       })
   }
 

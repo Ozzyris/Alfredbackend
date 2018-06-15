@@ -4,14 +4,16 @@ import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
 //interface
-import { Article } from '../../interfaces/article';
+// import { Article } from '../../interfaces/article';
+interface Article {
+  _id: string;
+}
 
 @Injectable()
 
 export class article_service {
 	base_url = environment.api_url + 'admin/';
   httpOptions: any;
-
 
   constructor( private http: HttpClient ){
     this.get_session_from_storage()

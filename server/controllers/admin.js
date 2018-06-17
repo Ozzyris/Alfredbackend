@@ -1,4 +1,5 @@
 const express = require('express'),
+	  app = express(),
 	  router = express.Router(),
 	  multer = require('multer'),
 	  article = require('../models/article').article;
@@ -105,6 +106,7 @@ router.use( check_auth );
 	});
 
 	router.post('/upload-header', function (req, res) {
+		// https://medium.com/technoetics/handling-file-upload-in-nodejs-7a4bb9f09a27
 		var DIR = './uploads/';
 		var upload = multer({dest: DIR}).single('photo');
 

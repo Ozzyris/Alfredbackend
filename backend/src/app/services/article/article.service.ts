@@ -4,10 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
 //interface
-// import { Article } from '../../interfaces/article';
-interface Article {
-  _id: string;
-}
+import { Article } from '../../interfaces/article';
 
 @Injectable()
 
@@ -40,7 +37,7 @@ export class article_service {
 
   get_articles(){
     let url = this.base_url + 'get-articles';
-    return this.http.get<Article>(url, this.httpOptions);
+    return this.http.get(url, this.httpOptions);
   }
 
   switch_status( payload ){
@@ -48,9 +45,9 @@ export class article_service {
     return this.http.post(url, payload, this.httpOptions);
   }
 
-  get_article_detail_from_id( payload ){
+  get_article_detail_from_id( payload ): Observable<any>{
     let url = this.base_url + 'get-article-detail-from-id';
-    return this.http.post<Article>(url, payload, this.httpOptions);
+    return this.http.post(url, payload, this.httpOptions);
   }
 
   post_article_content( payload ){

@@ -2,8 +2,8 @@
 const express = require('express'),
     app = express(),
     server = require('http').createServer(app),
-    bodyParser = require('body-parser'),
     config = require('./config'),
+    bodyParser = require('body-parser'),
     morgan = require('morgan');
 
 // ROUTES
@@ -15,8 +15,8 @@ const admin_auth = require('./controllers/admin_auth').admin_auth,
 
 server.listen(config.port);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json({limit: '5mb'}));
+// app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 
 // CORS
 app.use(function(req, res, next) {

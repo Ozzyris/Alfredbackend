@@ -106,6 +106,9 @@ router.use( check_auth );
 
 	router.post('/upload-header', function (req, res) {
 		// https://medium.com/technoetics/handling-file-upload-in-nodejs-7a4bb9f09a27
+		// https://scotch.io/tutorials/express-file-uploads-with-multer
+		// https://www.npmjs.com/package/express-fileupload
+
 		// var DIR = './uploads/';
 		// var upload = multer({dest: DIR}).single('photo');
 

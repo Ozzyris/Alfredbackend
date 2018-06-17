@@ -1,7 +1,6 @@
 const express = require('express'),
 	  app = express(),
 	  router = express.Router(),
-	  multer = require('multer'),
 	  article = require('../models/article').article;
 
 // HELPERS
@@ -107,18 +106,18 @@ router.use( check_auth );
 
 	router.post('/upload-header', function (req, res) {
 		// https://medium.com/technoetics/handling-file-upload-in-nodejs-7a4bb9f09a27
-		var DIR = './uploads/';
-		var upload = multer({dest: DIR}).single('photo');
+		// var DIR = './uploads/';
+		// var upload = multer({dest: DIR}).single('photo');
 
-		console.log(req.body);
-		upload(req, res, function (err) {
-			if (err) {
-				console.log(err);
-				return res.status(422).send("an Error occured")
-			}
-			path = req.file.path;
-			return res.send("Upload Completed for "+path);
-		})
+		console.log( "req ", req.files );
+		// upload(req, res, function (err) {
+		// 	if (err) {
+		// 		console.log(err);
+		// 		return res.status(422).send("an Error occured")
+		// 	}
+		// 	path = req.file.path;
+		// 	return res.send("Upload Completed for "+path);
+		// })
 	});
 
 module.exports = {

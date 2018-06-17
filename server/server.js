@@ -4,19 +4,22 @@ const express = require('express'),
     server = require('http').createServer(app),
     config = require('./config'),
     bodyParser = require('body-parser'),
+    multer = require('multer'),
     morgan = require('morgan');
+
+
+// MULTER FILE UPLOAD
+var multerupload = multer({ dest: './uploads/' });
 
 // ROUTES
 const admin_auth = require('./controllers/admin_auth').admin_auth,
       admin = require('./controllers/admin').admin,
       public = require('./controllers/public').public;
 
-// HELPERS
-
+// CONFIGURATION
 server.listen(config.port);
-
-// app.use(bodyParser.json({limit: '5mb'}));
-// app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // CORS
 app.use(function(req, res, next) {

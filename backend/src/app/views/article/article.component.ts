@@ -68,7 +68,6 @@ export class ArticleComponent implements OnInit{
   }
 
   upload_header_image( event: any ){
-
     if( event.target.files && event.target.files[0] && event.target.files.length == 1 ){
       let open_door = true;
       let formData = new FormData();
@@ -91,10 +90,19 @@ export class ArticleComponent implements OnInit{
       }
 
       if(open_door){
-
         this.article_service.upload_header_image( formData )
           .subscribe(is_picture_updated => {
             console.log(is_picture_updated);
+          }, error => {
+            console.log(error);
+            this.illustration.is_icon_rotating = 'icon';
+            this.illustration.icon = '';
+
+            let timer = setTimeout(() => {  
+              this.illustration.is_file_uploaded = false;
+              clearTimeout(timer);
+            }, 1000);
+           
           })
 
       }else{

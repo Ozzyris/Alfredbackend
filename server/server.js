@@ -2,24 +2,12 @@
 const express = require('express'),
     app = express(),
     server = require('http').createServer(app),
-    config = require('./config'),
-    bodyParser = require('body-parser'),
-    multer = require('multer'),
+    config = require('./config'),    
     morgan = require('morgan');
 
 
-// MULTER FILE UPLOAD
-var multerupload = multer({ dest: './uploads/' });
-
-// ROUTES
-const admin_auth = require('./controllers/admin_auth').admin_auth,
-      admin = require('./controllers/admin').admin,
-      public = require('./controllers/public').public;
-
 // CONFIGURATION
 server.listen(config.port);
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // CORS
 app.use(function(req, res, next) {
@@ -37,6 +25,7 @@ app.use(function(req, res, next) {
 app.use(morgan('dev'));
 
 // ROUTES
-app.use('/admin-auth', admin_auth);
-app.use('/admin', admin);
-app.use('/public', public);
+app.use('/public', require('./controllers/public').public);
+app.use('/admin', require('./controllers/admin').admin);
+app.use('/admin-auth', require('./controllers/admin_auth').admin_auth);
+app.use('/admin-upload', require('./controllers/admin_upload').admin_upload);

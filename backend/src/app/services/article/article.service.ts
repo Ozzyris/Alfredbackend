@@ -9,7 +9,8 @@ import { Article } from '../../interfaces/article';
 @Injectable()
 
 export class article_service {
-	base_url = environment.api_url + 'admin/';
+  base_url = environment.api_url + 'admin/';
+	base_upload_url = environment.api_url + 'admin-upload/';
   httpOptions: any;
 
   constructor( private http: HttpClient ){
@@ -66,7 +67,9 @@ export class article_service {
   }
 
   upload_header_image( formData ){
-    let url = this.base_url + 'upload-header';
+    new Response(formData).text().then(console.log)
+    
+    let url = this.base_upload_url + 'upload-header';
     return this.http.post(url, formData, this.httpOptions);
   }
 }

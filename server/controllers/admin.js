@@ -1,14 +1,15 @@
 const express = require('express'),
-	  app = express(),
 	  router = express.Router(),
+	  bodyParser = require('body-parser'),
 	  article = require('../models/article').article;
 
 // HELPERS
 
 // MIDDLEWARE
 var check_auth = require('../middlewares/index').check_auth;
-
 router.use( check_auth );
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
 	router.post('/create-article', function (req, res) {
 		let article_detail = {
@@ -32,7 +33,6 @@ router.use( check_auth );
 	router.get('/get-articles', function (req, res) {
 		article.get_all_articles()
 			.then( all_articles => {
-				console.log( all_articles );
 				res.status(200).json( all_articles );
 			})
 			.catch( error => {
@@ -53,6 +53,7 @@ router.use( check_auth );
 				res.status(200).json( {message: 'Status updated'} );
 			})
 			.catch( error => {
+				console.log( error );
 				res.status(401).json(error);
 			});
 	});
@@ -60,7 +61,6 @@ router.use( check_auth );
 	router.post('/get-article-detail-from-id', function (req, res) {
 		article.get_article_from_id( req.body.id )
 			.then( article_details => {
-				console.log( article_details );
 				res.status(200).json( article_details );
 			})
 			.catch( error => {
@@ -102,25 +102,6 @@ router.use( check_auth );
 				console.log( error );
 				res.status(401).json( error );
 			})
-	});
-
-	router.post('/upload-header', function (req, res) {
-		// https://medium.com/technoetics/handling-file-upload-in-nodejs-7a4bb9f09a27
-		// https://scotch.io/tutorials/express-file-uploads-with-multer
-		// https://www.npmjs.com/package/express-fileupload
-
-		// var DIR = './uploads/';
-		// var upload = multer({dest: DIR}).single('photo');
-
-		console.log( "req ", req.files );
-		// upload(req, res, function (err) {
-		// 	if (err) {
-		// 		console.log(err);
-		// 		return res.status(422).send("an Error occured")
-		// 	}
-		// 	path = req.file.path;
-		// 	return res.send("Upload Completed for "+path);
-		// })
 	});
 
 module.exports = {

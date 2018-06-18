@@ -71,7 +71,7 @@ export class ArticleComponent implements OnInit{
     if( event.target.files && event.target.files[0] && event.target.files.length == 1 ){
       let open_door = true;
       let formData = new FormData();
-      formData.append('photo', event.target.files.item(0));
+      formData.append('header_photo', event.target.files.item(0));
 
       this.illustration.is_file_uploaded = true;
       this.illustration.is_icon_rotating = 'icon rotate';

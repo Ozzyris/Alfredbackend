@@ -2,12 +2,16 @@ const express = require('express'),
 	  router = express.Router(),
 	  moment = require('moment'),
 	  admin = require('../models/admin').admin,
-	  config = require('../config');;
+	  bodyParser = require('body-parser'),
+	  config = require('../config');
 
 // HELPERS
 const bcrypt = require('../helpers/bcrypt'),
 	  token_manager = require('../helpers/token_manager');
 
+// MIDDLEWARE
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
 	// SIGN UP
 	router.put('/signup-with-credentials', function (req, res) {

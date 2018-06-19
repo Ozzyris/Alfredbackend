@@ -5,12 +5,13 @@ import { MARKDOWN } from '../../../assets/json/makdown_exemple';
 
 //services
 import { article_service } from '../../services/article/article.service';
+import { article_upload_service } from '../../services/article_upload/article-upload.service';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
-  providers: [article_service],
+  providers: [article_service, article_upload_service],
   encapsulation: ViewEncapsulation.None
 })
 
@@ -41,7 +42,7 @@ export class ArticleComponent implements OnInit{
     gauge_width: 0
   }
 
-  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private router:Router ){}
+  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private article_upload_service: article_upload_service, private router:Router ){}
   ngOnInit(){
     this.route.params.subscribe( params => {
       this.get_article_detail_from_id( params.id );
@@ -67,12 +68,16 @@ export class ArticleComponent implements OnInit{
       })
   }
 
+  prepare_the_file( file ): Promise<any>{
+    return new Promise((resolve, reject)=>{
+      let formData = new FormData();
+      resolve( formData.append('header_photo', file));
+    })
+  }
+
   upload_header_image( event: any ){
     if( event.target.files && event.target.files[0] && event.target.files.length == 1 ){
       let open_door = true;
-      let formData = new FormData();
-      formData.append('header_photo', event.target.files.item(0));
-
       this.illustration.is_file_uploaded = true;
       this.illustration.is_icon_rotating = 'icon rotate';
       this.illustration.icon = '';
@@ -84,27 +89,25 @@ export class ArticleComponent implements OnInit{
       }else if( event.target.files[0].type != 'image/jpeg' ){
         open_door = false;
         alert('The header picture must be in jpg');
-      }else if (typeof formData == 'undefined'){
-        open_door = false;
-        alert('Your browser does not support the FormData API! Use IE 10 or Above!');
       }
 
       if(open_door){
-        this.article_service.upload_header_image( formData )
-          .subscribe(is_picture_updated => {
-            console.log(is_picture_updated);
-          }, error => {
-            console.log(error);
-            this.illustration.is_icon_rotating = 'icon';
-            this.illustration.icon = '';
-
-            let timer = setTimeout(() => {  
-              this.illustration.is_file_uploaded = false;
-              clearTimeout(timer);
-            }, 1000);
-           
+        this.prepare_the_file( event.target.files[0] )
+          .then( form => {
+            this.article_upload_service.upload_header_image( form )
+              .subscribe(is_picture_updated => {
+                console.log(is_picture_updated);
+              }, error => {
+                console.log(error);
+                this.illustration.is_icon_rotating = 'icon';
+                this.illustration.icon = '';
+                let timer = setTimeout(() => {  
+                  this.illustration.is_file_uploaded = false;
+                  clearTimeout(timer);
+                }, 1000);
+               
+              })
           })
-
       }else{
         this.illustration.is_file_uploaded = false;
         this.illustration.is_icon_rotating = 'icon';

@@ -10,7 +10,6 @@ import { Article } from '../../interfaces/article';
 
 export class article_service {
   base_url = environment.api_url + 'admin/';
-	base_upload_url = environment.api_url + 'admin-upload/';
   httpOptions: any;
 
   constructor( private http: HttpClient ){
@@ -48,7 +47,7 @@ export class article_service {
 
   get_article_detail_from_id( payload ): Observable<any>{
     let url = this.base_url + 'get-article-detail-from-id';
-    return this.http.post(url, payload, this.httpOptions);
+    return this.http.post<Article>(url, payload, this.httpOptions);
   }
 
   post_article_content( payload ){
@@ -64,12 +63,5 @@ export class article_service {
   delete_article( payload ){
     let url = this.base_url + 'delete-article';
     return this.http.post(url, payload, this.httpOptions);
-  }
-
-  upload_header_image( formData ){
-    new Response(formData).text().then(console.log)
-    
-    let url = this.base_upload_url + 'upload-header';
-    return this.http.post(url, formData, this.httpOptions);
   }
 }

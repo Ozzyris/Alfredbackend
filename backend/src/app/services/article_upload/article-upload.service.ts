@@ -14,7 +14,6 @@ export class article_upload_service {
       .then( session => {
         this.httpOptions = {
           headers: new HttpHeaders({
-            'Content-Type':  'application/x-www-form-urlencoded',
             'X-Auth-Token': session
           })
         };
@@ -27,8 +26,8 @@ export class article_upload_service {
     })
   }
 
-//https://www.codingforentrepreneurs.com/blog/file-upload-with-angular/
-  upload_header_image( formData ){    
+//https://stackoverflow.com/questions/35212341/angular2-http-post-request-parameters
+  upload_header_image( formData, id ){    
     let url = this.base_url + 'upload-header';
     return this.http.post(url, formData, this.httpOptions);
   }

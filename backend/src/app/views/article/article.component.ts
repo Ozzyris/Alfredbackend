@@ -70,8 +70,10 @@ export class ArticleComponent implements OnInit{
 
   prepare_the_file( file ): Promise<any>{
     return new Promise((resolve, reject)=>{
-      let formData = new FormData();
-      resolve( formData.append('header_photo', file));
+      const formData: FormData = new FormData();
+      console.log(file.name);
+      formData.append('header_photo', file, file.name);
+      resolve( formData );
     })
   }
 
@@ -92,7 +94,7 @@ export class ArticleComponent implements OnInit{
       }
 
       if(open_door){
-        this.prepare_the_file( event.target.files[0] )
+        this.prepare_the_file( event.target.files[0], this.article.id )
           .then( form => {
             this.article_upload_service.upload_header_image( form )
               .subscribe(is_picture_updated => {

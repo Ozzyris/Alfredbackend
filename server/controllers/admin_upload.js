@@ -26,15 +26,24 @@ var permanent_upload = multer({ storage: permanent_storage });
 		var upload = permanent_upload.single('header_photo');
 
 		upload(req, res, function (err) {
-			console.log(req.file);
 			if (err || req.file == undefined) {
 			  console.log(err);
 			  return res.status(422).send("an Error occured");
-			  return
 			}
-
-			let path = req.path;
-			return res.send("Upload Completed for " + path);
+			console.log(req.file)
+			// let path = req.file.fieldname + '-' + Date.now() + '.' + mime.extension(req.file.mimetype);
+			// article.get_article_from_id( id )
+			// 	.then( article_detail => {
+			// 		article_detail.status = !article_detail.status;
+			// 		return article.update_status( id, article_detail.status )
+			// 	})
+			// 	.then( is_status_updated => {
+					res.status(200).json( {message: 'Header picture updated'} );
+			// 	})
+			// 	.catch( error => {
+			// 		console.log( error );
+			// 		res.status(401).json(error);
+			// 	});
 		})
 	});
 

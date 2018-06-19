@@ -5,6 +5,7 @@ const express = require('express'),
 	  article = require('../models/article').article;
 
 // HELPERS
+const token_manager = require('../helpers/token_manager');
 
 // MIDDLEWARE
 router.use( require('../middlewares/index').check_auth );
@@ -14,33 +15,30 @@ router.use( require('../middlewares/index').check_auth );
 		// https://medium.com/technoetics/handling-file-upload-in-nodejs-7a4bb9f09a27
 		// https://scotch.io/tutorials/express-file-uploads-with-multer
 		// https://www.npmjs.com/package/express-fileupload
-		var upload = uploador.single('header_photo');
+		let storage = multer.diskStorage({
+			destination: function (req, file, cb) {
+				cb(null, './uploads/')
+			},
+			filename: function (req, file, cb) {
+				token_manager.create_token( function (err, raw) {
+					cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+				});
+			}
+		});
+
+		var upload = storage.single('header_photo');
 
 		upload(req, res, function (err) {
 			if (err) {
 			  console.log(err);
+			  return res.status(422).send("an Error occured");
 			  return
 			}
 
-			console.log(req);
-			console.log(req.file.path);
+			console.log(req.file);
+			let path = req.file.path;
+			return res.send("Upload Completed for " + path);
 		})
-
-		
-		
-		// var DIR = './uploads/';
-		// var upload = multer({dest: DIR}).single('header_photo');
-
-		
-		// upload(req, res, function (err) {
-		// 	if (err) {
-		// 		console.log(err);
-		// 		return res.status(422).send("an Error occured")
-		// 	}
-		// 	console.log( "req ", req.file );
-		// 	path = req.file.path;
-		// 	return res.send("Upload Completed for "+path);
-		// })
 	});
 
 module.exports = {

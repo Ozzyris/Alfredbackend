@@ -22,7 +22,10 @@ var permanent_storage = multer.diskStorage({
 var permanent_upload = multer({ storage: permanent_storage });
 
 
-	router.post('/upload-header', function (req, res) {
+	router.post('/upload-header/:id', function (req, res, next) {
+		console.log( req.query );
+		console.log( req.params.id );
+
 		var upload = permanent_upload.single('header_photo');
 
 		upload(req, res, function (err) {
@@ -30,13 +33,14 @@ var permanent_upload = multer({ storage: permanent_storage });
 			  console.log(err);
 			  return res.status(422).send("an Error occured");
 			}
-			console.log(req.file)
 			// let path = req.file.fieldname + '-' + Date.now() + '.' + mime.extension(req.file.mimetype);
-			// article.get_article_from_id( id )
-			// 	.then( article_detail => {
+						// let path = req.file.fieldname + '-' + Date.now() + '.' + mime.extension(req.file.mimetype);
+			// article.get_article_from_session( req.headers['x-auth-token'] )
+				// .then( article_detail => {
+					// console.log(article_detail);
 			// 		article_detail.status = !article_detail.status;
 			// 		return article.update_status( id, article_detail.status )
-			// 	})
+				// })
 			// 	.then( is_status_updated => {
 					res.status(200).json( {message: 'Header picture updated'} );
 			// 	})

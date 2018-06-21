@@ -92,7 +92,6 @@ router.use(bodyParser.json());
 	});
 
 	router.post('/delete-article', function (req, res) {
-		console.log(req.body)
 		article.delete_article( req.body.id )
 			.then( is_content_delete => {
 				console.log(is_content_delete);

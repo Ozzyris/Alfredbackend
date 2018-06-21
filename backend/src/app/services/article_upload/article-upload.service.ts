@@ -27,7 +27,6 @@ export class article_upload_service {
     })
   }
 
-//https://stackoverflow.com/questions/35212341/angular2-http-post-request-parameters
   upload_header_image( formData, id ){ 
     let url = this.base_url + 'upload-header/' + id;
     return this.http.post(url, formData, this.httpOptions);

@@ -21,6 +21,9 @@ app.use(function(req, res, next) {
     }
 });
 
+// ALLOW STATIC IMAGES
+app.use('/uploads', express.static('uploads'))
+
 // MORGAN LOGGING THE CALLS
 app.use(morgan('dev'));
 

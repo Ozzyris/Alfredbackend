@@ -84,7 +84,7 @@ export class ArticleComponent implements OnInit{
       this.illustration.icon = '';
       this.illustration.gauge_width = '1px';
 
-      if( event.target.files[0].size > 1048576 ){
+      if( event.target.files[0].size > 250000 ){
         open_door = false;
          alert('The header picture is too big heavy. it must be less than 1mb');
       }else if( event.target.files[0].type != 'image/jpeg' ){
@@ -97,7 +97,10 @@ export class ArticleComponent implements OnInit{
           .then( form => {
             this.article_upload_service.upload_header_image( form, this.article.id )
               .subscribe(is_picture_updated => {
-                console.log(is_picture_updated);
+                this.illustration.is_file_uploaded = false;
+                this.illustration.icon = '';
+                this.illustration.is_icon_rotating = 'icon';
+                this.get_article_detail_from_id( this.article.id );
               }, error => {
                 console.log(error);
                 this.illustration.is_icon_rotating = 'icon';

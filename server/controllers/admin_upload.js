@@ -23,7 +23,7 @@ var permanent_upload = multer({ storage: permanent_storage });
 
 
 	router.post('/upload-header/:id', function (req, res, next) {
-		console.log( req.params.id );
+		//https://www.npmjs.com/package/multer-s3
 
 		var upload = permanent_upload.single('header_photo');
 
@@ -35,11 +35,9 @@ var permanent_upload = multer({ storage: permanent_storage });
 			let path = req.protocol + '://' + req.get('host') + '/uploads/article-header-' + req.params.id + '.' + mime.extension(req.file.mimetype);
 			article.update_header( req.params.id, path )
 				.then( is_header_updated => {
-					console.log(is_header_updated);
 					res.status(200).json( {message: 'Header picture updated'} );
 				})
 				.catch( error => {
-					console.log( error );
 					res.status(401).json(error);
 				});
 		})

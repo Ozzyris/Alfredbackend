@@ -45,6 +45,11 @@ export class article_service {
     return this.http.post(url, payload, this.httpOptions);
   }
 
+  switch_highlight( payload ){
+    let url = this.base_url + 'switch-highlight';
+    return this.http.post(url, payload, this.httpOptions);
+  }
+
   get_article_detail_from_id( payload ): Observable<any>{
     let url = this.base_url + 'get-article-detail-from-id';
     return this.http.post<Article>(url, payload, this.httpOptions);

@@ -22,6 +22,8 @@ export class ArticleComponent implements OnInit{
     author: '',
     creation_date: '',
     edit_date: '',
+    status: false,
+    highlight: true,
     content: {
       title: '',
       header: 'https://images.unsplash.com/photo-1518265153847-8b59d4540400?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c52af831d0b1098d53ab3ac68cb784ac&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb',
@@ -58,6 +60,7 @@ export class ArticleComponent implements OnInit{
           this.article.author = article_detail.author;
           this.article.creation_date = article_detail.creation_date;
           this.article.edit_date = article_detail.edit_date;
+          this.article.highlight = article_detail.highlight;
           this.article.content.title = article_detail.content.title;
           if(article_detail.content.header != undefined){
             this.article.content.header = article_detail.content.header;
@@ -135,9 +138,17 @@ export class ArticleComponent implements OnInit{
 
     this.article_service.post_article_content( {id: this.article.id, markdown: this.article.content.content_markdown, html:this.article.content.content_html} )
       .subscribe(is_content_updated => {
-        console.log( is_content_updated );
         this.get_article_detail_from_id( this.article.id )
       })
+  }
+
+  switch_highlight(){
+    this.article_service.switch_highlight( {id: this.article.id} )
+        .subscribe( is_highlight_switched => {
+          this.get_article_detail_from_id( this.article.id )
+        }, error => {
+          console.log(error);
+        })
   }
 
   launch_exemple(){

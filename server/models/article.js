@@ -7,6 +7,7 @@ var article = new mongoose.Schema({
     creation_date: {type: Date, default: moment()},
     edit_date: {type: Date},
     status: {type: Boolean, default: false},
+    highlight: {type: Boolean, default: false},
     content: {
         header: {type: String},
         title: {type: String},
@@ -30,8 +31,6 @@ article.statics.get_all_articles = function(){
             })
     })
 };
-
-//SWITCH STATUS
 article.statics.get_article_from_id = function( id ){
     return new Promise((resolve, reject) => {
          this.findOne({ _id : id }).exec()
@@ -44,12 +43,24 @@ article.statics.get_article_from_id = function( id ){
             })
     })
 };
+
 article.statics.update_status = function( id, status ){
     return new Promise((resolve, reject) => {
         article.update({ '_id' : id }, {
             'status': status
         }).exec()
         .then(status =>{
+            resolve(true);
+        })
+    })
+};
+
+article.statics.update_highlight = function( id, highlight ){
+    return new Promise((resolve, reject) => {
+        article.update({ '_id' : id }, {
+            'highlight': highlight
+        }).exec()
+        .then(highlight =>{
             resolve(true);
         })
     })

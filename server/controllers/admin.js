@@ -58,6 +58,27 @@ router.use(bodyParser.json());
 			});
 	});
 
+	router.post('/switch-highlight', function (req, res) {
+		let id = req.body.id;
+		
+		article.get_article_from_id( id )
+			.then( article_detail => {
+				if(article_detail.highlight){
+					article_detail.highlight = !article_detail.highlight;
+				}else{
+					article_detail.highlight = true;
+				}
+				return article.update_highlight( id, article_detail.highlight )
+			})
+			.then( is_highlight_updated => {
+				res.status(200).json( {message: 'Highlight updated'} );
+			})
+			.catch( error => {
+				console.log( error );
+				res.status(401).json(error);
+			});
+	});
+
 	router.post('/get-article-detail-from-id', function (req, res) {
 		article.get_article_from_id( req.body.id )
 			.then( article_details => {

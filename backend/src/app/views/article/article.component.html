@@ -22,9 +22,10 @@
 				<span class="icon"></span>
 				<p>Back to all article</p>
 			</li>
-			<li *ngIf="!article.edit_date">Created {{article.creation_date | amTimeAgo}}</li>
-			<li *ngIf="article.edit_date">Updated {{article.last_edit | amTimeAgo}}</li>
+			<li *ngIf="!article.edit_date">Created {{article.creation_date | amTimeAgo}}</li><li *ngIf="article.edit_date">Updated {{article.last_edit | amTimeAgo}}</li>
 			<li>Author {{article.author}}</li>
+			<li *ngIf="!article.highlight" (click)="switch_highlight()" ><span class="icon"></span> Highlight article</li><li *ngIf="article.highlight" (click)="switch_highlight()" ><span class="icon bold"></span> Article highlighted</li>
+			https://codepen.io/damienpm/pen/pBxAm
 			<li (click)="is_delete_modal_active = true" class="delete">Delete this article</li>
 		</ul>
 	</div>
@@ -38,7 +39,7 @@
 					</span>
 				</div>
 			</label>
-			<input id="header_picture" (change)="upload_header_image( $event )" name="header_photo" style="display: block;" type="file" />
+			<input id="header_picture" (change)="upload_header_image( $event )" name="header_photo" style="display: none;" type="file" />
 			<input type="text" class="header_1" (blur)="post_article_title()" [(ngModel)]="article.content.title">
 			<ul class="tab">
 				<li (click)="is_preview_display = false" [ngClass]="{'active': !is_preview_display}" >Markdown</li>

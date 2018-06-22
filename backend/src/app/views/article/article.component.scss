@@ -169,6 +169,78 @@ section.article{
 					line-height: 30px;
 					color: $dark_primary;
 				}
+
+				&.tags{
+					padding: 10px 0;
+					cursor: text;
+	
+					&:hover{
+						background-color: $light_grey;
+					}
+					ul.input{
+						list-style : none;   
+  						border:1px solid  $light_grey;
+  						display:inline-block;
+  						padding:5px;
+  						height: auto;
+    					font-size:14px;
+    					background: #f3f3f3;
+    					width: calc(100% - 12px);
+    					border-radius:2px;
+    					overflow:hidden;
+    					transition: all 200ms;
+
+						&:hover{
+							border-color: #ccc;
+						}
+						li{
+							float:left;
+							padding: 0;
+
+							&.tag{
+								background: $dark_primary;
+								color: white;
+								border-radius:2px;
+								margin: 0 5px 5px 0;
+								position: relative;
+								line-height: 24px;
+								padding: 0 20px 0 5px;
+
+								span.icon{
+									position: absolute;
+									font-family: 'font_awesome';
+									right: -4px;
+									top: -2px;
+									color: white;
+									cursor:pointer;
+									opacity: .7;
+									font-size: 12px;
+
+									&:hover{
+										opacity: 1;
+									}
+								}
+							}
+							&.tag-new{
+								height: 24px;
+
+								input{
+									border:0;
+									margin: 0;
+									padding: 0;
+									font-size: 14px;
+									background:transparent;
+									line-height: 24px;
+									width: 100%;
+								}
+
+								&:hover{
+									background-color: $light_grey;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}

@@ -43,6 +43,8 @@ export class ArticleComponent implements OnInit{
     icon: '',
     gauge_width: 0
   }
+  tag_input: String;
+  tags_array: any = ['Add a tag'];
 
   constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private article_upload_service: article_upload_service, private router:Router ){}
   ngOnInit(){
@@ -172,5 +174,16 @@ export class ArticleComponent implements OnInit{
           this.router.navigate(['dashboard']);
         })
     }
+  }
+
+  add_tag(){
+    if( this.tag_input != '' || !this.tag_input.replace(/^\s+|\s+$/g,"") ){
+      this.tags_array.push(this.tag_input);
+      this.tag_input = '';
+    }
+  }
+
+  remove_tag( index ){
+    this.tags_array.splice(index, 1)
   }
 }

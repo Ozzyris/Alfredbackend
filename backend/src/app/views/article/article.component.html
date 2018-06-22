@@ -25,7 +25,15 @@
 			<li *ngIf="!article.edit_date">Created {{article.creation_date | amTimeAgo}}</li><li *ngIf="article.edit_date">Updated {{article.last_edit | amTimeAgo}}</li>
 			<li>Author {{article.author}}</li>
 			<li *ngIf="!article.highlight" (click)="switch_highlight()" ><span class="icon"></span> Highlight article</li><li *ngIf="article.highlight" (click)="switch_highlight()" ><span class="icon bold"></span> Article highlighted</li>
-			https://codepen.io/damienpm/pen/pBxAm
+			<!-- https://codepen.io/damienpm/pen/pBxAm -->
+			<li class="tags">
+				<ul class="input">
+    				<li *ngFor="let tag of tags_array; index as index" class="tag">{{tag}}<span class="icon" (click)="remove_tag(index)" ></span></li>
+    				<li class="tag-new">
+      					<input type="text" [(ngModel)]="tag_input" (keyup.enter)="add_tag()"> 
+    				</li>
+				</ul>
+			</li>
 			<li (click)="is_delete_modal_active = true" class="delete">Delete this article</li>
 		</ul>
 	</div>

@@ -64,6 +64,7 @@ section.dashboard{
 		left: 25%;
 		right: 0;
 		bottom: 0;
+		overflow: auto;
 
 		div.inner_container{
 			width: calc(100% - 100px);

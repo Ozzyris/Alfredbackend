@@ -65,6 +65,11 @@ export class article_service {
     return this.http.post(url, payload, this.httpOptions);
   }
 
+  post_tags( payload ){
+    let url = this.base_url + 'post-tags';
+    return this.http.post(url, payload, this.httpOptions);
+  }
+
   delete_article( payload ){
     let url = this.base_url + 'delete-article';
     return this.http.post(url, payload, this.httpOptions);

@@ -9,13 +9,13 @@ var article = new mongoose.Schema({
     status: {type: Boolean, default: false},
     highlight: {type: Boolean, default: false},
     content: {
-        header: {type: String},
+        header: {type: String, default: 'https://images.unsplash.com/photo-1518225190492-bedf527826f7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e641c48fd64f7ba647d0c3ec334c586c&auto=format&fit=crop&w=668&q=80'},
         title: {type: String},
         content_markdown: {type: String},
         content_html: {type: String}
     },
     category: {type: String},
-    tags: []
+    tags: {type: String}
 }, {collection: 'article'});
 
 //COMMON
@@ -31,6 +31,56 @@ article.statics.get_all_articles = function(){
             })
     })
 };
+article.statics.get_all_public_articles = function(){
+    return new Promise((resolve, reject) => {
+        this.find({status : true}, {'content.title':1, 'content.header':1, 'edit_date':1, 'category':1, 'tags':1, '_id':1}).exec()
+            .then(articles => {
+                if( articles ){
+                    resolve( articles );
+                }else{
+                    reject({ message: 'an error happend', code: 'email_duplicate'});
+                }
+            })
+    })
+};
+article.statics.get_public_highlighted_articles = function(){
+    return new Promise((resolve, reject) => {
+        this.find({ status : true, highlight: true}, {'content.title':1, '_id':1}).exec()
+            .then(articles => {
+                if( articles ){
+                    resolve( articles );
+                }else{
+                    reject({ message: 'an error happend', code: 'email_duplicate'});
+                }
+            })
+    })
+};
+
+article.statics.get_public_last_15_articles = function(){
+    return new Promise((resolve, reject) => {
+        this.find({ status : true }, {'content.title':1, 'content.header':1, 'edit_date':1, '_id':1}).sort({'creation_date': -1}).limit(15).exec()
+            .then(articles => {
+                if( articles ){
+                    resolve( articles );
+                }else{
+                    reject({ message: 'an error happend', code: 'email_duplicate'});
+                }
+            })
+    })
+};
+
+article.statics.get_public_article_from_id = function( id ){
+    return new Promise((resolve, reject) => {
+         this.findOne({ status : true, _id : id }).exec()
+            .then( article => {
+                if( article ){
+                    resolve( article );
+                }else{
+                    reject({ message: 'Your id does not exist', code: 'id_not_exist'});
+                }
+            })
+    })
+};
 article.statics.get_article_from_id = function( id ){
     return new Promise((resolve, reject) => {
          this.findOne({ _id : id }).exec()
@@ -38,7 +88,7 @@ article.statics.get_article_from_id = function( id ){
                 if( article ){
                     resolve( article );
                 }else{
-                    reject({ message: 'Your is does not exist', code: 'is_not_exist'});
+                    reject({ message: 'Your id does not exist', code: 'id_not_exist'});
                 }
             })
     })
@@ -72,6 +122,18 @@ article.statics.post_article_content = function( id, markdown, html ){
             'edit_date': moment(),
             'content.content_markdown': markdown,
             'content.content_html': html
+        }).exec()
+        .then(status =>{
+            resolve(true);
+        })
+    })
+};
+
+article.statics.post_tags = function( id, tags ){
+    return new Promise((resolve, reject) => {
+        article.update({ '_id' : id }, {
+            'edit_date': moment(),
+            'tags': tags
         }).exec()
         .then(status =>{
             resolve(true);

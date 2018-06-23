@@ -24,9 +24,10 @@ export class ArticleComponent implements OnInit{
     edit_date: '',
     status: false,
     highlight: true,
+    tags: ['Add a tag'],
     content: {
       title: '',
-      header: 'https://images.unsplash.com/photo-1518265153847-8b59d4540400?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c52af831d0b1098d53ab3ac68cb784ac&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb',
+      header: '',
       content_markdown: '',
       content_html: '',
 
@@ -44,7 +45,6 @@ export class ArticleComponent implements OnInit{
     gauge_width: 0
   }
   tag_input: String;
-  tags_array: any = ['Add a tag'];
 
   constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private article_upload_service: article_upload_service, private router:Router ){}
   ngOnInit(){
@@ -63,10 +63,12 @@ export class ArticleComponent implements OnInit{
           this.article.creation_date = article_detail.creation_date;
           this.article.edit_date = article_detail.edit_date;
           this.article.highlight = article_detail.highlight;
-          this.article.content.title = article_detail.content.title;
-          if(article_detail.content.header != undefined){
-            this.article.content.header = article_detail.content.header;
+          if(article_detail.tags != undefined ){
+            this.article.tags = JSON.parse(article_detail.tags);
           }
+          
+          this.article.content.title = article_detail.content.title;
+          this.article.content.header = article_detail.content.header;
           this.article.content.content_markdown = article_detail.content.content_markdown;
           this.article.content.content_html = article_detail.content.content_html;
         }
@@ -89,7 +91,7 @@ export class ArticleComponent implements OnInit{
       this.illustration.icon = '';
       this.illustration.gauge_width = '1px';
 
-      if( event.target.files[0].size > 250000 ){
+      if( event.target.files[0].size > 2500000 ){
         open_door = false;
          alert('The header picture is too big heavy. it must be less than 1mb');
       }else if( event.target.files[0].type != 'image/jpeg' ){
@@ -177,13 +179,24 @@ export class ArticleComponent implements OnInit{
   }
 
   add_tag(){
-    if( this.tag_input != '' || !this.tag_input.replace(/^\s+|\s+$/g,"") ){
-      this.tags_array.push(this.tag_input);
+    if( this.tag_input != '' && this.tag_input.replace(/\s/g, '').length != 0 ){
+      this.article.tags.push(this.tag_input);
+      this.article_service.post_tags( {id: this.article.id, tags: JSON.stringify( this.article.tags )} )
+        .subscribe(is_tag_posted => {
+          console.log( is_tag_posted );
+          this.tag_input = '';
+        })
+    }else{
       this.tag_input = '';
     }
   }
 
   remove_tag( index ){
-    this.tags_array.splice(index, 1)
+    this.article.tags.splice(index, 1);
+    this.article_service.post_tags( {id: this.article.id, tags: JSON.stringify( this.article.tags )} )
+        .subscribe(is_tag_posted => {
+          console.log( is_tag_posted );
+          this.tag_input = '';
+        })
   }
 }

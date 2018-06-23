@@ -10,12 +10,12 @@ export const CATEGORIES = [
 			},
 			{
 				title: 'Bars',
-				icon: '',
+				icon: '',
 				article_count: 0,
 			},
 			{
 				title: 'Restaurants',
-				icon: '',
+				icon: '',
 				article_count: 0,
 			},
 			{
@@ -102,4 +102,4 @@ export const CATEGORIES = [
 			}
 		]
 	}
-];
+]; 

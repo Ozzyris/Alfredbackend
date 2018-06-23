@@ -14,20 +14,8 @@
 
 		<div class="shortcut">
 			<ul>
-				<li class="shortcut">
-					<h4>Apply for a 457 visa</h4>
-					<p class="icon"></p>
-				</li>
-				<li class="shortcut">
-					<h4>Request your tax back</h4>
-					<p class="icon"></p>
-				</li>
-				<li class="shortcut">
-					<h4>Carriagework</h4>
-					<p class="icon"></p>
-				</li>
-				<li class="shortcut">
-					<h4>Vivid 2018</h4>
+				<li class="shortcut" *ngFor="let article of highlighted_articles | async" routerLink="/article/{{article._id}}">
+					<h4>{{article.content.title}}</h4>
 					<p class="icon"></p>
 				</li>
 				<li class="newsletter">
@@ -44,22 +32,13 @@
 					<h3>May 2018</h3>
 				</div>
 				<div class="body">
-					<article>
-						<div class="left" style="background-image: url(https://images.unsplash.com/photo-1484599379766-aa5e119b0066?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c840f1dfd47292e02a7bf355fca88552&auto=format&fit=crop&w=1650&q=80);"></div>
+					<article *ngFor="let article of all_articles | async">
+						<div class="left" [style.backgroundImage]="'url(' + article.content.header + ')'"></div>
 						<div class="right">
-							<h4>Anzac Day</h4>
-							<p class="small">Monday 12 october 2018</p>
+							<h4>{{article.content.title}}</h4>
+							<p class="small">{{article.edit_date}}</p>
 							<p class="description">Kansas City ribs are serious business when it comes to BBQ. True to tradition, barbeque in Kansas City is dry rub-spiced, smoked with hickory and coated with a KC style sauce.</p>
-							<a class="link" routerLink="/article">Read Article →</a>
-						</div>
-					</article>
-					<article>
-						<div class="left" style="background-image: url(https://images.unsplash.com/photo-1484599379766-aa5e119b0066?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c840f1dfd47292e02a7bf355fca88552&auto=format&fit=crop&w=1650&q=80);"></div>
-						<div class="right">
-							<h4>Anzac Day</h4>
-							<p class="small">Monday 12 october 2018</p>
-							<p class="description">Kansas City ribs are serious business when it comes to BBQ. True to tradition, barbeque in Kansas City is dry rub-spiced, smoked with hickory and coated with a KC style sauce.</p>
-							<a class="link" routerLink="/article">Read Article →</a>
+							<a class="link" routerLink="/article/{{article._id}}">Read Article →</a>
 						</div>
 					</article>
 				</div>

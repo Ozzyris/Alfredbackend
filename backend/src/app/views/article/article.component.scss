@@ -223,6 +223,7 @@ section.article{
 							}
 							&.tag-new{
 								height: 24px;
+								width: 130px;
 
 								input{
 									border:0;
@@ -231,7 +232,8 @@ section.article{
 									font-size: 14px;
 									background:transparent;
 									line-height: 24px;
-									width: 100%;
+									width: auto;
+
 								}
 
 								&:hover{

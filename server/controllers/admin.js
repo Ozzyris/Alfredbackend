@@ -112,6 +112,18 @@ router.use(bodyParser.json());
 			})
 	});
 
+	router.post('/post-tags', function (req, res) {
+		console.log(req.body.tags);
+		article.post_tags( req.body.id, req.body.tags )
+			.then( is_tag_posted => {
+				res.status(200).json( {message: 'tags updated'} );
+			})
+			.catch( error => {
+				console.log( error );
+				res.status(401).json( error );
+			})
+	});
+
 	router.post('/delete-article', function (req, res) {
 		article.delete_article( req.body.id )
 			.then( is_content_delete => {

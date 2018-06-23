@@ -8,89 +8,19 @@
 	
 	<div class="main_container">
 		<div class="shortcuts" *ngIf="is_shorcut_display">
-			<div class="shortcut_group">
+			<div class="shortcut_group" *ngFor="let main_categorie of categories; index as primary_index">
 				<div class="header">
-					<h3>Lifestyle</h3>
+					<h3>{{main_categorie.title}}</h3>
 				</div>
 				<div class="body">
-					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
-						<span class="icon"></span>
-						<h4>Cafe</h4>
+					<div *ngFor="let sub_category of main_categorie.sub_categories; index as secondary_index" class="shortcut" (click)="select_category(primary_index, secondary_index)">
+						<span class="icon">{{sub_category.icon}}</span>
+						<h4>{{sub_category.title}}</h4>
 					</div>
-					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
+<!-- 					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
 						<span class="icon"></span>
 						<h4>Bars</h4>
-					</div>
-					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
-						<span class="icon"></span>
-						<h4>Restaurants</h4>
-					</div>
-					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
-						<span class="icon"></span>
-						<h4>Hostels</h4>
-					</div>
-					<div class="shortcut" (click)="switch_from_shortchut_to_article()">
-						<span class="icon"></span>
-						<h4>Markets</h4>
-					</div>
-				</div>
-			</div>
-			<div class="shortcut_group">
-				<div class="header">
-					<h3>Culture</h3>
-				</div>
-				<div class="body">
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>Traditions</h4>
-					</div>
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>Events</h4>
-					</div>
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>See-sight</h4>
-					</div>
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>Neigborhoods</h4>
-					</div>
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>Sport</h4>
-					</div>
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>Wildlife</h4>
-					</div>
-				</div>
-			</div>
-			<div class="shortcut_group">
-				<div class="header">
-					<h3>Administrative</h3>
-				</div>
-				<div class="body">
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>Burocracy</h4>
-					</div>
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>Bank</h4>
-					</div>
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>Transports</h4>
-					</div>
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>Medical</h4>
-					</div>
-					<div class="shortcut">
-						<span class="icon"></span>
-						<h4>Policies</h4>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -101,58 +31,23 @@
 			</div>
 			<div class="article_group">
 				<div class="header">
-					<h3>Cafe</h3>
+					<h3><span class="icon">{{selected_category.icon}}</span> {{selected_category.title}}</h3>
 				</div>
 				<div class="body">
-					<article routerLink="/article">
+					<article *ngFor="let article of all_articles | async | articles_pipe:selected_category.title" routerLink="/article/{{article._id}}">
+						<div class="illustration" [style.backgroundImage]="'url(' + article.content.header + ')'"></div>
+						<div class="content">
+							<h3>{{article.content.title}}</h3>
+							<p class="small">{{article.edit_date}}</p>
+						</div>
+					</article>
+		<!-- 			<article routerLink="/article">
 						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
 						<div class="content">
 							<h3>Public Holiday</h3>
 							<p class="small">Published Monday 12 october 2018</p>
 						</div>
-					</article>
-					<article routerLink="/article">
-						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
-						<div class="content">
-							<h3>Public Holiday</h3>
-							<p class="small">Published Monday 12 october 2018</p>
-						</div>
-					</article>
-					<article routerLink="/article">
-						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
-						<div class="content">
-							<h3>Public Holiday</h3>
-							<p class="small">Published Monday 12 october 2018</p>
-						</div>
-					</article>
-					<article routerLink="/article">
-						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
-						<div class="content">
-							<h3>Public Holiday</h3>
-							<p class="small">Published Monday 12 october 2018</p>
-						</div>
-					</article>
-					<article routerLink="/article">
-						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
-						<div class="content">
-							<h3>Public Holiday</h3>
-							<p class="small">Published Monday 12 october 2018</p>
-						</div>
-					</article>
-					<article routerLink="/article">
-						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
-						<div class="content">
-							<h3>Public Holiday</h3>
-							<p class="small">Published Monday 12 october 2018</p>
-						</div>
-					</article>
-					<article routerLink="/article">
-						<div class="illustration" style="background-image: url(https://images.unsplash.com/photo-1513876585916-61d40895c50e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c9f192e54c11d74a82641e470899abcf&auto=format&fit=crop&w=1650&q=80)"></div>
-						<div class="content">
-							<h3>Public Holiday</h3>
-							<p class="small">Published Monday 12 october 2018</p>
-						</div>
-					</article>
+					</article> -->
 				</div>
 			</div>
 		</div>

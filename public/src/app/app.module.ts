@@ -1,16 +1,22 @@
+//INTERNAL PACKAGE
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+//EXTERNAL PACKAGE
+import { MomentModule } from 'angular2-moment';
+
+//VIEWS
 import { AppComponent } from './app.component';
 import { DiscoveryComponent } from './views/discovery/discovery.component';
 import { ResourcesComponent } from './views/resources/resources.component';
 import { ArticleComponent } from './views/article/article.component';
 
 //PIPES
-import { ArticlesPipe } from './pipes/filters/articles.pipe';
+import { Filter_pipe } from './pipes/filters/filter.pipe';
+import { Searcher_pipe } from './pipes/searcher/searcher.pipe';
 
 const routes: Routes = [
   { path: 'discovery', component: DiscoveryComponent, data: { title: 'Discovery' } },
@@ -25,12 +31,14 @@ const routes: Routes = [
     DiscoveryComponent,
     ResourcesComponent,
     ArticleComponent,
-    ArticlesPipe
+    Filter_pipe,
+    Searcher_pipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    MomentModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],

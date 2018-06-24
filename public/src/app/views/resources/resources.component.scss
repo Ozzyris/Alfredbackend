@@ -106,6 +106,12 @@ section.resources{
 						&:hover{
 							box-shadow: 0px 0px 10px rgba(black, 0.3);
 						}
+						&.active{
+							background-color: $secondary_yellow_med;
+							
+							h4{ color: white; }
+							span.icon{ color: white; }
+						}
 						span.icon{
 							font-family: 'font_awesome';
 							font-size: 20px;
@@ -188,6 +194,26 @@ section.resources{
 						}
 					}
 				}
+				div.empty_states{
+					img{
+						padding-bottom: 20px;
+						width: 60%;
+						max-width: 250px;
+						margin: 50px auto 0;
+						display: block;
+					}
+					h3{
+						@include primary_title( $primary_blue_dark );
+						text-align: center;
+					}
+					p{
+						@include primary_text( $primary_blue_light );
+						margin-top: 12px;
+						position: relative;
+						line-height: 26px;
+						text-align: center;
+					}
+				}
 			}
 		}
 	}
@@ -253,7 +279,7 @@ section.resources{
 								width: 100%;
 								color: $primary_blue_dark;
 								display: block;
-								margin-top: 20%;
+								margin-top: 25%;
 							}
 							h4{
 								margin-top: 10%;

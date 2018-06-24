@@ -15,6 +15,7 @@ export class DiscoveryComponent implements OnInit {
 	all_articles: any;
 
   constructor( private article_service: article_service ){}
+
   ngOnInit(){
   	this.get_highlighted_articles();
     this.get_last_15_articles();

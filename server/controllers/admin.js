@@ -112,6 +112,17 @@ router.use(bodyParser.json());
 			})
 	});
 
+	router.post('/post-short-content', function (req, res) {
+		article.post_short_content( req.body.id, req.body.short_content )
+			.then( is_content_posted => {
+				res.status(200).json( {message: 'content updated'} );
+			})
+			.catch( error => {
+				console.log( error );
+				res.status(401).json( error );
+			})
+	});
+
 	router.post('/post-tags', function (req, res) {
 		console.log(req.body.tags);
 		article.post_tags( req.body.id, req.body.tags )

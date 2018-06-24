@@ -24,10 +24,11 @@ export class ArticleComponent implements OnInit{
     edit_date: '',
     status: false,
     highlight: true,
-    tags: ['Add a tag'],
+    tags: [],
     content: {
       title: '',
       header: '',
+      short_content: '',
       content_markdown: '',
       content_html: '',
 
@@ -63,12 +64,10 @@ export class ArticleComponent implements OnInit{
           this.article.creation_date = article_detail.creation_date;
           this.article.edit_date = article_detail.edit_date;
           this.article.highlight = article_detail.highlight;
-          if(article_detail.tags != undefined ){
-            this.article.tags = JSON.parse(article_detail.tags);
-          }
-          
+          this.article.tags = JSON.parse(article_detail.tags);
           this.article.content.title = article_detail.content.title;
           this.article.content.header = article_detail.content.header;
+          this.article.content.short_content = article_detail.content.short_content;
           this.article.content.content_markdown = article_detail.content.content_markdown;
           this.article.content.content_html = article_detail.content.content_html;
         }
@@ -138,9 +137,16 @@ export class ArticleComponent implements OnInit{
   }
 
   post_article_content(){
-  	this.article.content.content_html = this.showdownConverter.makeHtml( this.article.content.content_markdown );
+    this.article.content.content_html = this.showdownConverter.makeHtml( this.article.content.content_markdown );
 
     this.article_service.post_article_content( {id: this.article.id, markdown: this.article.content.content_markdown, html:this.article.content.content_html} )
+      .subscribe(is_content_updated => {
+        this.get_article_detail_from_id( this.article.id )
+      })
+  }
+
+  post_short_content(){
+    this.article_service.post_short_content( {id: this.article.id, short_content: this.article.content.short_content} )
       .subscribe(is_content_updated => {
         this.get_article_detail_from_id( this.article.id )
       })

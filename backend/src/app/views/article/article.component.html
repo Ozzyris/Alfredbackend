@@ -48,6 +48,7 @@
 			</label>
 			<input id="header_picture" (change)="upload_header_image( $event )" name="header_photo" style="display: none;" type="file" />
 			<input type="text" class="header_1" (blur)="post_article_title()" [(ngModel)]="article.content.title">
+			<textarea class="short_description" (blur)="post_short_content()" [(ngModel)]="article.content.short_content" placeholder="Here go a short summary of what this article is about."></textarea>
 			<ul class="tab">
 				<li (click)="is_preview_display = false" [ngClass]="{'active': !is_preview_display}" >Markdown</li>
 				<li (click)="is_preview_display = true" [ngClass]="{'active': is_preview_display}" >Preview</li>

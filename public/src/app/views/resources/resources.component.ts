@@ -14,6 +14,8 @@ import { article_service } from '../../services/article/article.service';
 export class ResourcesComponent implements OnInit {
 	all_articles: any;
 	is_mobile: boolean;
+	search_input: string;
+	is_search_active: boolean = false;
 	is_article_display: boolean = false;
 	is_breadcrumb_display: boolean = true;
 	is_shorcut_display: boolean = true;
@@ -27,7 +29,7 @@ export class ResourcesComponent implements OnInit {
   		this.is_article_should_be_displayed( window.innerWidth );
   		this.get_all_article();
   	}
-	
+
   	@HostListener('window:resize', ['$event'])
   	onResize(event){
   		this.is_article_should_be_displayed( event.target.innerWidth);
@@ -37,8 +39,18 @@ export class ResourcesComponent implements OnInit {
   		this.all_articles = this.article_service.get_all_articles();
   	}
 
+  	display_search(){
+
+  		if(this.search_input != ''){
+  			this.is_search_active = true;
+  		}else{
+  			this.is_search_active = false;
+  		}
+  	}
+
   	select_category( category_index, sub_category_index ){
     	this.selected_category = this.categories[category_index].sub_categories[sub_category_index];
+    	this.switch_from_shortchut_to_article();
 	}
 
 	is_article_should_be_displayed( width ){

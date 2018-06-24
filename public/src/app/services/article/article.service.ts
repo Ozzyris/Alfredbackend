@@ -34,8 +34,8 @@ export class article_service {
 		return this.http.get(url, this.httpOptions);
 	}
 
-	get_article_details(){
-		let url = this.base_url + 'get-article-details';
+	get_article_detail_from_id( id ): Observable<any>{
+		let url = this.base_url + 'get-article-details/' + id;
 		return this.http.get(url, this.httpOptions);
 	}
 

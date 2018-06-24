@@ -60,6 +60,11 @@ export class article_service {
     return this.http.post(url, payload, this.httpOptions);
   }
 
+  post_short_content( payload ){
+    let url = this.base_url + 'post-short-content';
+    return this.http.post(url, payload, this.httpOptions);
+  }
+
   post_article_title( payload ){
     let url = this.base_url + 'post-article-title';
     return this.http.post(url, payload, this.httpOptions);

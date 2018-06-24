@@ -328,6 +328,21 @@ section.article{
 				font-size: 72px;
 				color: $dark_primary;
 			}
+
+			textarea.short_description{
+				width: calc(100% - 40px);
+				height: 75px;
+				background-color: #F7F7F7;
+				resize: none;
+				border: none;
+				border-radius: 3px;
+				padding: 20px;
+				font-family: 'courier new';
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 20px;
+				margin: 0 0 50px 0;
+			}
 			ul.tab{
 				padding: 0 0 20px;
 				li{

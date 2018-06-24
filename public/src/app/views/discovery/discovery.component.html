@@ -36,8 +36,8 @@
 						<div class="left" [style.backgroundImage]="'url(' + article.content.header + ')'"></div>
 						<div class="right">
 							<h4>{{article.content.title}}</h4>
-							<p class="small">{{article.edit_date}}</p>
-							<p class="description">Kansas City ribs are serious business when it comes to BBQ. True to tradition, barbeque in Kansas City is dry rub-spiced, smoked with hickory and coated with a KC style sauce.</p>
+							<p class="small">{{article.edit_date | amCalendar}}</p>
+							<p class="description">{{article.content.short_content}}</p>
 							<a class="link" routerLink="/article/{{article._id}}">Read Article →</a>
 						</div>
 					</article>

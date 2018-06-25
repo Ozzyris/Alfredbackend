@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 //EXTERNAL PACKAGE
 import { MomentModule } from 'angular2-moment';
@@ -17,6 +17,7 @@ import { ArticleComponent } from './views/article/article.component';
 //PIPES
 import { Filter_pipe } from './pipes/filters/filter.pipe';
 import { Searcher_pipe } from './pipes/searcher/searcher.pipe';
+import { SanitizerPipe } from './pipes/sanitizer/sanitizer.pipe';
 
 const routes: Routes = [
   { path: 'discovery', component: DiscoveryComponent, data: { title: 'Discovery' } },
@@ -32,12 +33,14 @@ const routes: Routes = [
     ResourcesComponent,
     ArticleComponent,
     Filter_pipe,
-    Searcher_pipe
+    Searcher_pipe,
+    SanitizerPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     MomentModule,
     RouterModule.forRoot(routes),
   ],

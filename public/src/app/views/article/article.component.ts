@@ -24,7 +24,9 @@ export class ArticleComponent implements OnInit {
       	},
       	tags: [],
 	};
-  feedback_input: string;
+  feedback_input: string = '';
+  info_feedback: string = '';
+  feedback_button: string = "Send your feedback";
 
 	constructor( private location: Location, private route: ActivatedRoute, private article_service: article_service ){}
 	ngOnInit(){
@@ -49,11 +51,21 @@ export class ArticleComponent implements OnInit {
 	}
 
   send_feedback(){
-    console.log(this.feedback_input);
-    this.article_service.post_feedback( {id: this.article.id, feedback: this.feedback_input} )
-      .subscribe(is_feedback_poster => {
-        console.log(is_feedback_poster);
-      })
+    if( this.feedback_button != "Loading" ){
+      this.feedback_button = "Loading";
+      this.info_feedback = '';
+  
+      if(this.feedback_input != ""){
+        this.article_service.post_feedback( {id: this.article.id, feedback: this.feedback_input} )
+          .subscribe(is_feedback_poster => {
+            this.is_modal_actice = false;
+            this.feedback_button = "Send your feedback";
+          })
+      }else{
+        this.feedback_button = "Send your feedback";
+        this.info_feedback = '<span class="icon""></span> Your message is empty';
+      }
+    }
   }
 
 	previous_page(){

@@ -55,15 +55,9 @@ router.use(bodyParser.json());
 	});
 
 	router.post('/post-feedback', function (req, res) {
-		console.log(req.body.id, req.body.feedback);
 
-		article.get_public_article_from_id( req.body.id )
-			.then( articles_details => {
-				console.log( articles_details );
-				return mailer.build_email_feedback( 'article/' + req.body.id, articles_details );
-			})
+		mailer.build_email_feedback( 'article/' + req.body.id, req.body.feedback )
 			.then( html => {
-				console.log( html );
 				return mailer.send_email( 'Feedback from Expat-manual', html );
 			})
 			.then( is_email_sent => {

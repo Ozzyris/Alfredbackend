@@ -19,9 +19,16 @@
 					<p class="icon"></p>
 				</li>
 				<li class="newsletter">
-					<h4>Get our updates by mail</h4>
-					<input type="text" placeholder="emily.kelly@gmail.com">
-					<a class="button">Suscribe</a>
+					<div *ngIf="!is_email_subscribe">
+						<h4>Get our updates by mail</h4>
+						<input type="text" [(ngModel)]="email_input" placeholder="emily.kelly@gmail.com">
+						<p class="informational_message" [innerHTML]="email_info | sanitizer"></p>
+						<a class="button" (click)="check_email_input()" >{{email_button}}</a>
+					</div>
+					<div class="sucess_states" *ngIf="is_email_subscribe">
+						<img src="../../../assets/images/newsletter-illustration.svg" alt="Thank you for subsribing">
+						<p>Thank you for subscribing</p>
+					</div>
 				</li>
 			</ul>
 		</div>

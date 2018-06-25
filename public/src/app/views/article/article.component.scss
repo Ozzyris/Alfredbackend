@@ -68,6 +68,17 @@ section.modal{
 				resize: none;
 				border: none;
 			}
+			p.informational_message{
+				font-size: 12px;
+				font-weight: 200;
+				color: $classic_red;
+				margin: 5px 5% 0;
+
+				&::ng-deep span{
+					font-family: 'font_awesome';
+					font-weight: 300;
+				}
+			}
 		}
 		div.footer{
 			width: 100%;

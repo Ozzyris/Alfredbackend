@@ -38,6 +38,11 @@
 						</div>
 					</article>
 				</div>
+				<div class="empty_states" *ngIf="(all_articles | async | filter_pipe:selected_category.title).length === 0">
+					<img src="../../../assets/images/category-illustration.svg" alt="Nothing found">
+					<h3>This category is empty</h3>
+					<p>But we are writing quite fast !</p>
+				</div>
 			</div>
 			<div class="article_group" *ngIf="is_search_active">
 				<div class="body">

@@ -21,7 +21,6 @@ export class article_service {
 
 	post_feedback( payload ){
 		let url = this.base_url + 'post-feedback';
-		console.log(payload);
 		return this.http.post(url, payload, this.httpOptions);
 	}
 

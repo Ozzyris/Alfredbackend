@@ -7,9 +7,10 @@
 		</div>
 		<div class="body">
 			<textarea rows="10" [(ngModel)]="feedback_input" placeholder="What can we do better?"></textarea>
+			<p class="informational_message" [innerHTML]="info_feedback | sanitizer"></p>
 		</div>
 		<div class="footer">
-			<a class="button" (click)="send_feedback()" >Send your feedback</a>
+			<a class="button" (click)="send_feedback()" >{{feedback_button}}</a>
 		</div>
 	</div>
 </section>

@@ -19,6 +19,12 @@ export class article_service {
         };
 	}
 
+	post_feedback( payload ){
+		let url = this.base_url + 'post-feedback';
+		console.log(payload);
+		return this.http.post(url, payload, this.httpOptions);
+	}
+
 	get_highlighted_articles(){
 		let url = this.base_url + 'get-highlighted-articles';
 		return this.http.get(url, this.httpOptions);

@@ -4,21 +4,11 @@ const express = require('express'),
 	  article = require('../models/article').article;
 
 // HELPERS
+const mailer = require('../helpers/mailer');
 
 // MIDDLEWARE
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
-
-	router.get('/get-all-articles', function (req, res) {
-		article.get_all_public_articles()
-			.then( all_articles => {
-				res.status(200).json( all_articles );
-			})
-			.catch( error => {
-				console.log( error );
-				res.status(401).json( error );
-			})
-	});
 
 	router.get('/get-all-articles', function (req, res) {
 		article.get_all_public_articles()
@@ -62,6 +52,29 @@ router.use(bodyParser.json());
 				console.log( error );
 				res.status(401).json( error );
 			})
+	});
+
+	router.post('/post-feedback', function (req, res) {
+		console.log(req.body.id, req.body.feedback);
+
+		article.get_public_article_from_id( req.body.id )
+			.then( articles_details => {
+				console.log( articles_details );
+				return mailer.build_email_feedback( 'article/' + req.body.id, articles_details );
+			})
+			.then( html => {
+				console.log( html );
+				return mailer.send_email( 'Feedback from Expat-manual', html );
+			})
+			.then( is_email_sent => {
+				res.status(200).json( is_email_sent );
+			})
+			.catch( error => {
+				console.log( error );
+				res.status(401).json( error );
+			})
+
+
 	});
 
 module.exports = {

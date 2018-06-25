@@ -2,8 +2,7 @@ const express = require('express'),
 	  router = express.Router(),
 	  moment = require('moment'),
 	  admin = require('../models/admin').admin,
-	  bodyParser = require('body-parser'),
-	  config = require('../config');
+	  bodyParser = require('body-parser');
 
 // HELPERS
 const bcrypt = require('../helpers/bcrypt'),

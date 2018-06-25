@@ -6,10 +6,10 @@
 			<span class="icon" (click)="is_modal_actice = false" ></span>
 		</div>
 		<div class="body">
-			<textarea rows="10" placeholder="What can we do better?"></textarea>
+			<textarea rows="10" [(ngModel)]="feedback_input" placeholder="What can we do better?"></textarea>
 		</div>
 		<div class="footer">
-			<a class="button">Send your feedback</a>
+			<a class="button" (click)="send_feedback()" >Send your feedback</a>
 		</div>
 	</div>
 </section>

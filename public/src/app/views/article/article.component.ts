@@ -14,6 +14,7 @@ import { article_service } from '../../services/article/article.service';
 export class ArticleComponent implements OnInit {
 	is_modal_actice: boolean = false;
 	article: any = {
+    id: '',
 		edit_date: '',
 		content: {
 			title: '',
@@ -23,6 +24,7 @@ export class ArticleComponent implements OnInit {
       	},
       	tags: [],
 	};
+  feedback_input: string;
 
 	constructor( private location: Location, private route: ActivatedRoute, private article_service: article_service ){}
 	ngOnInit(){
@@ -35,7 +37,7 @@ export class ArticleComponent implements OnInit {
     	this.article_service.get_article_detail_from_id( id )
     		.subscribe( article_detail => {
     			if (article_detail){
-    				console.log(article_detail);
+            this.article.id = article_detail._id;
             this.article.content.title = article_detail.content.title;
     				this.article.content.short_content = article_detail.content.short_content;
     				this.article.content.header = article_detail.content.header;
@@ -45,6 +47,14 @@ export class ArticleComponent implements OnInit {
     			}
     		})
 	}
+
+  send_feedback(){
+    console.log(this.feedback_input);
+    this.article_service.post_feedback( {id: this.article.id, feedback: this.feedback_input} )
+      .subscribe(is_feedback_poster => {
+        console.log(is_feedback_poster);
+      })
+  }
 
 	previous_page(){
 		this.location.back();

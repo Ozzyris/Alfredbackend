@@ -9,7 +9,9 @@ var article = new mongoose.Schema({
     status: {type: Boolean, default: false},
     highlight: {type: Boolean, default: false},
     content: {
-        header: {type: String, default: 'https://images.unsplash.com/photo-1495553912695-78160a6a3c74?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6d3de200297aa8e3e48660427ce3d759&auto=format&fit=crop&w=1412&q=80'},
+        header: {type: String, default: 'https://images.unsplash.com/photo-1528610401968-7f1d38ab592a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4767b7c6c7e96d7f837c017cbacdf6db&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb'},
+        header_by_markdown: {type: String, default: '[@Ozmlcn](https://unsplash.com/@ozmlcn) from Unsplash'},
+        header_by_html: {type: String, default: '<p><a href=\"https://unsplash.com/@ozmlcn\" target=\"_blank\">@Ozmlcn</a> from Unsplash</p>'},
         title: {type: String},
         short_content: {type: String, default: 'As for most of the countries Australian public Holiday are based around History, Religion and Wars.'},
         content_markdown: {type: String},
@@ -135,6 +137,19 @@ article.statics.post_short_content = function( id, short_content ){
         article.update({ '_id' : id }, {
             'edit_date': moment(),
             'content.short_content': short_content,
+        }).exec()
+        .then(status =>{
+            resolve(true);
+        })
+    })
+};
+
+article.statics.post_header_by = function( id, header_by_markdown, header_by_html ){
+    return new Promise((resolve, reject) => {
+        article.update({ '_id' : id }, {
+            'edit_date': moment(),
+            'content.header_by_markdown': header_by_markdown,
+            'content.header_by_html': header_by_html,
         }).exec()
         .then(status =>{
             resolve(true);

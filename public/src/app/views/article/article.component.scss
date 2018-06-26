@@ -68,6 +68,17 @@ section.modal{
 				resize: none;
 				border: none;
 			}
+			p.informational_message{
+				font-size: 12px;
+				font-weight: 200;
+				color: $classic_red;
+				margin: 5px 5% 0;
+
+				&::ng-deep span{
+					font-family: 'font_awesome';
+					font-weight: 300;
+				}
+			}
 		}
 		div.footer{
 			width: 100%;
@@ -188,6 +199,31 @@ section.article{
 			p{
 				margin-top: 6px;
 				@include primary_text( $primary_blue_light );
+
+				&::ng-deep a{
+					color: $secondary_yellow_med;
+					transition: color 200ms;
+
+					&:hover{
+						color: darken($secondary_yellow_med, 15%);
+					}
+				}
+				&::ng-deep h3{
+					margin-top: 20px;
+
+					&:first-child{
+						margin-top: 0;
+					}
+				}
+				&::ng-deep code{
+					padding: 0px 4px;
+					background: linear-gradient(to right, rgba($secondary_yellow_med, .2) 0%, rgba(lighten($secondary_yellow_med, 25%), .2) 100%);
+					box-decoration-break: clone;
+				}
+				&::ng-deep li{
+					list-style-type: circle;
+					margin: 0 0 10px 20px;
+				}
 			}
 		}
 		div.footer{
@@ -222,6 +258,28 @@ section.article{
 				font-size: 14px;
 				font-family: 'istok';
 				margin: 20px 0;
+
+				span{
+					font-family: 'istok';
+	
+					&::ng-deep p{
+						color: rgba($primary_blue_med, .5);
+						font-size: 14px;
+						font-family: 'istok';
+						margin: 0;
+						display: inline;
+	
+						a{
+							font-family: 'istok';
+							color: $secondary_yellow_med;
+							transition: color 200ms;
+	
+							&:hover{
+								color: darken($secondary_yellow_med, 15%);
+							}
+						}
+					}
+				}
 			}
 			a.error{
 				color: $classic_red;

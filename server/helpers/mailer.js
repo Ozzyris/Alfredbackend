@@ -5,10 +5,10 @@ var nodemailer = require('nodemailer'),
 
 var transporter = nodemailer.createTransport( config.email_params );
 
-function build_email_feedback(url, user_details){
+function build_email_feedback(url, feedback){
 	return new Promise((resolve, reject)=>{
 		fs.readFile('templates/emails/email_feedback.html', 'utf8', (err, html) => {
-			html = html.replace('{{Given_name}}', user_details.given_name);
+			html = html.replace('{{feedback}}', feedback);
 			html = html.replace('{{verfiy_email_link}}', config.front_end_url + url);
 			resolve( html );
 		});

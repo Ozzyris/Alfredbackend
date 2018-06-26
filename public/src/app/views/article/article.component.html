@@ -7,9 +7,10 @@
 		</div>
 		<div class="body">
 			<textarea rows="10" [(ngModel)]="feedback_input" placeholder="What can we do better?"></textarea>
+			<p class="informational_message" [innerHTML]="info_feedback | sanitizer : 'html'"></p>
 		</div>
 		<div class="footer">
-			<a class="button" (click)="send_feedback()" >Send your feedback</a>
+			<a class="button" (click)="send_feedback()" >{{feedback_button}}</a>
 		</div>
 	</div>
 </section>
@@ -21,20 +22,20 @@
 	</div>
 
 	<div class="card">
-		<div class="hero" [style.backgroundImage]="'url(' + article.content.header + ')'"></div>
+		<div class="hero" [style.backgroundImage]="'url(' + article.content.header + ')' | sanitizer: 'style'"></div>
 		<div class="header">
 			<h1>{{article.content.title}}</h1>
 			<p>{{article.content.short_content}}</p>
 		</div>
 		<div class="article">
-			<p [innerHtml]="article.content.content_html"></p>
+			<p [innerHtml]="article.content.content_html | sanitizer : 'html'"></p>
 		</div>
 		<div class="footer">
 			<h3>Details of this article</h3>
 			<div class="tags">
 				<span *ngFor="let tag of article.tags" class="tag">{{tag}}</span>
 			</div>
-			<p>Last updated, {{article.edit_date | amTimeAgo}}</p>
+			<p>Last updated, {{article.edit_date | amTimeAgo}}<span *ngIf="article.content.header_by_html != ''">, Photo by <span [innerHtml]="article.content.header_by_html | sanitizer : 'html'"></span></span></p>
 			<a class="error" (click)="is_modal_actice = true" >Report something missing or incoherent</a>
 		</div>
 	</div>

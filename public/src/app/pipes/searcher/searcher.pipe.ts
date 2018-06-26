@@ -7,10 +7,10 @@ export class Searcher_pipe implements PipeTransform {
 
   transform(items: any, query?: any): any {
   	if (!items || !query) {
-      return items;
+      return [];
     }
 
-    return items.filter(item => item.tags.indexOf(query) !== -1);
+    return items.filter(item => item.tags.toLowerCase().indexOf(query.toLowerCase()) !== -1 || item.content.title.toLowerCase().indexOf(query.toLowerCase()) !== -1);
   }
 
 }

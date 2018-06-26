@@ -19,12 +19,15 @@ export class ArticleComponent implements OnInit {
 		content: {
 			title: '',
       		header: '',
+          header_by_html: '',
           short_content: '',
       		content_html: '',
       	},
       	tags: [],
 	};
-  feedback_input: string;
+  feedback_input: string = '';
+  info_feedback: string = '';
+  feedback_button: string = "Send your feedback";
 
 	constructor( private location: Location, private route: ActivatedRoute, private article_service: article_service ){}
 	ngOnInit(){
@@ -41,6 +44,7 @@ export class ArticleComponent implements OnInit {
             this.article.content.title = article_detail.content.title;
     				this.article.content.short_content = article_detail.content.short_content;
     				this.article.content.header = article_detail.content.header;
+            this.article.content.header_by_html = article_detail.content.header_by_html;
     				this.article.content.content_html = article_detail.content.content_html;
             this.article.tags = JSON.parse(article_detail.tags);
             this.article.edit_date = article_detail.edit_date;
@@ -49,11 +53,21 @@ export class ArticleComponent implements OnInit {
 	}
 
   send_feedback(){
-    console.log(this.feedback_input);
-    this.article_service.post_feedback( {id: this.article.id, feedback: this.feedback_input} )
-      .subscribe(is_feedback_poster => {
-        console.log(is_feedback_poster);
-      })
+    if( this.feedback_button != "Loading" ){
+      this.feedback_button = "Loading";
+      this.info_feedback = '';
+  
+      if(this.feedback_input != ""){
+        this.article_service.post_feedback( {id: this.article.id, feedback: this.feedback_input} )
+          .subscribe(is_feedback_poster => {
+            this.is_modal_actice = false;
+            this.feedback_button = "Send your feedback";
+          })
+      }else{
+        this.feedback_button = "Send your feedback";
+        this.info_feedback = '<span class="icon""></span> Your message is empty';
+      }
+    }
   }
 
 	previous_page(){

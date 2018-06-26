@@ -28,6 +28,8 @@ export class ArticleComponent implements OnInit{
     content: {
       title: '',
       header: '',
+      header_by_markdown: '',
+      header_by_html: '',
       short_content: '',
       content_markdown: '',
       content_html: '',
@@ -47,7 +49,9 @@ export class ArticleComponent implements OnInit{
   }
   tag_input: String;
 
-  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private article_upload_service: article_upload_service, private router:Router ){}
+  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private article_upload_service: article_upload_service, private router:Router ){
+    this.showdownConverter.setOption('openLinksInNewWindow', true);
+  }
   ngOnInit(){
     this.route.params.subscribe( params => {
       this.get_article_detail_from_id( params.id );
@@ -67,6 +71,7 @@ export class ArticleComponent implements OnInit{
           this.article.tags = JSON.parse(article_detail.tags);
           this.article.content.title = article_detail.content.title;
           this.article.content.header = article_detail.content.header;
+          this.article.content.header_by_markdown = article_detail.content.header_by_markdown;
           this.article.content.short_content = article_detail.content.short_content;
           this.article.content.content_markdown = article_detail.content.content_markdown;
           this.article.content.content_html = article_detail.content.content_html;
@@ -131,6 +136,18 @@ export class ArticleComponent implements OnInit{
       this.article_service.post_article_title( {id: this.article.id, title: this.article.content.title} )
         .subscribe(is_title_updated => {
           console.log( is_title_updated );
+          this.get_article_detail_from_id( this.article.id )
+        })
+    }
+  }
+
+  post_header_by(){
+      this.article.content.header_by_html = this.showdownConverter.makeHtml( this.article.content.header_by_markdown );
+
+     if( this.article.content.header_by_markdown != '' ){
+      this.article_service.post_header_by( {id: this.article.id, header_by_markdown: this.article.content.header_by_markdown, header_by_html: this.article.content.header_by_html } )
+        .subscribe(is_header_by_updated => {
+          console.log( is_header_by_updated );
           this.get_article_detail_from_id( this.article.id )
         })
     }

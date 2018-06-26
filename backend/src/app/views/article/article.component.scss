@@ -169,7 +169,31 @@ section.article{
 					line-height: 30px;
 					color: $dark_primary;
 				}
+				
+				&.photo_by{
+					padding: 0px;
 
+					&:hover{
+						background-color: white;
+					}
+					input{
+						width: calc(100% - 20px);
+						border: none;
+						font-family: 'courier new';
+						border-radius: 2px;
+						height: 100%;
+						line-height: 30px;
+						font-size: 16px;
+						color: $dark_primary;
+						padding: 10px 10px;
+						transition: all 200ms;
+						background-color: $light_grey;
+
+						&:hover{
+							background-color: white;
+						}
+					}
+				}
 				&.tags{
 					padding: 10px 0;
 					cursor: text;
@@ -382,6 +406,8 @@ section.article{
 				height: auto;
 				min-height: 500px;
 				padding: 20px;
+				column-count: 2;
+				column-gap: 20px;
 				
 				h1{
 					color: #3C4F71;
@@ -394,14 +420,17 @@ section.article{
 					padding: 10px 0;
 				}
 				h3{
-					font-family: 'istok';
-					font-size: 14px;
-					font-weight: 400;
+					font-family: 'old_standard';
+					font-size: 18px;
+					font-weight: 800;
 					color: #3C4F71;
-					text-transform: uppercase;
 					text-align: left;
 					width: 100%;
-					padding: 10px 0;
+					margin-top: 20px;
+
+					&:first-child{
+						margin-top: 0;
+					}
 				}
 				h6{
 					font-size: 14px;

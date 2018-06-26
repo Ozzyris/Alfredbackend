@@ -93,35 +93,63 @@ section.discovery{
 					}
 					&.newsletter{
 						overflow: auto;
-
-						h4{
-							font-size: 16px;
-							color: $primary_blue_light;
-							font-weight: 400;
+						
+						div{
+							h4{
+								font-size: 16px;
+								color: $primary_blue_light;
+								font-weight: 400;
+							}
+							input{
+								width: calc(100% - 16px);
+								border: 1px solid rgba($primary_blue_dark, .5);
+								font-family: 'istok';
+								font-size: 14px;
+								color: $primary_blue_dark;
+								padding: 4px 8px;
+								border-radius: 3px;
+								margin: 12px 0;
+							}
+							p.informational_message{
+								font-size: 12px;
+								font-weight: 200;
+								color: $classic_red;
+								margin: 0 0 10px 0;
+	
+								&::ng-deep span{
+									font-family: 'font_awesome';
+									font-weight: 300;
+								}
+							}
+							a.button{
+								float: right;
+								color: white;
+								font-weight: 800;
+								font-size: 16px;
+								background-color: $secondary_yellow_med;
+								padding: 12px 16px;
+								border-radius: 3px;
+								transition: all 200ms;
+								cursor: pointer;
+	
+								&:hover{
+									background-color: lighten($secondary_yellow_med, 10%);
+								}
+							}
 						}
-						input{
-							width: calc(100% - 16px);
-							border: 1px solid rgba($primary_blue_dark, .5);
-							font-family: 'istok';
-							font-size: 14px;
-							color: $primary_blue_dark;
-							padding: 4px 8px;
-							border-radius: 3px;
-							margin: 12px 0;
-						}
-						a.button{
-							float: right;
-							color: white;
-							font-weight: 800;
-							font-size: 16px;
-							background-color: $secondary_yellow_med;
-							padding: 12px 16px;
-							border-radius: 3px;
-							transition: all 200ms;
-							cursor: pointer;
-
-							&:hover{
-								background-color: lighten($secondary_yellow_med, 10%);
+						div.sucess_states{
+							img{
+								width: 100%;
+								max-width: 250px;
+								margin: 0 auto;
+								display: block;
+							}
+							p{
+								@include primary_text( $primary_blue_light );
+								margin-top: 12px;
+								position: relative;
+								line-height: 26px;
+								text-align: center;
 							}
 						}
 					}

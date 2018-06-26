@@ -65,6 +65,11 @@ export class article_service {
     return this.http.post(url, payload, this.httpOptions);
   }
 
+  post_header_by( payload ){
+    let url = this.base_url + 'post-header-by';
+    return this.http.post(url, payload, this.httpOptions);
+  }
+
   post_article_title( payload ){
     let url = this.base_url + 'post-article-title';
     return this.http.post(url, payload, this.httpOptions);

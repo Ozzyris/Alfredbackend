@@ -7,8 +7,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class Filter_pipe implements PipeTransform {
 
   transform(items: any, filter: string): any {
-  	if (!items || !filter) {
-      return items;
+  	if (!items || !filter ) {
+      return [];
     }
     return items.filter(item => item.category.indexOf(filter) !== -1);
   }

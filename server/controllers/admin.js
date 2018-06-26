@@ -124,10 +124,21 @@ router.use(bodyParser.json());
 	});
 
 	router.post('/post-tags', function (req, res) {
-		console.log(req.body.tags);
 		article.post_tags( req.body.id, req.body.tags )
 			.then( is_tag_posted => {
 				res.status(200).json( {message: 'tags updated'} );
+			})
+			.catch( error => {
+				console.log( error );
+				res.status(401).json( error );
+			})
+	});
+
+	router.post('/post-header-by', function (req, res) {
+		console.log(req.body.header_by);
+		article.post_header_by( req.body.id, req.body.header_by_markdown, req.body.header_by_html )
+			.then( is_tag_posted => {
+				res.status(200).json( {message: 'Photo by updated'} );
 			})
 			.catch( error => {
 				console.log( error );

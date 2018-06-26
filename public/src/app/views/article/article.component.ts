@@ -19,6 +19,7 @@ export class ArticleComponent implements OnInit {
 		content: {
 			title: '',
       		header: '',
+          header_by_html: '',
           short_content: '',
       		content_html: '',
       	},
@@ -43,6 +44,7 @@ export class ArticleComponent implements OnInit {
             this.article.content.title = article_detail.content.title;
     				this.article.content.short_content = article_detail.content.short_content;
     				this.article.content.header = article_detail.content.header;
+            this.article.content.header_by_html = article_detail.content.header_by_html;
     				this.article.content.content_html = article_detail.content.content_html;
             this.article.tags = JSON.parse(article_detail.tags);
             this.article.edit_date = article_detail.edit_date;

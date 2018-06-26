@@ -22,7 +22,7 @@
 					<div *ngIf="!is_email_subscribe">
 						<h4>Get our updates by mail</h4>
 						<input type="text" [(ngModel)]="email_input" placeholder="emily.kelly@gmail.com">
-						<p class="informational_message" [innerHTML]="email_info | sanitizer"></p>
+						<p class="informational_message" [innerHTML]="email_info | sanitizer : 'html'"></p>
 						<a class="button" (click)="check_email_input()" >{{email_button}}</a>
 					</div>
 					<div class="sucess_states" *ngIf="is_email_subscribe">
@@ -40,7 +40,7 @@
 				</div>
 				<div class="body">
 					<article *ngFor="let article of all_articles | async">
-						<div class="left" [style.backgroundImage]="'url(' + article.content.header + ')'"></div>
+						<div class="left" [style.backgroundImage]="'url(' + article.content.header + ')' | sanitizer : 'style'"></div>
 						<div class="right">
 							<h4>{{article.content.title}}</h4>
 							<p class="small">{{article.edit_date | amCalendar}}</p>

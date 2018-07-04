@@ -31,7 +31,7 @@
 				</div>
 				<div class="body">
 					<article *ngFor="let article of all_articles | async | filter_pipe:selected_category.title" routerLink="/article/{{article._id}}">
-						<div class="illustration" [style.backgroundImage]="'url(' + article.content.header + ')' | sanitizer: 'style'"></div>
+						<div class="illustration" [style.backgroundImage]="'url(' + api_url + article.content.header + ')' | sanitizer: 'style'"></div>
 						<div class="content">
 							<h3>{{article.content.title}}</h3>
 							<p class="small">Published {{article.edit_date | amCalendar}}</p>
@@ -47,7 +47,7 @@
 			<div class="article_group" *ngIf="is_search_active">
 				<div class="body">
 					<article *ngFor="let article of all_articles | async | searcher_pipe: search_input" routerLink="/article/{{article._id}}">
-						<div class="illustration" [style.backgroundImage]="'url(' + article.content.header + ')' | sanitizer: 'style'"></div>
+						<div class="illustration" [style.backgroundImage]="'url(' + api_url + article.content.header + ')' | sanitizer: 'style'"></div>
 						<div class="content">
 							<h3>{{article.content.title}}</h3>
 							<p class="small">Published {{article.edit_date | amCalendar}}</p>

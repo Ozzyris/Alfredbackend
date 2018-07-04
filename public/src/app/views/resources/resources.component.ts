@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CATEGORIES } from '../../../assets/json/categories';
+import { environment } from '../../../environments/environment';
 
 //services
 import { article_service } from '../../services/article/article.service';
@@ -15,6 +16,7 @@ export class ResourcesComponent implements OnInit {
 	all_articles: any;
 	is_mobile: boolean;
 	search_input: string;
+	api_url: string = environment.api_url + 'uploads/';
 	is_search_active: boolean = false;
 	is_article_display: boolean = false;
 	is_breadcrumb_display: boolean = true;

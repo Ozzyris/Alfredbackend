@@ -125,14 +125,14 @@ section.article{
 		}
 		span.icon{
 			font-family: 'font_awesome';
-			font-family: 18px;
+			font-size: 18px;
 			color: $primary_blue_dark;
 			float: left;
 			transition: all 200ms;
 		}
 		p{
 			font-family: 'istok';
-			font-family: 18px;
+			font-size: 18px;
 			float: left;
 			margin-left: 12px;
 			color: $primary_blue_dark;
@@ -183,7 +183,7 @@ section.article{
 				background-color: $secondary_yellow_med;
 			}
 			h3{
-				font-family: 18px;
+				font-size: 18px;
 				font-weight: 400;
 				font-family: 'istok';
 				color: $primary_blue_dark;
@@ -230,7 +230,7 @@ section.article{
 			padding: 24px 10px;
 
 			h3{
-				font-family: 18px;
+				font-size: 18px;
 				font-weight: 400;
 				font-family: 'istok';
 				margin: 0 2px 10px;

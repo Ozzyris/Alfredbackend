@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 //services
 import { article_service } from '../../services/article/article.service';
@@ -25,6 +26,7 @@ export class ArticleComponent implements OnInit {
       	},
       	tags: [],
 	};
+  api_url: string = environment.api_url + 'uploads/';
   feedback_input: string = '';
   info_feedback: string = '';
   feedback_button: string = "Send your feedback";

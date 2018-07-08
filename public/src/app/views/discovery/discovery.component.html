@@ -7,7 +7,7 @@
 			</div>
 			<div class="body">
 				<h1>Expat manual to your service</h1>
-				<p>Expat manual has for goal to help you settling up in a new place (Sydney, as for a start) by giving you the information that matter before, during, and after you established. <span class="highlight">If you ever setteled in a new country, for a month or a decade, you probably struggle filling up administrative paper, or searching for a not too touristic place.</span> I certainly did and I that is why I try to make it easier for someone new to settle. <br>
+				<p>Expat manual is a travel guide for those who want to live in Sydney.  Expat manual has for goal to help you settling up in a new place (Sydney, as for a start) by giving you the information that matter before, during, and after you established. <span class="highlight">If you ever setteled in a new country, for a month or a decade, you probably struggle filling up administrative paper, or searching for a not too touristic place.</span> I certainly did and I that is why I try to make it easier for someone new to settle. <br>
 				Our resources are divided by article and categories for a better search. Below, a timeline of resrources in function of the time of the year. </p>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 				</div>
 				<div class="body">
 					<article *ngFor="let article of all_articles | async">
-						<div class="left" [style.backgroundImage]="'url(' + article.content.header + ')' | sanitizer : 'style'"></div>
+						<div class="left" [style.backgroundImage]="'url(' + api_url + article.content.header + ')' | sanitizer : 'style'"></div>
 						<div class="right">
 							<h4>{{article.content.title}}</h4>
 							<p class="small">{{article.edit_date | amCalendar}}</p>

@@ -9,7 +9,7 @@ var article = new mongoose.Schema({
     status: {type: Boolean, default: false},
     highlight: {type: Boolean, default: false},
     content: {
-        header: {type: String, default: 'https://images.unsplash.com/photo-1528610401968-7f1d38ab592a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4767b7c6c7e96d7f837c017cbacdf6db&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb'},
+        header: {type: String, default: 'photo-1528610401968-7f1d38ab592a.jpg'},
         header_by_markdown: {type: String, default: ''},
         header_by_html: {type: String, default: '<p><a href=\"https://unsplash.com/@ozmlcn\" target=\"_blank\">@Ozmlcn</a> from Unsplash</p>'},
         title: {type: String},

@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="card">
-		<div class="hero" [style.backgroundImage]="'url(' + article.content.header + ')' | sanitizer: 'style'"></div>
+		<div class="hero" [style.backgroundImage]="'url(' + api_url + article.content.header + ')' | sanitizer: 'style'"></div>
 		<div class="header">
 			<h1>{{article.content.title}}</h1>
 			<p>{{article.content.short_content}}</p>

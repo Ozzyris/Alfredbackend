@@ -40,7 +40,7 @@
 	<div class="center_container">
 		<div class="inner_container">
 			<label for="header_picture">
-				<div class="illustration" [ngClass]="{'active': illustration.is_file_uploaded}" [style.backgroundImage]="'url(' + article.content.header + ')'">
+				<div class="illustration" [ngClass]="{'active': illustration.is_file_uploaded}" [style.backgroundImage]="'url(' + api_url + article.content.header + ')'">
 					<span class="background_hover">
 						<span class="icon" [className]="illustration.is_icon_rotating" [innerHtml]="illustration.icon"></span>
 						<span class="gauge" [ngClass]="{'active': illustration.is_file_uploaded}" [ngStyle]="{'width': illustration.gauge_width}"></span>

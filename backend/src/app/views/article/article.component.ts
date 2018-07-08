@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ShowdownConverter } from 'ngx-showdown';
 import { MARKDOWN } from '../../../assets/json/makdown_exemple';
+import { environment } from '../../../environments/environment';
 
 //services
 import { article_service } from '../../services/article/article.service';
@@ -35,7 +36,8 @@ export class ArticleComponent implements OnInit{
       content_html: '',
 
     }
-  };  
+  };
+  api_url: string = environment.api_url + 'uploads/';
   is_preview_display: boolean = false;
 	is_delete_message_written: boolean = false;
   is_delete_modal_active: boolean = false;

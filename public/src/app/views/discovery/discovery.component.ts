@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 //services
 import { article_service } from '../../services/article/article.service';
@@ -21,6 +22,7 @@ export class DiscoveryComponent implements OnInit {
   highlighted_articles: any;
 	all_articles: any;
   email_input: string = '';
+  api_url: string = environment.api_url + 'uploads/';
   email_info: string = '';
   email_button: string = 'Suscribe';
   is_email_subscribe: boolean = false;

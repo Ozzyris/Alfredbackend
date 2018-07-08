@@ -28,6 +28,7 @@ nav.bottom_container{
 	height: 75px;
 	background-color: white;
 	z-index: 100;
+	box-shadow: 0px 0px 5px rgba(black, .1);
 
 	div.inner_container{
 		@include container_sizing( 300px );
@@ -97,6 +98,7 @@ nav.bottom_container{
 		width: 100%;
 		z-index: 0;
 		height: 50px;
+		box-shadow: 0px 0px 0px rgba(black, 0);
 	
 		div.inner_container{
 			@include container_sizing( 1000px );

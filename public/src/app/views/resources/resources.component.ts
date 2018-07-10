@@ -22,6 +22,7 @@ export class ResourcesComponent implements OnInit {
 	is_breadcrumb_display: boolean = true;
 	is_shorcut_display: boolean = true;
 	categories: any = CATEGORIES;
+	screen_width: any = window.innerWidth;
 	selected_category: any = this.categories[0].sub_categories[0];
 
 
@@ -34,7 +35,8 @@ export class ResourcesComponent implements OnInit {
 
   	@HostListener('window:resize', ['$event'])
   	onResize(event){
-  		this.is_article_should_be_displayed( event.target.innerWidth);
+  		this.screen_width = event.target.innerWidth;
+  		this.is_article_should_be_displayed( event.target.innerWidth );
   	}
 
   	get_all_article(){
@@ -42,10 +44,19 @@ export class ResourcesComponent implements OnInit {
   	}
 
   	display_search(){
-
   		if(this.search_input != ''){
+  			if( this.screen_width <= 768 ){
+  				this.is_shorcut_display = false;
+  				this.is_breadcrumb_display = false;
+  				this.is_article_display = true;
+  			}
   			this.is_search_active = true;
   		}else{
+  			if( this.screen_width <= 768 ){
+  				this.is_shorcut_display = true;
+  				this.is_breadcrumb_display = true;
+  				this.is_article_display = false;
+  			}
   			this.is_search_active = false;
   		}
   	}

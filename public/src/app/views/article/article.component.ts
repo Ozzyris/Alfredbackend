@@ -64,6 +64,10 @@ export class ArticleComponent implements OnInit {
           .subscribe(is_feedback_poster => {
             this.is_modal_actice = false;
             this.feedback_button = "Send your feedback";
+          }, error => {
+            console.log(error.error);
+            this.info_feedback = '<span class="icon""></span> The message couldn\'t be sent, please try again soon.';
+            this.feedback_button = "Send your feedback";
           })
       }else{
         this.feedback_button = "Send your feedback";

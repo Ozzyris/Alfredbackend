@@ -33,6 +33,25 @@ export class DiscoveryComponent implements OnInit {
   ngOnInit(){
   	this.get_highlighted_articles();
     this.get_last_15_articles();
+
+    this.check_if_storage( 'is_intro_hidden' )
+      .then(is_intro => {
+        if( is_intro == 'true'){
+          this.is_intro_hidden = true;
+        }
+      });
+    this.check_if_storage( 'is_subscribe' )
+      .then(is_subscribe => {
+        if( is_subscribe == 'true'){
+          this.is_email_subscribe = true;
+        }
+      });
+  }
+
+  check_if_storage( storage_key ): Promise<any>{
+    return new Promise((resolve, reject)=>{
+      resolve( localStorage.getItem( storage_key ) );
+    })
   }
 
   get_highlighted_articles(){
@@ -44,6 +63,7 @@ export class DiscoveryComponent implements OnInit {
   }
 
   hide_intro(){
+    localStorage.setItem("is_intro_hidden", 'true');
   	this.is_intro_hidden = true;
   }
 
@@ -69,6 +89,7 @@ export class DiscoveryComponent implements OnInit {
             if (response.result && response.result !== 'error') {
               this.is_email_subscribe = true;
               this.email_button = 'Suscribe';
+              localStorage.setItem("is_subscribe", 'true');
             } else {
               this.email_info = '<span class="icon""></span> ' + response.msg;
                this.email_button = 'Suscribe';

@@ -50,6 +50,7 @@ export class ArticleComponent implements OnInit{
     gauge_width: 0
   }
   tag_input: String;
+  display_internet_error: Boolean = false;
 
   constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private article_upload_service: article_upload_service, private router:Router ){
     this.showdownConverter.setOption('openLinksInNewWindow', true);
@@ -58,7 +59,20 @@ export class ArticleComponent implements OnInit{
     this.route.params.subscribe( params => {
       this.get_article_detail_from_id( params.id );
     })
+    this.ping_server();
+  }
 
+  ping_server(){
+    setInterval(()=>{
+      console.log('alex');
+      this.article_service.ping_server()
+        .subscribe( success => {
+          this.display_internet_error = false;
+        }, error => {
+          console.log(error);
+          this.display_internet_error = true;
+        });
+     }, 10000);
   }
 
   get_article_detail_from_id( id ){

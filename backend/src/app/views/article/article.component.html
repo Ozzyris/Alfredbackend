@@ -1,3 +1,8 @@
+<section class="internet_failed" *ngIf="display_internet_error">
+	<h4>Failed to connect to internet</h4>
+	<p>Retry in 60 seconds <a>retry now</a></p>
+</section>
+
 <section class="modal" *ngIf="is_delete_modal_active" >
 	<div class="dark_filter"></div>
 	<div class="card">

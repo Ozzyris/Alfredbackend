@@ -30,6 +30,11 @@ export class article_service {
     })
   }
 
+  ping_server(){
+    let url = this.base_url + 'ping-server';
+    return this.http.get(url, this.httpOptions);
+  }
+
   put_article( payload ){
   	let url = this.base_url + 'create-article';
 		return this.http.post(url, payload, this.httpOptions);

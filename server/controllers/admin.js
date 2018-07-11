@@ -11,6 +11,8 @@ router.use( check_auth );
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
+router
+
 	router.post('/create-article', function (req, res) {
 		let article_detail = {
 			author: 'Alexandre Nicol',

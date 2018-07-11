@@ -3,6 +3,34 @@
 // =============================================================================
 @import "../../../styles";
 
+
+section.internet_failed{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 300px;
+	background-color: white;
+	border-radius: 4px;
+	box-shadow: 0px 0px 6px rgba($dark_primary, .2);
+	border-left: 4px solid $red;
+
+	h4{
+		color: $dark_primary;
+		padding: 15px 20px 10px;
+	}
+	p{
+		color: $dark_primary;
+		font-size: 14px;
+		width: 100%;
+		padding: 0px 20px 15px;
+
+		a{
+			display: inline;
+			color: $blue;
+		}
+	}
+}
+
 section.modal{
 	position: fixed;
 	top: 0;

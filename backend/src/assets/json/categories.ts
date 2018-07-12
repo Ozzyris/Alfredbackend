@@ -32,6 +32,11 @@ export const CATEGORIES = [
 				title: 'Museum',
 				icon: '',
 				article_count: 0,
+			},
+			{
+				title: 'Others',
+				icon: '',
+				article_count: 0,
 			}
 		]
 	},

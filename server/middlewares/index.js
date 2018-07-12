@@ -32,6 +32,7 @@ function check_auth(req, res, next) {
 			return next();
 		})
 		.catch(error => {
+			res.status(401).send([{message: error, code: 'middleware_error'}])
 			console.log( 'middleware_error : ', error );
 		})
 }

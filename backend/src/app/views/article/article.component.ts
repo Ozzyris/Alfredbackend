@@ -17,7 +17,6 @@ import { article_upload_service } from '../../services/article_upload/article-up
 })
 
 export class ArticleComponent implements OnInit{
-	markdown_exemple: string = MARKDOWN.exemple;
 	article: any = {
     id: '',
     author: '',
@@ -59,20 +58,21 @@ export class ArticleComponent implements OnInit{
     this.route.params.subscribe( params => {
       this.get_article_detail_from_id( params.id );
     })
+
     this.ping_server();
+    setInterval(()=>{
+      this.ping_server();
+    }, 10000);
   }
 
   ping_server(){
-    setInterval(()=>{
-      console.log('alex');
-      this.article_service.ping_server()
-        .subscribe( success => {
-          this.display_internet_error = false;
-        }, error => {
-          console.log(error);
-          this.display_internet_error = true;
-        });
-     }, 10000);
+    this.article_service.ping_server()
+      .subscribe( success => {
+        this.display_internet_error = false;
+      }, error => {
+        console.log(error);
+        this.display_internet_error = true;
+      });  
   }
 
   get_article_detail_from_id( id ){
@@ -92,6 +92,9 @@ export class ArticleComponent implements OnInit{
           this.article.content.content_markdown = article_detail.content.content_markdown;
           this.article.content.content_html = article_detail.content.content_html;
         }
+      },
+      error => {
+        console.log(error);
       })
   }
 
@@ -194,9 +197,14 @@ export class ArticleComponent implements OnInit{
         })
   }
 
-  launch_exemple(){
-  	this.article.content.content_markdown = this.markdown_exemple;
-  	this.post_article_content();
+  insert_template( type ){
+    if( this.article.content.content_markdown == ""){
+      this.article.content.content_markdown = MARKDOWN[ type ];
+    }else{
+      if (confirm("This will erase your current text \n Do you want to continue?")) {
+        this.article.content.content_markdown = MARKDOWN[ type ];
+      }else{} 
+    }
   }
 
   check_delete_message_written( value ){

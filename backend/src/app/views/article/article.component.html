@@ -58,10 +58,31 @@
 			<ul class="tab">
 				<li (click)="is_preview_display = false" [ngClass]="{'active': !is_preview_display}" >Markdown</li>
 				<li (click)="is_preview_display = true" [ngClass]="{'active': is_preview_display}" >Preview</li>
-				<li (click)="launch_exemple()">See a markdown example</li>
+				<li>Template<ul class="tootltype">
+						<li (click)="insert_template('cafe')">Cafe</li>
+						<li (click)="insert_template('bar')">Bar</li>
+						<li (click)="insert_template('museum')">Museum</li>
+					</ul>
+				</li>
+				<li (click)="is_markdown_display = !is_markdown_display">Markdown example</li>
 			</ul>
 			<textarea *ngIf="!is_preview_display" class="markdown" (blur)="post_article_content()" [(ngModel)]="article.content.content_markdown" placeholder="Feel free to use markdown"></textarea>
 			<div *ngIf="is_preview_display" class="preview" [innerHtml]="article.content.content_html | sanitizer"></div>
 		</div>
 	</div>
+</section>
+
+<section class="tootltype" *ngIf="is_markdown_display">
+	<a class="icon" (click)="is_markdown_display = false"></a>
+	<ul>
+		<li><b>Title 1:</b> ###text</li>
+		<li><b>Title 2:</b> ######text</li>
+		<li><b>Italic:</b> *text*</li>
+		<li><b>Bold:</b> **text**</li>
+		<li><b>List 1:</b> * text</li>
+		<li><b>List 2:</b> 	* text</li>
+		<li><b>Image:</b> ![text](link)</li>
+		<li><b>Link:</b> [text](link)</li>
+		<li><b>Highlight:</b> `text`</li>
+	</ul>
 </section>

@@ -13,6 +13,7 @@ section.internet_failed{
 	border-radius: 4px;
 	box-shadow: 0px 0px 6px rgba($dark_primary, .2);
 	border-left: 4px solid $red;
+	z-index: 100;
 
 	h4{
 		color: $dark_primary;
@@ -397,22 +398,61 @@ section.article{
 			}
 			ul.tab{
 				padding: 0 0 20px;
+
 				li{
 					font-family: 'courier new';
 					font-weight: 400;
 					font-size: 16px;
 					display: inline;
 					cursor: pointer;
-					margin-left: 15px;
+					margin-left: 20px;
+					color: rgba($dark_primary, .3);
+					position: relative;
 
 					&:first-child{
 						margin-left: 0;
 					}
-					&:last-child{
-						color: rgba($dark_primary, .3);
+
+					&:nth-child(1), &:nth-child(2){
+						color: $dark_primary;
 					}
 					&:hover, &.active{
 						text-decoration: underline;
+					}
+					&:hover{
+						ul.tootltype{
+							display: block;
+						}
+						
+					}
+					ul.tootltype{
+						position: absolute;
+						top: 30px;
+						left: -80px;
+						width: 200px;
+						display: none;
+						background-color: white;
+						padding: 12px;
+						box-shadow: 0px 0px 6px rgba($dark_primary, .3);
+						border-radius: 4px;
+						
+						&:before{
+							content: '';
+							border-top: 0;
+							border-left: 15px solid transparent;
+							border-right: 15px solid transparent;
+							border-bottom: 15px solid white;
+							display: block;
+							position: absolute;
+							top: -10px;
+							left: calc(50% - 15px);
+						}
+						li{
+							margin-left: 0;
+							display: block;
+							padding: 2px;
+							color: $dark_primary;
+						}
 					}
 				}
 			}
@@ -514,5 +554,50 @@ section.article{
 
 			}
 		}	
+	}
+}
+
+section.tootltype{
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	width: 240px;
+	background-color: rgba($dark_primary, .8);
+	border-radius: 4px;
+	padding: 12px;
+	font-family: 'courier new';
+
+	a.icon{
+		position: absolute;
+		top: -10px;
+		right: -10px;
+		background-color: $dark_primary;
+		line-height: 30px;
+		width: 30px;
+		text-align: center;
+		border-radius: 50%;
+		font-family: 'font_awesome';
+		color: white;
+		cursor: pointer;
+	}
+	ul{
+		li{
+			color: white;
+			margin-left: 0;
+			padding: 5px 0;
+			width: auto;
+			display: block;
+			overflow: auto;
+
+			b{
+				font-weight: 800;
+				min-width: 110px;
+				display: block;
+				float:left;
+			}
+			&:hover{
+				text-decoration: none;
+			}
+		}
 	}
 }

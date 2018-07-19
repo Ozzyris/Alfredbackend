@@ -220,6 +220,10 @@ section.article{
 					background: linear-gradient(to right, rgba($secondary_yellow_med, .2) 0%, rgba(lighten($secondary_yellow_med, 25%), .2) 100%);
 					box-decoration-break: clone;
 				}
+				&::ng-deep img{
+					display: block;
+					width: 100%;
+				}
 				&::ng-deep li{
 					list-style-type: circle;
 					margin: 0 0 10px 20px;

@@ -47,7 +47,8 @@ export class ArticleComponent implements OnInit{
     is_icon_rotating: 'icon', 
     icon: '',
     gauge_width: 0
-  }
+  };
+  is_markdown_display: Boolean = false;
   tag_input: String;
   display_internet_error: Boolean = false;
 

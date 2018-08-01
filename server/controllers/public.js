@@ -65,7 +65,7 @@ router.use(bodyParser.json());
 				return mailer.send_email( 'Feedback from Expat-manual', html );
 			})
 			.then( is_email_sent => {
-				res.status(200).json( is_email_sent );
+				res.status(200).json({ message: 'feedback sent' });
 			})
 			.catch( error => {
 				console.log( error );

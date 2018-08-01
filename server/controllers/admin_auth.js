@@ -18,26 +18,34 @@ router.use(bodyParser.json());
 			email: req.body.email,
 			name: req.body.name,
 			password: req.body.password,
+			code: req.body.code
 		};
 
-		admin.check_email( user.email )
-			.then( is_email_unique => {
-				if( is_email_unique ){
-					return bcrypt.hash_password( user.password );
-				}else{
-					throw { message: 'Your email already exist', code: 'email_duplicate'};
-				}
-			})
-			.then( hash_password => {
-				user.password = hash_password;
-				return new admin(user).save();
-			})
-			.then( is_user_creater => {
-				res.status(200).json('User created');
-			})
-			.catch( error => {
-				res.status(401).json( error );
-			})
+		if( user.code == '160792'){
+			admin.check_email( user.email )
+				.then( is_email_unique => {
+					console.log(user);
+					if( is_email_unique ){
+						return bcrypt.hash_password( user.password );
+					}else{
+						throw { message: 'Your email already exist', code: 'email_duplicate'};
+					}
+				})
+				.then( hash_password => {
+					console.log(user);
+					user.password = hash_password;
+					return new admin(user).save();
+				})
+				.then( is_user_created => {
+					console.log(user, is_user_created);
+					res.status(200).json('User created');
+				})
+				.catch( error => {
+					res.status(401).json( error );
+				})
+		}else{
+			res.status(401).json( 'code incorrect' );
+		}
 	});
 
 	// SIGN IN
@@ -61,7 +69,7 @@ router.use(bodyParser.json());
 				if(are_password_similar){
 					return admin.get_user_id_from_email( user.email );
 				}else{
-					throw {message: 'Your email or passowrd was invalid', code: 'wrong_password'};
+					throw {message: 'Your email or password is invalid', code: 'wrong_password'};
 				}
 			})
 			.then(user_id => {

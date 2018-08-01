@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { environment } from '../../../environments/environment';
 
@@ -31,7 +31,7 @@ export class ArticleComponent implements OnInit {
   info_feedback: string = '';
   feedback_button: string = "Send your feedback";
 
-	constructor( private location: Location, private route: ActivatedRoute, private article_service: article_service ){}
+	constructor( private router: Router, private location: Location, private route: ActivatedRoute, private article_service: article_service ){}
 	ngOnInit(){
 		this.route.params.subscribe( params => {
       		this.get_article_detail_from_id( params.id );
@@ -77,7 +77,11 @@ export class ArticleComponent implements OnInit {
   }
 
 	previous_page(){
-		this.location.back();
+    if( window.history.length <= 1 ){
+      this.router.navigate(['resources']);
+    }else{
+      this.location.back();
+    }
 	}
 
 }

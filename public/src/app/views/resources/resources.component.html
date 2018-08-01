@@ -30,7 +30,7 @@
 					<h3><span class="icon">{{selected_category.icon}}</span> {{selected_category.title}}</h3>
 				</div>
 				<div class="body">
-					<article *ngFor="let article of all_articles | async | filter_pipe:selected_category.title" routerLink="/article/{{article._id}}">
+					<article *ngFor="let article of all_articles | async | filter_pipe:selected_category.title" routerLink="/article/{{article.url}}">
 						<div class="illustration" [style.backgroundImage]="'url(' + api_url + article.content.header + ')' | sanitizer: 'style'"></div>
 						<div class="content">
 							<h3>{{article.content.title}}</h3>
@@ -46,7 +46,7 @@
 			</div>
 			<div class="article_group" *ngIf="is_search_active">
 				<div class="body">
-					<article *ngFor="let article of all_articles | async | searcher_pipe: search_input" routerLink="/article/{{article._id}}">
+					<article *ngFor="let article of all_articles | async | searcher_pipe: search_input" routerLink="/article/{{article.url}}">
 						<div class="illustration" [style.backgroundImage]="'url(' + api_url + article.content.header + ')' | sanitizer: 'style'"></div>
 						<div class="content">
 							<h3>{{article.content.title}}</h3>

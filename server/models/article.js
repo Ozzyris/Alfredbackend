@@ -49,7 +49,7 @@ article.statics.get_all_articles = function(){
 };
 article.statics.get_all_public_articles = function(){
     return new Promise((resolve, reject) => {
-        this.find({status : true}, {'content.title':1, 'content.header':1, 'edit_date':1, 'category':1, 'tags':1, '_id':1}).exec()
+        this.find({status : true}, {'content.title':1, 'url':1, 'content.header':1, 'edit_date':1, 'category':1, 'tags':1, '_id':1}).exec()
             .then(articles => {
                 if( articles ){
                     resolve( articles );
@@ -61,7 +61,7 @@ article.statics.get_all_public_articles = function(){
 };
 article.statics.get_public_highlighted_articles = function(){
     return new Promise((resolve, reject) => {
-        this.find({ status : true, highlight: true}, {'content.title':1, '_id':1}).exec()
+        this.find({ status : true, highlight: true}, {'content.title':1, 'url':1, '_id':1}).exec()
             .then(articles => {
                 if( articles ){
                     resolve( articles );
@@ -74,7 +74,7 @@ article.statics.get_public_highlighted_articles = function(){
 
 article.statics.get_public_last_15_articles = function(){
     return new Promise((resolve, reject) => {
-        this.find({ status : true }, {'content.title':1, 'content.header':1, 'content.short_content':1, 'edit_date':1, '_id':1}).sort({'creation_date': -1}).limit(15).exec()
+        this.find({ status : true }, {'content.title':1, 'content.header':1, 'url':1, 'content.short_content':1, 'edit_date':1, '_id':1}).sort({'creation_date': -1}).limit(15).exec()
             .then(articles => {
                 if( articles ){
                     resolve( articles );
@@ -175,6 +175,18 @@ article.statics.post_header_by = function( id, header_by_markdown, header_by_htm
             'edit_date': moment(),
             'content.header_by_markdown': header_by_markdown,
             'content.header_by_html': header_by_html,
+        }).exec()
+        .then(status =>{
+            resolve(true);
+        })
+    })
+};
+
+article.statics.post_url = function( id, url ){
+    return new Promise((resolve, reject) => {
+        article.update({ '_id' : id }, {
+            'edit_date': moment(),
+            'url': url,
         }).exec()
         .then(status =>{
             resolve(true);

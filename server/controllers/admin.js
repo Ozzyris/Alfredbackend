@@ -11,6 +11,10 @@ router.use( check_auth );
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
+	router.get('/ping-server', function (req, res) {
+		res.status(200).json({message: 'pong'});
+	});
+
 	router.post('/create-article', function (req, res) {
 		let article_detail = {
 			author: 'Anonymous',
@@ -158,7 +162,7 @@ router.use(bodyParser.json());
 				return article.post_url( req.body.id, req.body.url );
 			})
 			.then( is_url_posted => {
-				res.status(200).json( {message: 'Photo by updated'} );
+				res.status(200).json( {message: 'Url posted'} );
 			})
 			.catch( error => {
 				console.log( error );

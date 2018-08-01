@@ -13,7 +13,7 @@
 
 		<div class="shortcut">
 			<ul>
-				<li class="shortcut" *ngFor="let article of highlighted_articles | async" routerLink="/article/{{article._id}}">
+				<li class="shortcut" *ngFor="let article of highlighted_articles | async" routerLink="/article/{{article.url}}">
 					<h4>{{article.content.title}}</h4>
 					<p class="icon"></p>
 				</li>
@@ -44,7 +44,7 @@
 							<h4>{{article.content.title}}</h4>
 							<p class="small">{{article.edit_date | amCalendar}}</p>
 							<p class="description">{{article.content.short_content}}</p>
-							<a class="link" routerLink="/article/{{article._id}}">Read Article →</a>
+							<a class="link" routerLink="/article/{{article.url}}">Read Article →</a>
 						</div>
 					</article>
 				</div>

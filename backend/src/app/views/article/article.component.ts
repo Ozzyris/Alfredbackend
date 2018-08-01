@@ -6,13 +6,14 @@ import { environment } from '../../../environments/environment';
 
 //services
 import { article_service } from '../../services/article/article.service';
+import { validator_service } from '../../services/validator/validator.service';
 import { article_upload_service } from '../../services/article_upload/article-upload.service';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
-  providers: [article_service, article_upload_service],
+  providers: [article_service, validator_service, article_upload_service],
   encapsulation: ViewEncapsulation.None
 })
 
@@ -23,6 +24,7 @@ export class ArticleComponent implements OnInit{
     creation_date: '',
     edit_date: '',
     status: false,
+    url: '',
     highlight: true,
     tags: [],
     content: {
@@ -51,7 +53,7 @@ export class ArticleComponent implements OnInit{
   tag_input: String;
   display_internet_error: Boolean = false;
 
-  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private article_upload_service: article_upload_service, private router:Router ){
+  constructor( private showdownConverter: ShowdownConverter, private route: ActivatedRoute, private article_service: article_service, private validator_service: validator_service, private article_upload_service: article_upload_service, private router:Router ){
     this.showdownConverter.setOption('openLinksInNewWindow', true);
   }
   ngOnInit(){
@@ -81,6 +83,7 @@ export class ArticleComponent implements OnInit{
         if (article_detail){
           this.article.id = article_detail._id;
           this.article.author = article_detail.author;
+          this.article.url = article_detail.url;
           this.article.creation_date = article_detail.creation_date;
           this.article.edit_date = article_detail.edit_date;
           this.article.highlight = article_detail.highlight;
@@ -155,6 +158,17 @@ export class ArticleComponent implements OnInit{
       this.article_service.post_article_title( {id: this.article.id, title: this.article.content.title} )
         .subscribe(is_title_updated => {
           console.log( is_title_updated );
+          // this.get_article_detail_from_id( this.article.id )
+        })
+        this.article.url = this.validator_service.generate_url( this.article.content.title );
+    }
+  }
+
+  post_url(){
+    if( this.article.url != '' ){
+      this.article_service.post_url( {id: this.article.id, url: this.article.url} )
+        .subscribe(is_url_updated => {
+          console.log( is_url_updated );
           this.get_article_detail_from_id( this.article.id )
         })
     }

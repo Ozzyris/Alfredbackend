@@ -34,4 +34,10 @@ export class validator_service {
 			return false;
 		}
 	}
+
+	generate_url( string ){
+		var outString = string.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+		outString = outString.toLowerCase().replace(/\n/g, "<br />").replace(/ +/g, "-");
+		return outString;
+	}
 }

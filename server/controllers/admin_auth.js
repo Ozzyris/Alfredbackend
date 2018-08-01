@@ -15,8 +15,9 @@ router.use(bodyParser.json());
 	// SIGN UP
 	router.put('/signup-with-credentials', function (req, res) {
 		let user = {
-			email: '',
-			password: '',
+			email: req.body.email,
+			name: req.body.name,
+			password: req.body.password,
 		};
 
 		admin.check_email( user.email )

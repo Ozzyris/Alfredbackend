@@ -18,10 +18,23 @@ var article = new mongoose.Schema({
         content_html: {type: String}
     },
     category: {type: String},
+    url: {type: String},
     tags: {type: String, default: "[\"Add a tag\"]"}
 }, {collection: 'article'});
 
 //COMMON
+article.statics.check_url = function(url){
+    return new Promise((resolve, reject) => {
+        this.findOne({ url : url }).exec()
+            .then( user => {
+                if( !user ){
+                    resolve( true );
+                }else{
+                    reject({ message: 'the url already exist', code: 'url_duplicate'});
+                }
+            })
+    })
+};
 article.statics.get_all_articles = function(){
     return new Promise((resolve, reject) => {
         this.find({}, {'status':1, 'content.title':1, 'category':1, 'tags':1, '_id':1}).exec()
@@ -72,6 +85,18 @@ article.statics.get_public_last_15_articles = function(){
     })
 };
 
+article.statics.get_public_article_from_url = function( url ){
+    return new Promise((resolve, reject) => {
+         this.findOne({ status : true, url : url }).exec()
+            .then( article => {
+                if( article ){
+                    resolve( article );
+                }else{
+                    resolve( false );
+                }
+            })
+    })
+};
 article.statics.get_public_article_from_id = function( id ){
     return new Promise((resolve, reject) => {
          this.findOne({ status : true, _id : id }).exec()
@@ -86,7 +111,7 @@ article.statics.get_public_article_from_id = function( id ){
 };
 article.statics.get_article_from_id = function( id ){
     return new Promise((resolve, reject) => {
-         this.findOne({ _id : id }).exec()
+        this.findOne({ _id : id }).exec()
             .then( article => {
                 if( article ){
                     resolve( article );

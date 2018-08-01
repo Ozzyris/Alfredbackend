@@ -199,7 +199,7 @@ section.article{
 					color: $dark_primary;
 				}
 				
-				&.photo_by{
+				&.photo_by, &.url{
 					padding: 0px;
 
 					&:hover{

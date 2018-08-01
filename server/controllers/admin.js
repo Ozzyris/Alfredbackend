@@ -11,18 +11,21 @@ router.use( check_auth );
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-router
-
 	router.post('/create-article', function (req, res) {
 		let article_detail = {
-			author: 'Alexandre Nicol',
+			author: 'Anonymous',
 			category: req.body.category,
+			url: req.body.url,
 			content: {
 				title: req.body.title
 			}
 		}
 
-		return new article(article_detail).save()
+		return admin.get_auth_detail_from_xtoken( req.headers['x-auth-token'] )
+			.then( user_details => {
+				article_detail.author = user_details.name; 
+				return new article(article_detail).save();
+			})
 			.then( article_id => {
 				res.status(200).json( {message: 'Article created'} );
 			})
@@ -140,6 +143,21 @@ router
 		console.log(req.body.header_by);
 		article.post_header_by( req.body.id, req.body.header_by_markdown, req.body.header_by_html )
 			.then( is_tag_posted => {
+				res.status(200).json( {message: 'Photo by updated'} );
+			})
+			.catch( error => {
+				console.log( error );
+				res.status(401).json( error );
+			})
+	});
+
+	router.post('/post-url', function (req, res) {
+		console.log(req.body.url);
+		article.check_url( req.body.url )
+			.then( id_url_available => {
+				return article.post_url( req.body.id, req.body.url );
+			})
+			.then( is_url_posted => {
 				res.status(200).json( {message: 'Photo by updated'} );
 			})
 			.catch( error => {

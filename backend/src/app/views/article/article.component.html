@@ -29,6 +29,7 @@
 			</li>
 			<li *ngIf="!article.edit_date">Created {{article.creation_date | amTimeAgo}}</li><li *ngIf="article.edit_date">Updated {{article.last_edit | amTimeAgo}}</li>
 			<li>Author {{article.author}}</li>
+			<li class="url"><input type="text" placeholder="Url" [(ngModel)]="article.url" (blur)="post_url()"></li>
 			<li class="photo_by"><input type="text" placeholder="Photo by" [(ngModel)]="article.content.header_by_markdown" (blur)="post_header_by()"></li>
 			<li *ngIf="!article.highlight" (click)="switch_highlight()" ><span class="icon"></span> Highlight article</li><li *ngIf="article.highlight" (click)="switch_highlight()" ><span class="icon bold"></span> Article highlighted</li>
 			<li class="tags">

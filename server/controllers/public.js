@@ -33,9 +33,13 @@ router.use(bodyParser.json());
 	});
 
 	router.get('/get-article-details/:id', function (req, res) {
-		article.get_public_article_from_id( req.params.id )
+		article.get_public_article_from_url( req.body.id )
 			.then( articles_details => {
-				res.status(200).json( articles_details );
+				if( article_details == false){
+					return article.get_public_article_from_id( req.params.id );
+				}else{
+					res.status(200).json( articles_details );
+				}
 			})
 			.catch( error => {
 				console.log( error );

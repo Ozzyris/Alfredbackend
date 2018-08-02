@@ -3,21 +3,23 @@ import { CATEGORIES } from '../../../assets/json/categories';
 
 //services
 import { article_service } from '../../services/article/article.service';
+import { validator_service } from '../../services/validator/validator.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [article_service]
+  providers: [article_service, validator_service]
 })
 
 export class DashboardComponent implements OnInit {
-	new_article_title: string;
+  new_article_title: string;
+	new_article_url: string;
   all_articles: any;
   categories: any = CATEGORIES;
   selected_category: any = this.categories[0].sub_categories[0];
 
-  constructor( private article_service: article_service ){}
+  constructor( private article_service: article_service, private validator_service: validator_service ){}
   ngOnInit(){
     this.get_all_article();
   }
@@ -28,7 +30,9 @@ export class DashboardComponent implements OnInit {
 
   put_article(){
   	if( this.new_article_title != '' ){
-  		this.article_service.put_article( {title: this.new_article_title, category: this.selected_category.title } )
+      this.new_article_url = this.validator_service.generate_url( this.new_article_title );
+
+  		this.article_service.put_article( {title: this.new_article_title, category: this.selected_category.title, url: this.new_article_url } )
   			.subscribe( is_article_created => {
   			  this.new_article_title = '';
           this.get_all_article();

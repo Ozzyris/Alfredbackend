@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'discovery', component: DiscoveryComponent, data: { title: 'Discovery' } },
   { path: '',   redirectTo: 'discovery', pathMatch: 'full' },
   { path: 'resources', component: ResourcesComponent, data: { title: 'Resources' } },
+  { path: 'resources/:category', component: ResourcesComponent, data: { title: 'Resources' } },
   { path: 'article/:id', component: ArticleComponent, data: { title: 'Article' } }
 ];
 

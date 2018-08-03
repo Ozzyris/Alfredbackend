@@ -1,6 +1,9 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CATEGORIES } from '../../../assets/json/categories';
 import { environment } from '../../../environments/environment';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 //services
 import { article_service } from '../../services/article/article.service';
@@ -26,45 +29,65 @@ export class ResourcesComponent implements OnInit {
 	selected_category: any = this.categories[0].sub_categories[0];
 
 
-  constructor( private article_service: article_service ){}
+  constructor( private article_service: article_service, private route: ActivatedRoute, private location: Location ){}
 
-  	ngOnInit(){
-  		this.is_article_should_be_displayed( window.innerWidth );
-  		this.get_all_article();
-  	}
+  ngOnInit(){
+    this.route.params.subscribe( params => {
+        if( params.category != undefined ){
+          this.update_category( params.category );
+        }
+    })
+  	this.is_article_should_be_displayed( window.innerWidth );
+  	this.get_all_article();
+  }
 
-  	@HostListener('window:resize', ['$event'])
-  	onResize(event){
-  		this.screen_width = event.target.innerWidth;
-  		this.is_article_should_be_displayed( event.target.innerWidth );
-  	}
+  @HostListener('window:resize', ['$event'])
+  onResize(event){
+  	this.screen_width = event.target.innerWidth;
+  	this.is_article_should_be_displayed( event.target.innerWidth );
+  }
 
-  	get_all_article(){
-  		this.all_articles = this.article_service.get_all_articles();
-  	}
+  update_category( category ){
+    for (var i = 0; i <= this.categories.length - 1; i++) {
+      for (var j = 0; j <= this.categories[i].sub_categories.length - 1; j++) {
+        if( category == this.categories[i].sub_categories[j].title.toLowerCase()){
+          this.selected_category = this.categories[i].sub_categories[j];
+          console.log( this.selected_category);
+          this.switch_from_shortchut_to_article();
+        }
+      }
+    }
+  }
 
-  	display_search(){
-  		if(this.search_input != ''){
-  			if( this.screen_width <= 768 ){
-  				this.is_shorcut_display = false;
-  				this.is_breadcrumb_display = false;
-  				this.is_article_display = true;
-  			}
-  			this.is_search_active = true;
-  		}else{
-  			if( this.screen_width <= 768 ){
-  				this.is_shorcut_display = true;
-  				this.is_breadcrumb_display = true;
-  				this.is_article_display = false;
-  			}
-  			this.is_search_active = false;
+  get_all_article(){
+  	this.all_articles = this.article_service.get_all_articles();
+  }
+
+  display_search(){
+  	if(this.search_input != ''){
+  		if( this.screen_width <= 768 ){
+  			this.is_shorcut_display = false;
+  			this.is_breadcrumb_display = false;
+  			this.is_article_display = true;
   		}
+  		this.is_search_active = true;
+  	}else{
+  		if( this.screen_width <= 768 ){
+  			this.is_shorcut_display = true;
+  			this.is_breadcrumb_display = true;
+  			this.is_article_display = false;
+  		}
+  		this.is_search_active = false;
   	}
+  }
 
-  	select_category( category_index, sub_category_index ){
-    	this.selected_category = this.categories[category_index].sub_categories[sub_category_index];
-    	this.switch_from_shortchut_to_article();
-	}
+
+
+  select_category( category_index, sub_category_index ){
+    this.location.replaceState("/resources/" + this.categories[category_index].sub_categories[sub_category_index].title.toLowerCase());
+  	this.selected_category = this.categories[category_index].sub_categories[sub_category_index];
+  	this.switch_from_shortchut_to_article();
+  }
 
 	is_article_should_be_displayed( width ){
 		if( width <= 768 ){

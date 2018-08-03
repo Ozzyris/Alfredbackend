@@ -117,6 +117,7 @@ section.article{
 		@include container_sizing( 600px );
 		overflow: auto;
 		margin-bottom: 16px;
+		padding: 5px 0;
 		cursor: pointer;
 
 		&:hover{

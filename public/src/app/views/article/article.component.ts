@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { environment } from '../../../environments/environment';
+import { Meta, Title } from '@angular/platform-browser';
 
 //services
 import { article_service } from '../../services/article/article.service';
@@ -31,7 +32,7 @@ export class ArticleComponent implements OnInit {
   info_feedback: string = '';
   feedback_button: string = "Send your feedback";
 
-	constructor( private router: Router, private location: Location, private route: ActivatedRoute, private article_service: article_service ){}
+	constructor( private router: Router, private location: Location, private route: ActivatedRoute, private article_service: article_service, private metaService: Meta, private titleService: Title ){}
 	ngOnInit(){
 		this.route.params.subscribe( params => {
       		this.get_article_detail_from_id( params.id );
@@ -50,7 +51,14 @@ export class ArticleComponent implements OnInit {
     				this.article.content.content_html = article_detail.content.content_html;
             this.article.tags = JSON.parse(article_detail.tags);
             this.article.edit_date = article_detail.edit_date;
-    			}
+
+            // SEO
+            this.titleService.setTitle( 'Expat Manual, ' + article_detail.content.title );
+            this.metaService.updateTag({ content: 'Expat Manual, ' + article_detail.content.title }, "property='title'");
+            this.metaService.updateTag({ content: article_detail.content.short_content }, "property='og:description'");
+            this.metaService.updateTag({ content: article_detail.content.short_content }, "property='description'");
+            this.metaService.updateTag({ content: this.api_url + article_detail.content.header }, "property='og:image'");
+          }
     		})
 	}
 

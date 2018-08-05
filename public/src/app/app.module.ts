@@ -1,4 +1,5 @@
 //INTERNAL PACKAGE
+//https://blog.pusher.com/make-angular-4-app-seo-friendly/
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';

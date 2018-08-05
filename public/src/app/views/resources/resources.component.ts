@@ -43,8 +43,9 @@ export class ResourcesComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event){
+    console.log('alexou');
   	this.screen_width = event.target.innerWidth;
-  	this.is_article_should_be_displayed( event.target.innerWidth );
+  	// this.is_article_should_be_displayed( event.target.innerWidth );
   }
 
   update_category( category ){

@@ -11,6 +11,21 @@
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
+		<loc>http://www.expatmanual.info/article/pancake-on-the-rock</loc>
+		<priority>0.5</priority>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
+		<loc>http://www.expatmanual.info/article/the-jungle</loc>
+		<priority>0.5</priority>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
+		<loc>http://www.expatmanual.info/article/ju-mak</loc>
+		<priority>0.5</priority>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
 		<loc>http://www.expatmanual.info/article/taxe-file-number</loc>
 		<priority>0.5</priority>
 		<changefreq>monthly</changefreq>
@@ -61,7 +76,7 @@
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-		<loc>http://www.expatmanual.info/article/matin%C3%A9e</loc>
+		<loc>http://www.expatmanual.info/article/matinee</loc>
 		<priority>0.5</priority>
 		<changefreq>monthly</changefreq>
 	</url>

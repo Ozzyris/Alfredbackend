@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class validator_service {
 
+export class validator_service {
   constructor(){}
 
   password_test( password ){

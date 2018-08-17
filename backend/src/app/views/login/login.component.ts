@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 		stay_loggedin: false
 	};
 
-	//inputs
+	//inputs feedback
 	info_email: string = '';
 	info_password: string = '';
 

@@ -1,7 +1,8 @@
 const express = require('express'),
 	  router = express.Router(),
 	  bodyParser = require('body-parser'),
-	  article = require('../models/article').article;
+	  article = require('../models/article').article
+	  admin = require('../models/admin').admin;
 
 // HELPERS
 

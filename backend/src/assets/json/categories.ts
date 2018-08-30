@@ -50,6 +50,11 @@ export const CATEGORIES = [
 				article_count: 0,
 			},
 			{
+				title: 'History',
+				icon: '',
+				article_count: 0,
+			},
+			{
 				title: 'Events',
 				icon: '',
 				article_count: 0,

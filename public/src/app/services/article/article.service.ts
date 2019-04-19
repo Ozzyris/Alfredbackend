@@ -43,6 +43,4 @@ export class article_service {
 		let url = this.base_url + 'get-article-details/' + id;
 		return this.http.get(url, this.httpOptions);
 	}
-
-
 }

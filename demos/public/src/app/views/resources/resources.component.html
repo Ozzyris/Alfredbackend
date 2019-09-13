@@ -1,0 +1,66 @@
+<section class="resources">
+	<div class="hero" style="background-image: url('../../../assets/images/resource_background.jpg');">
+	</div>
+		<div class="search">
+		<span class="icon"></span>
+		<input type="text" [(ngModel)]="search_input" (ngModelChange)="display_search()" placeholder="SEARCH">
+	</div>
+	
+	<div class="main_container">
+		<div class="shortcuts" *ngIf="is_shorcut_display">
+			<div class="shortcut_group" *ngFor="let main_categorie of categories; index as primary_index">
+				<div class="header">
+					<h3>{{main_categorie.title}}</h3>
+				</div>
+				<div class="body">
+					<div *ngFor="let sub_category of main_categorie.sub_categories; index as secondary_index" class="shortcut" (click)="select_category(primary_index, secondary_index)" [ngClass]="{'active': sub_category.title == selected_category.title}">
+						<span class="icon">{{sub_category.icon}}</span>
+						<h4>{{sub_category.title}}</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="articles" *ngIf="is_article_display">
+			<div class="breadcrumb" *ngIf="is_breadcrumb_display" (click)="previous_page()">
+				<span class="icon"></span>
+				<p>Back to resources </p>
+			</div>
+			<div class="article_group" *ngIf="!is_search_active">
+				<div class="header">
+					<h3><span class="icon">{{selected_category.icon}}</span> {{selected_category.title}}</h3>
+				</div>
+				<div class="body">
+					<article *ngFor="let article of all_articles | async | filter_pipe:selected_category.title" routerLink="/article/{{article.url}}">
+						<div class="illustration" [style.backgroundImage]="'url(' + '../../../assets/uploads/' + article.content.header + ')' | sanitizer: 'style'"></div>
+						<div class="content">
+							<h3>{{article.content.title}}</h3>
+							<p class="small">Published {{article.edit_date | amCalendar}}</p>
+						</div>
+					</article>
+				</div>
+				<div class="empty_states" *ngIf="(all_articles | async | filter_pipe:selected_category.title).length === 0">
+					<img src="../../../assets/images/category-illustration.svg" alt="Nothing found">
+					<h3>This category is empty</h3>
+					<p>But we are writing quite fast !</p>
+				</div>
+			</div>
+			<div class="article_group" *ngIf="is_search_active">
+				<div class="body">
+					<article *ngFor="let article of all_articles | async | searcher_pipe: search_input" routerLink="/article/{{article.url}}">
+						<div class="illustration" [style.backgroundImage]="'url(' + '../../../assets/uploads/' + article.content.header + ')' | sanitizer: 'style'"></div>
+						<div class="content">
+							<h3>{{article.content.title}}</h3>
+							<p class="small">Published {{article.edit_date | amCalendar}}</p>
+						</div>
+					</article>
+					
+				</div>
+				<div class="empty_states" *ngIf="(all_articles | async | searcher_pipe: search_input).length === 0">
+					<img src="../../../assets/images/search-illustration.svg" alt="Nothing found">
+					<h3>We didn't found anything</h3>
+					<p>But we really tried !</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

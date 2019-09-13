@@ -1,0 +1,145 @@
+// =============================================================================
+// IMPORT
+// =============================================================================
+@import "../../../styles";
+
+section.dashboard{
+	div.left_container{
+		width: calc(25% - 60px);
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		background-color: $light_grey;
+		padding: 30px;
+		overflow: auto;
+
+		ul{
+			margin:0;
+			padding:50px 0 0 0;
+
+			&:first-child{
+				padding-top: 0;
+			}
+			h4{
+				text-align: left;
+				font-family: 'courier new';
+				padding: 0 0 20px 0;
+				color: $dark_primary;
+			}
+			li{
+				font-family: 'courier new';
+				line-height: 30px;
+				transition: all 200ms;
+				cursor: pointer;
+				position: relative;
+				border-radius: 3px;
+				list-style-type: none;
+				padding: 0 10px 0 10px;
+
+				&:hover{
+					background-color:rgba($dark_primary, .1);
+				}
+				span.icon{
+					display: inline;
+					line-height: 30px;
+					margin-right: 10px;
+					font-family: 'font_awesome';
+					font-size: 12px;
+					color: $dark_primary;
+
+				}
+				p{
+					display: inline;
+					font-family: 'courier new';
+					line-height: 30px;
+					color: $dark_primary;
+				}
+			}
+		}
+	}
+	div.center_container{
+		position: absolute;
+		top: 0;
+		left: 25%;
+		right: 0;
+		bottom: 0;
+		overflow: auto;
+
+		div.inner_container{
+			width: calc(100% - 100px);
+			max-width: 800px;
+			margin: 50px auto 0;
+
+			h1{
+				font-family: 'courier new';
+				font-weight: 800;
+				margin: 0 0 50px;
+				font-size: 48px;
+				color: $dark_primary;
+
+				span.icon{
+					font-family: 'font_awesome';
+					font-size: 40px;
+					font-weight: 200;
+				}
+			}
+			ul{
+				li{
+					margin: 10px 0;
+					position: relative;
+					padding: 0 0 0 0;
+
+					a{
+						color: $dark_primary;
+						line-height: 28px;
+						cursor: pointer;
+						font-family: 'courier new';
+						font-weight: 400;
+						display: inline;
+
+						&:hover{
+							text-decoration: underline;
+						}
+					}
+					span.icon{
+						font-family: 'font_awesome';
+						font-size: 12px;
+						margin-right: 20px;
+						cursor: pointer;
+						color: $dark_primary;
+						line-height: 28px;
+					}
+
+					&.add_article{
+						opacity: .5;
+						transition: all 200ms;
+
+						span.icon{
+							font-family: 'font_awesome';
+							font-size: 12px;
+							margin-right: 20px;
+							cursor: pointer;
+							color: $dark_primary;
+							line-height: 28px;
+						}
+						input{
+							width: calc(100% - 80px);
+							padding: 6px 10px;
+							font-family: 'courier new';
+							font-weight: 400;
+							font-size: 16px;
+							color: $dark_primary;
+							line-height: 28px;
+							border: none;
+						}
+						&:hover, &:focus-within{
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
+		
+	}
+}

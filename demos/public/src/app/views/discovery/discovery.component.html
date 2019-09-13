@@ -1,0 +1,54 @@
+<section class="discovery">
+	<div class="inner_container">
+		<div class="introduction" *ngIf="!is_intro_hidden">
+			<span class="close" (click)="hide_intro()"></span>
+			<div class="header">
+				<img src="../../../assets/images/discovery-illustration.svg" alt="Rocket launch">
+			</div>
+			<div class="body">
+				<h1>Expat Manual, the travel guide to settle in Sydney</h1>
+				<p>With Expat Manual we want to help you settling in Sydney (for a start). Our goal is to provide articles that matter before, during and after you've established. We all feel the struggle when arriving to a new city to see beyond the touristic attraction. <span class="highlight">But also to understand the culture, history, and the local laws.</span> We certainly did and that is why we are trying to make it easier for you to pass this initial struggle.</p>
+			</div>
+		</div>
+
+		<div class="shortcut">
+			<ul>
+				<li class="shortcut" *ngFor="let article of highlighted_articles | async" routerLink="/article/{{article.url}}">
+					<h4>{{article.content.title}}</h4>
+					<p class="icon"></p>
+				</li>
+				<li class="newsletter">
+					<div *ngIf="!is_email_subscribe">
+						<h4>Get our updates by mail</h4>
+						<input type="text" [(ngModel)]="email_input" placeholder="emily.kelly@gmail.com">
+						<p class="informational_message" [innerHTML]="email_info | sanitizer : 'html'"></p>
+						<a class="button" (click)="check_email_input()" >{{email_button}}</a>
+					</div>
+					<div class="sucess_states" *ngIf="is_email_subscribe">
+						<img src="../../../assets/images/newsletter-illustration.svg" alt="Thank you for subsribing">
+						<p>Thank you for subscribing</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="article">
+			<div class="month">
+				<div class="header">
+					<h3>Recent articles</h3>
+				</div>
+				<div class="body">
+					<article *ngFor="let article of all_articles | async">
+						<div class="left" [style.backgroundImage]="'url(' + '../../../assets/uploads/' + article.content.header + ')' | sanitizer : 'style'"></div>
+						<div class="right">
+							<h4>{{article.content.title}}</h4>
+							<p class="small">{{article.edit_date | amCalendar}}</p>
+							<p class="description">{{article.content.short_content}}</p>
+							<a class="link" routerLink="/article/{{article.url}}">Read Article →</a>
+						</div>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

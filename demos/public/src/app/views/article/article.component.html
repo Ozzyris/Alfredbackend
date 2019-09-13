@@ -1,0 +1,42 @@
+<section class="modal" [ngClass]="{'active': is_modal_actice}" >
+	<div class="dark_filter"></div>
+	<div class="card">
+		<div class="header">
+			<h2>Something missing or incoherent</h2>
+			<span class="icon" (click)="is_modal_actice = false" ></span>
+		</div>
+		<div class="body">
+			<textarea rows="10" [(ngModel)]="feedback_input" placeholder="What can we do better?"></textarea>
+			<p class="informational_message" [innerHTML]="info_feedback | sanitizer : 'html'"></p>
+		</div>
+		<div class="footer">
+			<a class="button" (click)="send_feedback()" >{{feedback_button}}</a>
+		</div>
+	</div>
+</section>
+
+<section class="article">
+	<div class="breadcrumb" (click)="previous_page()">
+		<span class="icon"></span>
+		<p>Back to resources </p>
+	</div>
+
+	<div class="card">
+		<div class="hero" [style.backgroundImage]="'url(' + '../../../assets/uploads/' + article.content.header + ')' | sanitizer: 'style'"></div>
+		<div class="header">
+			<h1>{{article.content.title}}</h1>
+			<p>{{article.content.short_content}}</p>
+		</div>
+		<div class="article">
+			<p [innerHtml]="article.content.content_html | sanitizer : 'html'"></p>
+		</div>
+		<div class="footer">
+			<h3>Details of this article</h3>
+			<div class="tags">
+				<span *ngFor="let tag of article.tags" class="tag">{{tag}}</span>
+			</div>
+			<p>Last updated, {{article.edit_date | amTimeAgo}}<span *ngIf="article.content.header_by_html != ''">, Photo by <span [innerHtml]="article.content.header_by_html | sanitizer : 'html'"></span></span></p>
+			<a class="error" (click)="is_modal_actice = true" >Report something missing or incoherent</a>
+		</div>
+	</div>
+</section>

@@ -86,3 +86,80 @@
 
 #DATABASE
 /database/*
+
+#DEMO PUBLIC
+# compiled output
+/demos/public/dist
+/demos/public/dist-server
+/demos/public/tmp
+/demos/public/out-tsc
+# dependencies
+/demos/public/node_modules
+/demos/public/src/environments
+# IDEs and editors
+/demos/public/.idea
+/demos/public/.project
+/demos/public/.classpath
+/demos/public/.c9/
+/demos/public/*.launch
+/demos/public/.settings/
+/demos/public/*.sublime-workspace
+# IDE - VSCode
+/demos/public/.vscode/*
+/demos/public/!.vscode/settings.json
+/demos/public/!.vscode/tasks.json
+/demos/public/!.vscode/launch.json
+/demos/public/!.vscode/extensions.json
+# misc
+/demos/public/.sass-cache
+/demos/public/connect.lock
+/demos/public/coverage
+/demos/public/libpeerconnection.log
+/demos/public/npm-debug.log
+/demos/public/testem.log
+/demos/public/typings
+# e2e
+/demos/public/e2e/*.js
+/demos/public/e2e/*.map
+# System Files
+/demos/public/.DS_Store
+/demos/public/Thumbs.db
+
+
+#DEMO BACKEND
+# compiled output
+/demos/backend/dist
+/demos/backend/dist-server
+/demos/backend/tmp
+/demos/backend/out-tsc
+# dependencies
+/demos/backend/node_modules
+/demos/backend/src/environments
+# IDEs and editors
+/demos/backend/.idea
+/demos/backend/.project
+/demos/backend/.classpath
+/demos/backend/.c9/
+/demos/backend/*.launch
+/demos/backend/.settings/
+/demos/backend/*.sublime-workspace
+# IDE - VSCode
+/demos/backend/.vscode/*
+/demos/backend/!.vscode/settings.json
+/demos/backend/!.vscode/tasks.json
+/demos/backend/!.vscode/launch.json
+/demos/backend/!.vscode/extensions.json
+# misc
+/demos/backend/.sass-cache
+/demos/backend/connect.lock
+/demos/backend/coverage
+/demos/backend/libpeerconnection.log
+/demos/backend/npm-debug.log
+/demos/backend/testem.log
+/demos/backend/typings
+# e2e
+/demos/backend/e2e/*.js
+/demos/backend/e2e/*.map
+# System Files
+/demos/backend/.DS_Store
+/demos/backend/Thumbs.db

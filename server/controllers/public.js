@@ -1,9 +1,7 @@
 const express = require('express'),
 	  router = express.Router(),
 	  bodyParser = require('body-parser'),
-	  users = require('../models/user').user,
-	  wallet = require('../models/wallet').wallet,
-	  transaction = require('../models/transaction').transaction;
+	  article = require('../models/article').article;
 
 // HELPERS
 const mailer = require('../helpers/mailer');
